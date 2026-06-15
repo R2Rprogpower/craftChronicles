@@ -247,9 +247,9 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
 
 echo ""
 echo "[3b/10] Installing Node dependencies and building assets ..."
-APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'if [[ -f package-lock.json ]]; then npm ci; else npm install; fi'
-APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app npm run build
-APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'if node -e "const p=require(\"./package.json\"); process.exit(p.scripts && p.scripts[\"build-rtl\"] ? 0 : 1)"; then npm run build-rtl; else echo "  -> build-rtl script not defined; skipping RTL theme build"; fi'
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'export HOME=/tmp NPM_CONFIG_CACHE=/tmp/.npm; if [[ -f package-lock.json ]]; then npm ci; else npm install; fi'
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'export HOME=/tmp NPM_CONFIG_CACHE=/tmp/.npm; npm run build'
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'export HOME=/tmp NPM_CONFIG_CACHE=/tmp/.npm; if node -e "const p=require(\"./package.json\"); process.exit(p.scripts && p.scripts[\"build-rtl\"] ? 0 : 1)"; then npm run build-rtl; else echo "  -> build-rtl script not defined; skipping RTL theme build"; fi'
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app sh -lc 'test -f public/build/manifest.json'
 
 # ─── Wait for health ───────────────────────────────────────────────────────────
