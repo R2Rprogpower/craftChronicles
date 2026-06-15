@@ -1,10 +1,9 @@
 @yield('css')
 
-<!-- Bootstrap Css -->
-<link href="{{ URL::asset('build/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-<!-- Icons Css -->
-<link href="{{ URL::asset('build/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-<!-- App Css-->
-<link href="{{ URL::asset('build/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+@if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+	@vite(['resources/scss/bootstrap.scss', 'resources/scss/icons.scss', 'resources/scss/app.scss'])
+@else
+	<link href="{{ URL::asset('build/css/app.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+@endif
 <!-- App js -->
 <script src="{{ URL::asset('build/js/plugin.js') }}"></script>

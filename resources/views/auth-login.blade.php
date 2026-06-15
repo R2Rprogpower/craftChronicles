@@ -50,29 +50,28 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal" action="index">
+                                    <form class="form-horizontal" method="POST" action="{{ url('/api/auth/login') }}">
 
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username"
-                                                placeholder="Enter username">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Enter email" required>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label">Password</label>
+                                            <label for="password" class="form-label">Password</label>
                                             <div class="input-group auth-pass-inputgroup">
-                                                <input type="password" class="form-control" placeholder="Enter password"
-                                                    aria-label="Password" aria-describedby="password-addon">
+                                                <input id="password" name="password" type="password" class="form-control" placeholder="Enter password"
+                                                    aria-label="Password" aria-describedby="password-addon" required>
                                                 <button class="btn btn-light " type="button" id="password-addon"><i
                                                         class="mdi mdi-eye-outline"></i></button>
                                             </div>
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="remember-check">
-                                            <label class="form-check-label" for="remember-check">
-                                                Remember me
-                                            </label>
+                                        <div class="mb-3">
+                                            <label for="mfa_token" class="form-label">MFA Token (optional)</label>
+                                            <input type="text" class="form-control" id="mfa_token" name="mfa_token"
+                                                placeholder="Enter 2FA token">
                                         </div>
 
                                         <div class="mt-3 d-grid">

@@ -1,4 +1,5 @@
 <header id="page-topbar">
+    @php($currentUser = auth()->user())
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
@@ -375,8 +376,8 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('build/images/users/avatar-1.jpg') }}" alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ucfirst(Auth::user()->name)}}</span>
+                    <img class="rounded-circle header-profile-user" src="{{ $currentUser?->avatar ? asset($currentUser->avatar) : asset('build/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                    <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ ucfirst($currentUser?->name ?? 'Guest') }}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
@@ -386,10 +387,12 @@
                     <a class="dropdown-item d-block" href="#" data-bs-toggle="modal" data-bs-target=".change-password"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">@lang('translation.Settings')</span></a>
                     <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">@lang('translation.Lock_screen')</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">@lang('translation.Logout')</span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    @if (Route::has('logout'))
+                        <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">@lang('translation.Logout')</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @endif
                 </div>
             </div>
 
@@ -810,7 +813,7 @@
             <div class="modal-body">
                 <form method="POST" id="change-password">
                     @csrf
-                    <input type="hidden" value="{{ Auth::user()->id }}" id="data_id">
+                    <input type="hidden" value="{{ $currentUser?->id ?? '' }}" id="data_id">
                     <div class="mb-3">
                         <label for="current_password">Current Password</label>
                         <input id="current-password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" autocomplete="current_password" placeholder="Enter Current Password" value="{{ old('current_password') }}">
@@ -830,7 +833,7 @@
                     </div>
 
                     <div class="mt-3 d-grid">
-                        <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}" type="submit">Update Password</button>
+                        <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ $currentUser?->id ?? '' }}" type="submit">Update Password</button>
                     </div>
                 </form>
             </div>

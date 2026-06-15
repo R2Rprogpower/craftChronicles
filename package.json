@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && npm run copy:theme-assets",
+    "copy:theme-assets": "mkdir -p public/build && cp -R resources/css public/build/ && cp -R resources/js public/build/ && cp -R resources/libs public/build/ && cp -R resources/images public/build/ && cp -R resources/fonts public/build/",
     "dev": "vite",
     "hooks:install": "make install-hooks",
     "build-rtl": "rtlcss public/build/css/app.min.css & rtlcss public/build/css/bootstrap.min.css"
