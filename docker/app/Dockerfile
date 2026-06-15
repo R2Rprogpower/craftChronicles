@@ -2,6 +2,7 @@ FROM php:8.4-fpm-alpine
 
 RUN apk add --no-cache \
     bash git curl unzip icu-dev oniguruma-dev libzip-dev postgresql-dev \
+    nodejs npm \
     && docker-php-ext-install intl mbstring zip pdo pdo_pgsql opcache
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

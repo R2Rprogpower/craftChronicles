@@ -5,3 +5,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('theme-preview')->group(function () {
+    $previewPages = [
+        'ui-alerts' => 'ui-alerts',
+        'form-elements' => 'form-elements',
+        'ui-rangeslider' => 'ui-rangeslider',
+    ];
+
+    Route::get('/', function () use ($previewPages) {
+        $links = collect($previewPages)
+            ->keys()
+            ->map(fn (string $page) => [
+                'name' => $page,
+                'url' => route('theme-preview.page', ['page' => $page]),
+            ]);
+
+        return response()->json([
+            'message' => 'Theme preview endpoints',
+            'endpoints' => $links,
+        ]);
+    })->name('theme-preview.index');
+
+    Route::get('/{page}', function (string $page) use ($previewPages) {
+        abort_unless(array_key_exists($page, $previewPages), 404);
+
+        return view($previewPages[$page]);
+    })->name('theme-preview.page');
+});
