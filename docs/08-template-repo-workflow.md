@@ -54,39 +54,40 @@ Update deploy env values in `.github/workflows/ci.yml` (`deploy` job `env`):
 ## 3) Prepare VPS directories for the new app
 
 ```bash
-sudo mkdir -p /opt/my-new-app
-sudo chown $USER:$USER /opt/my-new-app
+sudo mkdir -p /opt/manage-subs
+sudo chown $USER:$USER /opt/manage-subs
 
-git clone https://github.com/<you>/my-new-app.git /opt/my-new-app/setup
-cp /opt/my-new-app/setup/.env.example /opt/my-new-app/.env
+git clone https://github.com/R2Rprogpower/manage-subs.git /opt/manage-subs/setup
+cp /opt/manage-subs/setup/.env.example /opt/manage-subs/.env
 ```
 
 Replace repository URL in the command above with:
 
-- `https://github.com/R2Rprogpower/my-new-app.git`
+- `https://github.com/R2Rprogpower/manage-subs.git`
 
 Then deploy from the setup directory:
 
 ```bash
-cd /opt/my-new-app/setup
-DOMAIN=api.my-new-app.com \
-PGADMIN_DOMAIN=pgadmin.my-new-app.com \
+cd /opt/manage-subs/setup
+DOMAIN=manage-subs.ruslanrahimov.space \
+PGADMIN_DOMAIN=mspgadmin.ruslanrahimov.space \
+ACME_EMAIL=ops@manage-subs.ruslanrahimov.space \
 bash scripts/deploy.sh \
-  --repo https://github.com/R2Rprogpower/my-new-app.git \
+  --repo https://github.com/R2Rprogpower/manage-subs.git \
   --branch main \
-  --env /opt/my-new-app/.env
+  --env /opt/manage-subs/.env
 ```
 
 ## 6) Exact checklist (copy/paste order)
 
-1. Create a new repository in GitHub (for example `my-new-app`) under `R2Rprogpower`.
+1. Create a new repository in GitHub (for example `manage-subs`) under `R2Rprogpower`.
 2. Run locally:
 
 ```bash
-git clone https://github.com/R2Rprogpower/guzleaks.git my-new-app
-cd my-new-app
+git clone https://github.com/R2Rprogpower/guzleaks.git manage-subs
+cd manage-subs
 git remote remove origin
-git remote add origin https://github.com/R2Rprogpower/my-new-app.git
+git remote add origin https://github.com/R2Rprogpower/manage-subs.git
 git push -u origin main
 ```
 
@@ -96,34 +97,40 @@ git push -u origin main
    - `VPS_SSH_KEY`
    - `DEPLOY_WEBHOOK_URL` (optional)
 4. Edit `.github/workflows/ci.yml` in new repo:
-   - `DEPLOY_SETUP_DIR=/opt/my-new-app/setup`
-   - `DEPLOY_ENV_FILE=/opt/my-new-app/.env`
-   - `APP_DOMAIN=api.my-new-app.com`
-   - `PGADMIN_DOMAIN=pgadmin.my-new-app.com`
-  - `ACME_EMAIL=ops@my-new-app.com`
+   - `DEPLOY_SETUP_DIR=/opt/manage-subs/setup`
+   - `DEPLOY_ENV_FILE=/opt/manage-subs/.env`
+   - `APP_DOMAIN=api.manage-subs.com`
+   - `PGADMIN_DOMAIN=pgadmin.manage-subs.com`
+  - `ACME_EMAIL=ops@manage-subs.com`
 5. On VPS:
 
 ```bash
-sudo mkdir -p /opt/my-new-app
-sudo chown $USER:$USER /opt/my-new-app
-git clone https://github.com/R2Rprogpower/my-new-app.git /opt/my-new-app/setup
-cp /opt/my-new-app/setup/.env.example /opt/my-new-app/.env
+sudo mkdir -p /opt/manage-subs
+sudo chown $USER:$USER /opt/manage-subs
+git clone https://github.com/R2Rprogpower/manage-subs.git /opt/manage-subs/setup
+cp /opt/manage-subs/setup/.env.example /opt/manage-subs/.env
 ```
 
-6. Set production values in `/opt/my-new-app/.env` (DB passwords, app URL, pgAdmin credentials).
+6. Set production values in `/opt/manage-subs/.env` (DB passwords, app URL, pgAdmin credentials).
 7. First deploy on VPS:
 
 ```bash
-cd /opt/my-new-app/setup
-DOMAIN=api.my-new-app.com \
-PGADMIN_DOMAIN=pgadmin.my-new-app.com \
+DEPLOY_BASE_DIR=/opt/manage-subs \
+DOMAIN=manage-subs.ruslanrahimov.space  \
+PGADMIN_DOMAIN=mspgadmin.ruslanrahimov.space \
+ACME_EMAIL=ops@manage-subs.ruslanrahimov.space \
+BLUE_HTTP_PORT=18073 \
+GREEN_HTTP_PORT=18074 \
+BLUE_PGADMIN_PORT=15042 \
+GREEN_PGADMIN_PORT=15043 \
 bash scripts/deploy.sh \
-  --repo https://github.com/R2Rprogpower/my-new-app.git \
+  --repo https://github.com/R2Rprogpower/manage-subs.git \
   --branch main \
-  --env /opt/my-new-app/.env
+  --env /opt/manage-subs/.env
+
 ```
 
-8. After first deploy, future deploys happen automatically on push to `main` in `my-new-app`.
+8. After first deploy, future deploys happen automatically on push to `main` in `manage-subs`.
 
 ## 4) Keep base and app changes separated
 
