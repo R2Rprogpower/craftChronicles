@@ -50,7 +50,7 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal" method="POST" action="{{ route('login.submit') }}">
+                                    <form class="form-horizontal" method="POST" action="{{ route('login.submit', [], false) }}">
                                         @csrf
 
                                         <div class="mb-3">
