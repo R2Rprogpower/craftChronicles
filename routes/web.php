@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\WebAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('root');
 
-Route::get('/login', function () {
-    return view('auth-login');
-})->name('login');
+Route::get('/login', [WebAuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
+Route::get('/dashboard', [WebAuthController::class, 'dashboard'])->name('dashboard');
 
 Route::prefix('theme-preview')->group(function () {
     $previewPages = [

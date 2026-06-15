@@ -50,7 +50,8 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal" method="POST" action="{{ url('/api/auth/login') }}">
+                                    <form class="form-horizontal" method="POST" action="{{ route('login.submit') }}">
+                                        @csrf
 
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
