@@ -7,9 +7,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root');
 
-Route::get('/login', [WebAuthController::class, 'showLogin'])->name('login');
+Route::get('/login', function () {
+    return view('auth-login');
+})->name('login');
+
 Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
-Route::get('/dashboard', [WebAuthController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
 
 Route::prefix('theme-preview')->group(function () {
     $previewPages = [
