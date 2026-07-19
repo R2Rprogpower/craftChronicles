@@ -14,6 +14,8 @@ Route::get('/login', function () {
 
 Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
 
+Route::view('/surgeon', 'surgeon')->name('surgeon');
+
 Route::prefix('chess')->name('chess.')->controller(ChessController::class)->group(function (): void {
     Route::get('/', 'index')->name('index');
     Route::post('/profile', 'profileUpdate')->name('profile');
