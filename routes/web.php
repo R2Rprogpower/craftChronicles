@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChessController;
 use App\Http\Controllers\WebAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +14,6 @@ Route::get('/login', function () {
 Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
 
 Route::view('/surgeon', 'surgeon')->name('surgeon');
-
-Route::prefix('chess')->name('chess.')->controller(ChessController::class)->group(function (): void {
-    Route::get('/', 'index')->name('index');
-    Route::post('/profile', 'profileUpdate')->name('profile');
-    Route::post('/games', 'create')->name('create');
-    Route::get('/games/{game}', 'show')->name('game');
-    Route::get('/games/{game}/state', 'state')->name('state');
-    Route::post('/games/{game}/join', 'join')->name('join');
-    Route::post('/games/{game}/move', 'move')->name('move');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
