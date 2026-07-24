@@ -7,6 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root');
 
+Route::view('/dima', 'dima')->name('dima');
+
 Route::get('/login', function () {
     return view('auth-login');
 })->name('login');
