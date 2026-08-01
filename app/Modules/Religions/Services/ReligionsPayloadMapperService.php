@@ -28,6 +28,7 @@ class ReligionsPayloadMapperService
 
             if ($type === 'boolean') {
                 $payload[$name] = filter_var($raw, FILTER_VALIDATE_BOOL);
+
                 continue;
             }
 
@@ -54,11 +55,13 @@ class ReligionsPayloadMapperService
             if ($type === 'json') {
                 $decoded = json_decode((string) $value, true, 512, JSON_THROW_ON_ERROR);
                 $payload[$name] = $decoded;
+
                 continue;
             }
 
             if ($type === 'datetime') {
                 $payload[$name] = Carbon::parse((string) $value)->toDateTimeString();
+
                 continue;
             }
 

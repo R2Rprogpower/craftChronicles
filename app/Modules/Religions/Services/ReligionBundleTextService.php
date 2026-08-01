@@ -526,6 +526,7 @@ class ReligionBundleTextService
             if (preg_match('/^\[([A-Z_]+)\]$/', trim($line), $matches) === 1) {
                 $current = $matches[1];
                 $sections[$current] ??= [];
+
                 continue;
             }
 

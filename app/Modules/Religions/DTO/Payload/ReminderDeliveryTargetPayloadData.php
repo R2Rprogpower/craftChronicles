@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace App\Modules\Religions\DTO\Payload;
 
-class ReminderDeliveryTargetPayloadData extends AbstractEntityPayloadData
-{
-}
+class ReminderDeliveryTargetPayloadData extends AbstractEntityPayloadData {}

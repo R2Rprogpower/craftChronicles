@@ -14,13 +14,12 @@ use App\Modules\Religions\Models\ReminderType;
 use App\Modules\Religions\Models\Ritual;
 use App\Modules\Religions\Services\ReligionBundleTextService;
 use App\Modules\Religions\Services\ReligionsCrudService;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
 

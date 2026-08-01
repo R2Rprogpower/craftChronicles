@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\WebAuthController;
 use App\Modules\Messenger\Http\Controllers\BotSetupController;
 use App\Modules\Religions\Http\Controllers\ReligionsAdminController;
-use App\Http\Controllers\WebAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

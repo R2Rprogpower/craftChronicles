@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Modules\Religions\Services;
 
 use App\Modules\Messenger\Models\MessengerGroupLink;
-use App\Modules\Messenger\Models\MessengerUser;
 use App\Modules\Messenger\Services\MessengerClientRegistry;
 use App\Modules\Religions\Models\LanguageWord;
 use App\Modules\Religions\Models\ReligionReminder;

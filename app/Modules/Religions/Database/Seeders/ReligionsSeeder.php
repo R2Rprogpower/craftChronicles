@@ -438,10 +438,12 @@ class ReligionsSeeder extends Seeder
 
         if ($id !== null) {
             DB::table('religion_reminders')->where('id', $id)->update($payload);
+
             return (int) $id;
         }
 
         $payload['created_at'] = $now;
+
         return (int) DB::table('religion_reminders')->insertGetId($payload);
     }
 
@@ -616,6 +618,7 @@ class ReligionsSeeder extends Seeder
 
         if ($id !== null) {
             DB::table('user_group_religion_preferences')->where('id', $id)->update($payload);
+
             return;
         }
 
@@ -651,10 +654,12 @@ class ReligionsSeeder extends Seeder
 
         if ($id !== null) {
             DB::table('reminder_delivery_targets')->where('id', $id)->update($payload);
+
             return (int) $id;
         }
 
         $payload['created_at'] = $now;
+
         return (int) DB::table('reminder_delivery_targets')->insertGetId($payload);
     }
 
@@ -687,6 +692,7 @@ class ReligionsSeeder extends Seeder
 
         if ($id !== null) {
             DB::table('reminder_runs')->where('id', $id)->update($payload);
+
             return;
         }
 

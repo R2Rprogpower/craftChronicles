@@ -69,3 +69,12 @@ This is a shared production readiness backlog for the platform, not specific to 
   - VPS provisioned
   - deployment runbook tested
   - admin exposure locked down with permissions
+
+## 6. Pre-commit Recovery
+
+- Temporary state: pre-commit hooks are disabled locally for active development.
+- Add a cleanup pass to fix all issues highlighted by pre-commit checks:
+  - run formatter/lint/type checks from `scripts/pre-commit`
+  - fix PHPStan findings and failing unit tests
+  - remove temporary suppressions/workarounds introduced during rapid changes
+- Re-enable hooks after cleanup and verify by running one full local commit flow.
