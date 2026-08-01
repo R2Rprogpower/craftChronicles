@@ -61,6 +61,26 @@ docker compose exec -T app php artisan migrate:fresh
 docker compose exec -T app php artisan route:list --path=api
 ```
 
+## Telegram bot onboarding (local)
+
+1. Start app and run migrations.
+2. Open `http://localhost:8080/bots/setup`.
+3. In "Add Bot Token":
+4. Select driver `telegram`.
+5. Paste BotFather token and save.
+6. Add the bot to your Telegram group.
+7. Send one message in the group.
+8. Back in setup page, click "Discover Groups" for that bot.
+9. Optionally use "Connect Group" manually with known chat ID.
+10. Optional webhook mode:
+11. Expose local app with a public tunnel (for example ngrok or cloudflared).
+12. Register webhook URL like `https://<public-host>/api/telegram/webhook/{botId}`.
+
+### Polling vs webhook in local dev
+
+- Polling discovery is easiest locally and needs no public URL.
+- Webhook mode is closer to production and needs public HTTPS.
+
 ## Notes
 
 - This project uses PostgreSQL, so use pgAdmin.

@@ -5,6 +5,7 @@ All API routes are loaded from module route files via `routes/api.php`:
 - `app/Modules/Auth/api.php`
 - `app/Modules/Permissions/api.php`
 - `app/Modules/Users/api.php`
+- `app/Modules/Telegram/api.php`
 
 ## Auth + MFA
 
@@ -20,6 +21,12 @@ All API routes are loaded from module route files via `routes/api.php`:
 - Users: `/api/users...`
 - Roles: `/api/roles...`
 - Permissions: `/api/permissions...`
+
+## Telegram webhook endpoint
+
+- `POST /api/telegram/webhook/{botId}`
+
+This endpoint receives Telegram updates for a configured bot and stores updates for onboarding/discovery.
 
 ## Postman
 

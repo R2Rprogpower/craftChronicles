@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-.PHONY: install-hooks check fmt lint test unit-test feature-test up build
+.PHONY: install-hooks check fmt lint test unit-test feature-test up build telegram-poll restart-clear telegram-poll-restart schedule-work telegram-runtime telegram-runtime-restart telegram-stop
 
 install-hooks:
 	@mkdir -p .git/hooks
@@ -13,6 +13,46 @@ up:
 
 build:
 	docker compose up -d --build
+
+telegram-poll:
+	@$(MAKE) telegram-stop
+	@if [ -n "$(BOT_ID)" ]; then \
+		docker compose exec -T app php artisan telegram:poll --sleep=1 --bot-id=$(BOT_ID); \
+	else \
+		docker compose exec -T app php artisan telegram:poll --sleep=1; \
+	fi
+
+telegram-poll-restart:
+	@if [ -z "$(BOT_ID)" ]; then \
+		echo "BOT_ID is required (example: make telegram-poll-restart BOT_ID=2)"; \
+		exit 1; \
+	fi
+	@$(MAKE) telegram-stop
+	docker compose exec -T app php artisan optimize:clear
+	docker compose exec -T app php artisan telegram:poll --sleep=1 --bot-id=$(BOT_ID)
+
+schedule-work:
+	docker compose exec -T app sh -lc 'while true; do php artisan schedule:run; sleep 60; done # rebe-schedule-loop'
+
+telegram-runtime:
+	@if [ -z "$(BOT_ID)" ]; then \
+		echo "BOT_ID is required (example: make telegram-runtime BOT_ID=2)"; \
+		exit 1; \
+	fi
+	@$(MAKE) telegram-stop
+	docker compose exec -T app php artisan optimize:clear
+	@echo "Starting scheduler loop in background..."
+	@docker compose exec -T app sh -lc 'while true; do php artisan schedule:run; sleep 60; done # rebe-schedule-loop' >/tmp/rebe_schedule_run.log 2>&1 &
+	docker compose exec -T app php artisan telegram:poll --sleep=1 --bot-id=$(BOT_ID)
+
+telegram-runtime-restart: telegram-runtime
+
+telegram-stop:
+	@docker compose exec -T app sh -lc "pkill -f 'php artisan telegram:poll' || true; pkill -f 'php artisan schedule:work' || true; pkill -f 'rebe-schedule-loop' || true; pkill -f 'while true; do php artisan schedule:run; sleep 60; done' || true; pkill -f 'php artisan schedule:run' || true" || true
+
+restart-clear:
+	docker compose exec -T app php artisan optimize:clear
+	docker compose restart app
 
 fmt:
 	docker compose exec -T app ./vendor/bin/pint
