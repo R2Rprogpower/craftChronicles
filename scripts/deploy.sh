@@ -271,6 +271,10 @@ echo "  ✓ $NEW stack is healthy"
 echo ""
 echo "[5/10] Running migrations ..."
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan migrate --force
+
+echo "[5b/10] Seeding baseline personal brand content ..."
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan db:seed --class='App\Modules\PersonalBrand\Database\Seeders\BrandPlatformSeeder' --force
+
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan optimize
 
 # ─── Run tests on isolated DB ─────────────────────────────────────────────────

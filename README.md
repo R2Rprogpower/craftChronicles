@@ -14,6 +14,8 @@ This repository documentation is split into focused files in `docs/` for easier 
 8. [Template repo workflow (multi-app)](docs/08-template-repo-workflow.md)
 9. [Judaism pack TODO](docs/09-judaism-pack-todo.md)
 10. [Production TODO](PRODUCTION_TODO.md)
+11. [Personal brand platform](docs/09-personal-brand-platform.md)
+12. [Personal brand evaluation and tuning guide](docs/10-brand-evaluation-and-tuning.md)
 
 ## Operational quick links
 
@@ -37,7 +39,6 @@ This page supports:
 2. Linking a group manually by chat ID.
 3. Discovering groups from recent updates after the bot is added to a group.
 4. Registering a webhook URL when using a public tunnel.
-
 ## Quick start
 
 ```bash

@@ -12,6 +12,9 @@ Route::get('/', function () {
 
 Route::view('/dima', 'dima')->name('dima');
 
+require base_path('app/Modules/PersonalBrand/web.php');
+require base_path('app/Modules/ServiceRequests/web.php');
+
 Route::get('/login', function () {
     return view('auth-login');
 })->name('login');
