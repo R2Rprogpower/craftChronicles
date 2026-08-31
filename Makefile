@@ -83,6 +83,8 @@ ci-down:
 ci-setup:
 	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app git config --global --add safe.directory /var/www/html
 	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app composer install --no-interaction --no-progress --prefer-dist
+	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app npm ci --no-audit --no-fund
+	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app npm run build
 	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app cp .env.example .env
 	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app php artisan key:generate
 	docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app php artisan migrate --force

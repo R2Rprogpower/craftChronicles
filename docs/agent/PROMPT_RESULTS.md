@@ -65,3 +65,6 @@ notification delivery and an authenticated content management surface.
 - Two GitHub runs failed inside the opaque aggregate check while exact local
   CI-compose checks passed. Split the workflow into formatter, PHPStan, unit, and
   feature-test gates so the remote failure is diagnosable and formatting is read-only.
+- The split gate isolated the failure to public page feature tests. The clean runner
+  had no Vite manifest because CI never built frontend assets; `ci-setup` now runs
+  deterministic npm installation and the production build before the test suites.

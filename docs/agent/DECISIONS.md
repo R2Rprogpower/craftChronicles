@@ -50,3 +50,11 @@ The former workflow wrapped formatter, PHPStan, unit tests, and feature tests in
 one `make ci-check` step. GitHub exposed only exit code 2 when it failed. The gates
 are now separate non-mutating steps; this preserves identical commands while making
 the failing class visible and prevents CI from formatting its own checkout.
+
+## 2026-08-31 — Build frontend before feature tests
+
+The public React views require Vite's generated manifest. A clean runner did not have
+the locally generated `public/build` directory, so page feature tests returned 500
+before deployment even though developer workspaces passed. `ci-setup` now runs
+`npm ci` and the production Vite build before tests, making the runner reproducible
+and making a successful frontend build a deployment gate.
