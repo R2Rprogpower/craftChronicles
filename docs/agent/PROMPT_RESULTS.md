@@ -59,3 +59,6 @@ notification delivery and an authenticated content management surface.
   and a concise feedback format.
 - Next: run CI/deploy from `main`, verify public HTTP endpoints, then record the
   deployed commit and production smoke results here.
+- Rebased onto concurrent `origin/main` work without dropping its routes/features.
+  The incoming modules had 197 PHPStan findings, captured in a reviewable baseline
+  to unblock CI without risky drive-by rewrites.

@@ -42,3 +42,6 @@ public React personal-brand foundation without replacing those working surfaces.
   `/portfolio` to avoid silently changing existing template behavior.
 - Seed content is an initial working draft, not validated marketing truth. Do not
   invent metrics or commercial outcomes.
+- The rebased `origin/main` contains concurrent Messenger/Religions/Telegram work
+  with 197 pre-existing PHPStan findings. A committed baseline isolates that debt;
+  personal-brand code remains clean and new static-analysis findings still fail CI.

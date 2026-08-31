@@ -1,0 +1,901 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Messenger/Http/Controllers/BotSetupController.php
+
+		-
+			message: '#^Method App\\Modules\\Messenger\\Http\\Controllers\\BotSetupController\:\:index\(\) should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\View\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Messenger/Http/Controllers/BotSetupController.php
+
+		-
+			message: '#^Class App\\Modules\\Messenger\\Models\\MessengerBot uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerBot.php
+
+		-
+			message: '#^Method App\\Modules\\Messenger\\Models\\MessengerBot\:\:groups\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerBot.php
+
+		-
+			message: '#^Method App\\Modules\\Messenger\\Models\\MessengerBot\:\:updates\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerBot.php
+
+		-
+			message: '#^Class App\\Modules\\Messenger\\Models\\MessengerGroupLink uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerGroupLink.php
+
+		-
+			message: '#^Method App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:bot\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerGroupLink.php
+
+		-
+			message: '#^Class App\\Modules\\Messenger\\Models\\MessengerUpdate uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerUpdate.php
+
+		-
+			message: '#^Method App\\Modules\\Messenger\\Models\\MessengerUpdate\:\:bot\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerUpdate.php
+
+		-
+			message: '#^Class App\\Modules\\Messenger\\Models\\MessengerUser uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Messenger/Models/MessengerUser.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$bot_token\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$driver\.$#'
+			identifier: property.notFound
+			count: 4
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$external_chat_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$is_active\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$messenger_bot_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Messenger/Services/BotOnboardingService.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertImplementation\(\) has parameter \$config with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertReminders\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#1 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertReligion\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#1 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertReminderTypes\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#2 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertCommands\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#2 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertConfession\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#2 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertRituals\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#3 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:seedRuntimeBindings\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \#4 \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertImplementations\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Parameter \$now of method App\\Modules\\Religions\\Database\\Seeders\\ReligionsSeeder\:\:upsertReminders\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Database/Seeders/ReligionsSeeder.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$frequency_mode\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$frequency_value\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$meta_json\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$schedule_preset\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$schedule_time\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$schedule_timezone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Http/Controllers/ReligionsAdminController.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\Confession uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Confession.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\Confession\:\:languagePack\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Confession.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\Confession\:\:religion\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Confession.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\Confession\:\:rituals\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Confession.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\LanguagePack uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/LanguagePack.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\LanguagePack\:\:words\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/LanguagePack.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\LanguageWord uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/LanguageWord.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\LanguageWord\:\:languagePack\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/LanguageWord.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\Religion uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Religion.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\Religion\:\:confessions\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Religion.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReligionCommand uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionCommand.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionCommand\:\:confession\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionCommand.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReligionReminder uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:command\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:confession\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:implementation\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:languagePack\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:ritual\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReligionReminder\:\:type\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReligionReminder.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReminderDeliveryTarget uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderDeliveryTarget.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderDeliveryTarget\:\:groupLink\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderDeliveryTarget.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderDeliveryTarget\:\:messengerUser\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderDeliveryTarget.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderDeliveryTarget\:\:reminder\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderDeliveryTarget.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReminderImplementation uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderImplementation.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderImplementation\:\:type\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderImplementation.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReminderRun uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderRun.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderRun\:\:reminder\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderRun.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderRun\:\:target\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderRun.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\ReminderType uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderType.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\ReminderType\:\:implementations\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\HasMany does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/ReminderType.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\Ritual uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Ritual.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\Ritual\:\:confession\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/Ritual.php
+
+		-
+			message: '#^Class App\\Modules\\Religions\\Models\\UserGroupReligionPreference uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/UserGroupReligionPreference.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:confession\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/UserGroupReligionPreference.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:groupLink\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/UserGroupReligionPreference.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:languagePack\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/UserGroupReligionPreference.php
+
+		-
+			message: '#^Method App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:messengerUser\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Modules/Religions/Models/UserGroupReligionPreference.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$bot\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/MorningRitualBroadcastService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$external_chat_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/MorningRitualBroadcastService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Religions/Services/MorningRitualBroadcastService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Religion\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/MorningRitualBroadcastService.php
+
+		-
+			message: '#^Offset ''phrases'' on array\{word\: string, translation\: string, transcription\: string, phrases\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Religions/Services/ReligionBundleTextService.php
+
+		-
+			message: '#^Offset ''transcription'' on array\{word\: string, translation\: string, transcription\: string, phrases\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Religions/Services/ReligionBundleTextService.php
+
+		-
+			message: '#^Offset ''translation'' on array\{word\: string, translation\: string, transcription\: string, phrases\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Religions/Services/ReligionBundleTextService.php
+
+		-
+			message: '#^Offset ''word'' on array\{word\: string, translation\: string, transcription\: string, phrases\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Religions/Services/ReligionBundleTextService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$confession\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$created_at\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$frequency_mode\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$frequency_value\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$languagePack\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$meta_json\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Cannot call method save\(\) on stdClass\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$reminder of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:buildWordModeMessage\(\) expects App\\Modules\\Religions\\Models\\ReligionReminder, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$reminder of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:isDue\(\) expects App\\Modules\\Religions\\Models\\ReligionReminder, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$reminder of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:isWordModeDueForAnyGroup\(\) expects App\\Modules\\Religions\\Models\\ReligionReminder, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$reminder of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:markWordOfDayDispatchedForGroup\(\) expects App\\Modules\\Religions\\Models\\ReligionReminder, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$reminder of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:shouldDispatchWordOfDayToGroup\(\) expects App\\Modules\\Religions\\Models\\ReligionReminder, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#2 \$now of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:isDue\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#3 \$now of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:isWordModeDueForAnyGroup\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#3 \$now of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:markWordOfDayDispatchedForGroup\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Parameter \#3 \$now of method App\\Modules\\Religions\\Services\\ReminderDispatchService\:\:shouldDispatchWordOfDayToGroup\(\) expects Illuminate\\Support\\Carbon, Carbon\\CarbonInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>description" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Religions/Services/ReminderDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$content_text\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/HolidayCalendarResolver.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/HolidayCalendarResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>content_text" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/HolidayCalendarResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>title" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/HolidayCalendarResolver.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$content_text\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/RitualScheduleResolver.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/RitualScheduleResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>content_text" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/RitualScheduleResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>title" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/RitualScheduleResolver.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$content_text\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/WeeklyChapterResolver.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Reminders/Services/WeeklyChapterResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>content_text" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/WeeklyChapterResolver.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>title" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Reminders/Services/WeeklyChapterResolver.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Telegram/Http/Controllers/TelegramWebhookController.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$content_text\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/ChapterThisWeekCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionReminder\:\:\$title\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/ChapterThisWeekCommandHandler.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>content_text" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/ChapterThisWeekCommandHandler.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>title" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/ChapterThisWeekCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$command_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/EchoReminderContentHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/EchoReminderContentHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Ritual\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/RitualExplainCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Ritual\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/Handlers/RitualExplainCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Ritual\:\:\$ritual_key\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/Handlers/RitualExplainCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:\$confession_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/RitualExplainCommandHandler.php
+
+		-
+			message: '#^Using nullsafe property access "\?\-\>confession_id" on left side of \?\? is unnecessary\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: app/Modules/Telegram/Services/Handlers/RitualExplainCommandHandler.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$bot_token\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$driver\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerUser\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Religion\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$command_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$confession_id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\ReligionCommand\:\:\$trigger\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\UserGroupReligionPreference\:\:\$confession_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Offset 0 on non\-empty\-list\<string\> on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<string\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Parameter \$reminder of class App\\Modules\\Telegram\\DTO\\TelegramCommandContext constructor expects App\\Modules\\Religions\\Models\\ReligionReminder\|null, stdClass\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between App\\Modules\\Messenger\\Models\\MessengerGroupLink and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramCommandDispatchService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerGroupLink\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 4
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerUser\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerUser\:\:\$meta_json\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Confession\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Confession\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Confession\:\:\$religion_id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Confession\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 3
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Religion\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 2
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Religion\:\:\$name\.$#'
+			identifier: property.notFound
+			count: 4
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Religions\\Models\\Religion\:\:\$slug\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Match arm comparison between ''/ritual'' and ''/ritual'' is always true\.$#'
+			identifier: match.alwaysTrue
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramGroupReligionInteractionService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$driver\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramWebhookService.php
+
+		-
+			message: '#^Access to an undefined property App\\Modules\\Messenger\\Models\\MessengerBot\:\:\$id\.$#'
+			identifier: property.notFound
+			count: 1
+			path: app/Modules/Telegram/Services/TelegramWebhookService.php
+
+		-
+			message: '#^Parameter \#1 \$bot of method App\\Modules\\Telegram\\Services\\TelegramWebhookService\:\:ingest\(\) expects App\\Modules\\Messenger\\Models\\MessengerBot, stdClass given\.$#'
+			identifier: argument.type
+			count: 1
+			path: routes/console.php
+
+		-
+			message: '#^Undefined variable\: \$this$#'
+			identifier: variable.undefined
+			count: 14
+			path: routes/console.php

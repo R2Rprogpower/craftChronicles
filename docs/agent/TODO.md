@@ -30,3 +30,7 @@
 - Docker builds compile extensions and retain many build-time `-dev` packages,
   producing a large image. A multi-stage extension build is a later optimization.
 - PHPStan needs `--memory-limit=512M`; encode that in a Composer script later.
+- Concurrent Messenger/Religions/Telegram work arrived on `origin/main` with 197
+  PHPStan level-6 findings. They are captured in `phpstan-baseline.neon` so CI still
+  rejects new findings. Reduce the baseline module by module; do not regenerate it
+  casually, because that would hide regressions.
