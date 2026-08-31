@@ -43,3 +43,10 @@ The deploy invokes `BrandPlatformSeeder` after migrations. It composes only publ
 brand, portfolio, services, products, content, and progress seeders; the general
 database seeder is not used because it also creates demo users. During the current
 content-as-code phase, seeders are authoritative and intentionally reapplied.
+
+## 2026-08-31 — Observable CI quality gates
+
+The former workflow wrapped formatter, PHPStan, unit tests, and feature tests inside
+one `make ci-check` step. GitHub exposed only exit code 2 when it failed. The gates
+are now separate non-mutating steps; this preserves identical commands while making
+the failing class visible and prevents CI from formatting its own checkout.

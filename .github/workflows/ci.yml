@@ -37,8 +37,19 @@ jobs:
       - name: Install deps + migrate
         run: make ci-setup
 
-      - name: Run checks (same as local)
-        run: make ci-check
+      - name: Check PHP formatting
+        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app ./vendor/bin/pint --test
+
+      - name: Run PHPStan
+        run: |
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app rm -rf /tmp/phpstan
+          docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app ./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G
+
+      - name: Run unit tests
+        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app php artisan test --testsuite=Unit
+
+      - name: Run feature tests
+        run: docker compose -f docker-compose.yml -f docker-compose.ci.yml exec -T -u root app php artisan test --testsuite=Feature
 
       - name: Tear down
         if: always()

@@ -62,3 +62,6 @@ notification delivery and an authenticated content management surface.
 - Rebased onto concurrent `origin/main` work without dropping its routes/features.
   The incoming modules had 197 PHPStan findings, captured in a reviewable baseline
   to unblock CI without risky drive-by rewrites.
+- Two GitHub runs failed inside the opaque aggregate check while exact local
+  CI-compose checks passed. Split the workflow into formatter, PHPStan, unit, and
+  feature-test gates so the remote failure is diagnosable and formatting is read-only.
