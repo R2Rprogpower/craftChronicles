@@ -275,8 +275,6 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
 echo "[5b/10] Seeding baseline personal brand content ..."
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan db:seed --class='App\Modules\PersonalBrand\Database\Seeders\BrandPlatformSeeder' --force
 
-APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan optimize
-
 # ─── Run tests on isolated DB ─────────────────────────────────────────────────
 echo ""
 echo "[6/10] Creating isolated test database ($TEST_DB_NAME) ..."
@@ -308,6 +306,7 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
 
 echo "[8/10] Pruning dev dependencies for production runtime ..."
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app composer install --no-dev --prefer-dist --optimize-autoloader
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan optimize
 
 # ─── Switch Caddy upstream ─────────────────────────────────────────────────────
 echo ""

@@ -4,14 +4,14 @@
 
 Public:
 
-- Portfolio: <https://ruslanrahimov.space/portfolio>
-- Progress dashboard: <https://ruslanrahimov.space/progress>
-- Existing application root: <https://ruslanrahimov.space/>
-- API health: <https://ruslanrahimov.space/api/health>
+- Portfolio: <https://craftchronicles.site/portfolio>
+- Progress dashboard: <https://craftchronicles.site/progress>
+- Existing application root: <https://craftchronicles.site/>
+- API health: <https://craftchronicles.site/api/health>
 
 Operational (do not share credentials):
 
-- PgAdmin: <https://pgadmin.ruslanrahimov.space>
+- PgAdmin: <https://pgadmin.craftchronicles.site>
 - GitHub repository: <https://github.com/R2Rprogpower/craftChronicles>
 - GitHub Actions: <https://github.com/R2Rprogpower/craftChronicles/actions>
 

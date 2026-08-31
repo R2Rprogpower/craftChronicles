@@ -68,3 +68,7 @@ notification delivery and an authenticated content management surface.
 - The split gate isolated the failure to public page feature tests. The clean runner
   had no Vite manifest because CI never built frontend assets; `ci-setup` now runs
   deterministic npm installation and the production build before the test suites.
+- The first VPS attempt migrated and seeded the inactive slot but its isolated POST
+  tests returned 419 because production config had already been cached. Moved
+  `artisan optimize` after the deployment test gate and corrected the evaluation
+  links to the workflow's actual `craftchronicles.site` deployment domain.

@@ -58,3 +58,10 @@ the locally generated `public/build` directory, so page feature tests returned 5
 before deployment even though developer workspaces passed. `ci-setup` now runs
 `npm ci` and the production Vite build before tests, making the runner reproducible
 and making a successful frontend build a deployment gate.
+
+## 2026-08-31 — Cache production config after the deployment test gate
+
+`artisan optimize` previously ran before tests on the VPS. Laravel then kept the
+production environment cached even when the test commands supplied `APP_ENV=testing`,
+so CSRF middleware returned 419 for request tests. Optimization now runs only after
+the isolated test database is removed and production dependencies are pruned.
