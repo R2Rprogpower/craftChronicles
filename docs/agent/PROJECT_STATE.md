@@ -33,6 +33,10 @@ public React personal-brand foundation without replacing those working surfaces.
   `/portfolio` and `/progress` both returned 200.
 - Production deploy now applies the targeted `BrandPlatformSeeder` only. Evaluation,
   tuning, request-review, and deployment links are in `docs/10-brand-evaluation-and-tuning.md`.
+- Production deployment completed through GitHub Actions run `33347110051`. External
+  smoke checks returned 200 for `/`, `/portfolio`, `/progress`, `/api/health`, and the
+  generated React asset. The public HTML contains the seeded profile, services,
+  portfolio items, and progress areas.
 
 ## Important constraints
 

@@ -4,10 +4,10 @@
 
 Public:
 
-- Portfolio: <https://craftchronicles.site/portfolio>
-- Progress dashboard: <https://craftchronicles.site/progress>
-- Existing application root: <https://craftchronicles.site/>
-- API health: <https://craftchronicles.site/api/health>
+- Portfolio: <https://api.craftchronicles.site/portfolio>
+- Progress dashboard: <https://api.craftchronicles.site/progress>
+- Existing application root: <https://api.craftchronicles.site/>
+- API health: <https://api.craftchronicles.site/api/health>
 
 Operational (do not share credentials):
 

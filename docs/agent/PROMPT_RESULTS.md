@@ -72,3 +72,7 @@ notification delivery and an authenticated content management surface.
   tests returned 419 because production config had already been cached. Moved
   `artisan optimize` after the deployment test gate and corrected the evaluation
   links to the workflow's actual `craftchronicles.site` deployment domain.
+- GitHub Actions run `33347110051` passed both jobs and deployed the platform to
+  `api.craftchronicles.site`. External checks confirmed HTTP 200 for the root,
+  portfolio, progress, health, and generated React asset; seeded domain data is
+  present in both public page payloads.
