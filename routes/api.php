@@ -11,6 +11,11 @@ Route::get('/health', static function (): JsonResponse {
     return response()->json([
         'status' => 'ok !!! craftChronicles is healthy '.now()->toIso8601String(),
         'deployment_message' => 'Это изменение было задеплоено через CI/CD',
+        'deployment_message_1' => 'Это изменение было задеплоено через CI/CD',
+        'random_item' => [
+            'index' => random_int(1, 999999),
+            'value' => bin2hex(random_bytes(8)),
+        ],
     ], options: JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 });
 

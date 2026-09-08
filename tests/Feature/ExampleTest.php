@@ -29,5 +29,13 @@ class ExampleTest extends TestCase
             '"deployment_message":"Это изменение было задеплоено через CI/CD"',
             (string) $response->getContent(),
         );
+
+        $randomItem = $response->json('random_item');
+
+        $this->assertIsArray($randomItem);
+        $this->assertIsInt($randomItem['index']);
+        $this->assertGreaterThanOrEqual(1, $randomItem['index']);
+        $this->assertLessThanOrEqual(999999, $randomItem['index']);
+        $this->assertMatchesRegularExpression('/^[a-f0-9]{16}$/', $randomItem['value']);
     }
 }
