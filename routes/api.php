@@ -10,6 +10,7 @@ Route::get('/health', static function (): JsonResponse {
 
     return response()->json([
         'status' => 'ok !!! craftChronicles is healthy '.now()->toIso8601String(),
+        'deployment_message' => 'Это изменение было задеплоено через CI/CD',
     ]);
 });
 
