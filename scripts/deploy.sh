@@ -244,6 +244,7 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
 echo ""
 echo "[3/10] Installing PHP dependencies (with dev for test gate) ..."
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app composer install --prefer-dist --optimize-autoloader
+APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app php artisan optimize:clear
 
 echo ""
 echo "[3b/10] Installing Node dependencies and building assets ..."
