@@ -11,7 +11,7 @@ Route::get('/health', static function (): JsonResponse {
     return response()->json([
         'status' => 'ok !!! craftChronicles is healthy '.now()->toIso8601String(),
         'deployment_message' => 'Это изменение было задеплоено через CI/CD',
-    ]);
+    ], options: JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 });
 
 require base_path('app/Modules/Auth/api.php');

@@ -19,8 +19,15 @@ class ExampleTest extends TestCase
 
     public function test_health_response_reports_ci_cd_deployment(): void
     {
-        $this->getJson('/api/health')
+        $response = $this->getJson('/api/health');
+
+        $response
             ->assertOk()
             ->assertJsonPath('deployment_message', 'Это изменение было задеплоено через CI/CD');
+
+        $this->assertStringContainsString(
+            '"deployment_message":"Это изменение было задеплоено через CI/CD"',
+            (string) $response->getContent(),
+        );
     }
 }
