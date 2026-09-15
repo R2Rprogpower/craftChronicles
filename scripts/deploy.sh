@@ -290,6 +290,8 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
   DB_DATABASE="$TEST_DB_NAME" \
   DB_USERNAME="$DB_USERNAME_VALUE" \
   DB_PASSWORD="$DB_PASSWORD_VALUE" \
+  CACHE_STORE=array \
+  SESSION_DRIVER=array \
   php artisan test --testsuite=Unit
 
 APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW" "${COMPOSE_BIN[@]}" exec -T app env \
@@ -300,6 +302,8 @@ APP_UID="$APP_UID" APP_GID="$APP_GID" COMPOSE_PROJECT_NAME="app_${APP_SLUG}_$NEW
   DB_DATABASE="$TEST_DB_NAME" \
   DB_USERNAME="$DB_USERNAME_VALUE" \
   DB_PASSWORD="$DB_PASSWORD_VALUE" \
+  CACHE_STORE=array \
+  SESSION_DRIVER=array \
   php artisan test --testsuite=Feature
 
 echo "[8/10] Cleaning isolated test database ..."
