@@ -12,6 +12,7 @@ Route::get('/', function () {
 
 Route::view('/dima', 'dima')->name('dima');
 Route::view('/OstapBrehin', 'ostap-brehin')->name('ostap-brehin');
+Route::view('/askar_kz', 'askar-kz')->name('askar-kz');
 
 require base_path('app/Modules/PersonalBrand/web.php');
 require base_path('app/Modules/ServiceRequests/web.php');
