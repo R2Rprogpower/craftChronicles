@@ -1,8 +1,0 @@
-name: askar-kz-1
-
-services:
-  web:
-    build: .
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:${ASKAR_KZ_1_PORT:-18091}:80"
