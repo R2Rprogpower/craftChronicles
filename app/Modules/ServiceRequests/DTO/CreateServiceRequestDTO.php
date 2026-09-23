@@ -6,6 +6,7 @@ namespace App\Modules\ServiceRequests\DTO;
 
 readonly class CreateServiceRequestDTO
 {
+    /** @param array<string, mixed>|null $metadata */
     public function __construct(
         public string $name,
         public ?string $email,
@@ -15,11 +16,12 @@ readonly class CreateServiceRequestDTO
         public ?string $budget,
         public string $message,
         public string $source = 'portfolio',
+        public ?array $metadata = null,
     ) {}
 
     /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['name' => $this->name, 'email' => $this->email, 'contact' => $this->contact, 'company' => $this->company, 'service_offering_id' => $this->serviceOfferingId, 'budget' => $this->budget, 'message' => $this->message, 'source' => $this->source, 'status' => 'new'];
+        return ['name' => $this->name, 'email' => $this->email, 'contact' => $this->contact, 'company' => $this->company, 'service_offering_id' => $this->serviceOfferingId, 'budget' => $this->budget, 'message' => $this->message, 'source' => $this->source, 'metadata' => $this->metadata, 'status' => 'new'];
     }
 }
