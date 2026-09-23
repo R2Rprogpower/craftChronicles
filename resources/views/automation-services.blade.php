@@ -155,7 +155,7 @@
                 <h2>{{ $content['plans']['title'] }}</h2>
                 <p>{{ $content['plans']['note'] }}</p>
             </header>
-            <div class="plans-grid">
+            <div class="plans-grid" style="grid-template-columns: repeat({{ min(count($content['plans']['items']), 3) }}, minmax(0, 1fr));">
                 @foreach ($content['plans']['items'] as $plan)
                     <article class="plan-card {{ $plan['featured'] ? 'is-featured' : '' }} reveal">
                         @if (isset($plan['badge']))<span class="plan-badge">{{ $plan['badge'] }}</span>@endif

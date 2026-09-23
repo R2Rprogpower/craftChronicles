@@ -16,11 +16,11 @@ class AutomationLandingFeatureTest extends TestCase
     {
         $this->get('/ai-automation')
             ->assertOk()
-            ->assertSee('Превращаю ручные процессы в работающие системы.')
-            ->assertSee('Data engineering')
-            ->assertSee('Оптимизация затрат на токены')
-            ->assertSee('Private AI и локальные модели')
-            ->assertSee('Что вам интересно')
+            ->assertSee('Настраиваю OpenClaw так, чтобы он влиял на прибыль')
+            ->assertSee('Менять сайт через Telegram без очереди к разработчику')
+            ->assertSee('Production и CI/CD')
+            ->assertSee('OpenClaw Business System')
+            ->assertSee('Какой бизнес-результат важнее всего')
             ->assertSee(route('automation-landing.request'), false);
     }
 
@@ -34,7 +34,7 @@ class AutomationLandingFeatureTest extends TestCase
             'company_size' => '12 человек',
             'current_stack' => 'Telegram, Google Drive и amoCRM',
             'budget' => '$3k-$7k',
-            'interests' => ['business-automation', 'analytics', 'token-optimization'],
+            'interests' => ['more-qualified-leads', 'management-visibility', 'ai-cost-control'],
             'message' => 'Хотим быстрее обрабатывать входящие заявки и видеть причины потерь.',
             'consent' => '1',
             'website' => '',
@@ -45,7 +45,7 @@ class AutomationLandingFeatureTest extends TestCase
         $request = ServiceRequest::query()->sole();
         $this->assertSame('automation-landing', $request->source);
         $this->assertSame('Service Lab', $request->company);
-        $this->assertSame(['business-automation', 'analytics', 'token-optimization'], $request->metadata['interests']);
+        $this->assertSame(['more-qualified-leads', 'management-visibility', 'ai-cost-control'], $request->metadata['interests']);
         $this->assertSame('Telegram, Google Drive и amoCRM', $request->metadata['current_stack']);
     }
 
