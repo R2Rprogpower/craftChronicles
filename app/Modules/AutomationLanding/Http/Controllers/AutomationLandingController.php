@@ -7,6 +7,7 @@ namespace App\Modules\AutomationLanding\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\AutomationLanding\Http\Requests\StoreAutomationInquiryRequest;
 use App\Modules\AutomationLanding\Services\AutomationLandingContent;
+use App\Modules\AutomationLanding\Services\OpenClawShortContent;
 use App\Modules\ServiceRequests\DTO\CreateServiceRequestDTO;
 use App\Modules\ServiceRequests\Services\ServiceRequestService;
 use Illuminate\Contracts\View\View;
@@ -20,9 +21,24 @@ class AutomationLandingController extends Controller
         return view('automation-services', ['content' => $content->get()]);
     }
 
+    public function short(OpenClawShortContent $content): View
+    {
+        return view('openclaw-short', ['content' => $content->get()]);
+    }
+
     public function store(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
     {
-        $data = $request->validated();
+        return $this->persist($request->validated(), $service, 'automation-landing');
+    }
+
+    public function storeShort(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
+    {
+        return $this->persist($request->validated(), $service, 'openclaw-short');
+    }
+
+    /** @param array<string, mixed> $data */
+    private function persist(array $data, ServiceRequestService $service, string $source): JsonResponse
+    {
         $inquiry = $service->create(new CreateServiceRequestDTO(
             name: $data['name'],
             email: $data['email'] ?? null,
@@ -31,7 +47,7 @@ class AutomationLandingController extends Controller
             serviceOfferingId: null,
             budget: $data['budget'] ?? null,
             message: $data['message'],
-            source: 'automation-landing',
+            source: $source,
             metadata: [
                 'interests' => array_values($data['interests']),
                 'business_type' => $data['business_type'] ?? null,
@@ -41,7 +57,7 @@ class AutomationLandingController extends Controller
         ));
 
         return response()->json([
-            'message' => 'Automation inquiry received',
+            'message' => 'OpenClaw inquiry received',
             'data' => ['id' => $inquiry->id, 'status' => $inquiry->status],
         ], Response::HTTP_CREATED);
     }

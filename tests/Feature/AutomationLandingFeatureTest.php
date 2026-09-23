@@ -62,4 +62,34 @@ class AutomationLandingFeatureTest extends TestCase
 
         $this->assertDatabaseCount('service_requests', 0);
     }
+
+    public function test_short_openclaw_landing_is_public_and_concrete(): void
+    {
+        $this->get('/openclaw')
+            ->assertOk()
+            ->assertSee('Вы пишете задачу. Система доводит её до результата.')
+            ->assertSee('Менять сайт через Telegram')
+            ->assertSee('Codex')
+            ->assertSee('OpenClaw под ключ')
+            ->assertDontSee('KPI')
+            ->assertDontSee('устраняю дубли')
+            ->assertSee(route('openclaw-short.request'), false);
+    }
+
+    public function test_short_openclaw_inquiry_uses_its_own_source(): void
+    {
+        $this->postJson('/openclaw/request', [
+            'name' => 'Руслан',
+            'contact' => '@owner',
+            'company' => 'Local Business',
+            'interests' => ['faster-site-changes'],
+            'message' => 'Хочу менять тарифы и тексты сайта через Telegram после preview.',
+            'consent' => '1',
+            'website' => '',
+        ])->assertCreated()->assertJsonPath('data.status', 'new');
+
+        $request = ServiceRequest::query()->sole();
+        $this->assertSame('openclaw-short', $request->source);
+        $this->assertSame(['faster-site-changes'], $request->metadata['interests']);
+    }
 }
