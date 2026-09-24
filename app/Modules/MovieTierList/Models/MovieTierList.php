@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * @property array{movies?: list<array<string, mixed>>} $payload
+ * @property array{tiers?: list<array<string, mixed>>, movies?: list<array<string, mixed>>} $payload
  * @property int $revision
  * @property Carbon|null $updated_at
  */

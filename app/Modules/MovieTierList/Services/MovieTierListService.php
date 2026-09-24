@@ -21,18 +21,22 @@ class MovieTierListService
         return MovieTierList::query()->firstOrCreate(
             ['slug' => self::SLUG],
             [
-                'payload' => ['movies' => $content['initial_movies'] ?? []],
+                'payload' => [
+                    'tiers' => $content['tiers'] ?? [],
+                    'movies' => $content['initial_movies'] ?? [],
+                ],
                 'revision' => 1,
             ],
         );
     }
 
     /**
+     * @param  list<array<string, mixed>>  $tiers
      * @param  list<array<string, mixed>>  $movies
      */
-    public function replace(array $movies, int $expectedRevision): MovieTierList
+    public function replace(array $tiers, array $movies, int $expectedRevision): MovieTierList
     {
-        return DB::transaction(function () use ($movies, $expectedRevision): MovieTierList {
+        return DB::transaction(function () use ($tiers, $movies, $expectedRevision): MovieTierList {
             $tierList = MovieTierList::query()
                 ->where('slug', self::SLUG)
                 ->lockForUpdate()
@@ -46,7 +50,7 @@ class MovieTierListService
                 throw new RuntimeException('The movie tier list was changed in another session.');
             }
 
-            $tierList->payload = ['movies' => $movies];
+            $tierList->payload = ['tiers' => $tiers, 'movies' => $movies];
             $tierList->revision++;
             $tierList->save();
 

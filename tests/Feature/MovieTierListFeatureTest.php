@@ -19,10 +19,11 @@ class MovieTierListFeatureTest extends TestCase
         $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
             ->get('/movies-tier-list')
             ->assertOk()
-            ->assertSee('Кино — личный tier list', false)
+            ->assertSee('Кино — (гуз)личный tier list', false)
             ->assertSee('Только просмотр', false)
             ->assertSee('data-can-edit="false"', false)
-            ->assertDontSee('+ Добавить фильм', false);
+            ->assertDontSee('+ Добавить фильм', false)
+            ->assertDontSee('Крёстный отец', false);
     }
 
     public function test_editor_ip_sees_editing_controls(): void
@@ -34,7 +35,13 @@ class MovieTierListFeatureTest extends TestCase
             ->assertOk()
             ->assertSee('Режим редактора', false)
             ->assertSee('data-can-edit="true"', false)
-            ->assertSee('+ Добавить фильм', false);
+            ->assertSee('+ Добавить фильм', false)
+            ->assertSee('+ Добавить тир', false)
+            ->assertSee('Ссылка 2 (необязательно)', false)
+            ->assertSee('Редактировать фильм', false)
+            ->assertSee('Редактировать тир', false)
+            ->assertSee('id="detailModal"', false)
+            ->assertSee('Удалить тир?', false);
     }
 
     public function test_hashed_editor_ip_can_edit_without_exposing_the_address_in_config(): void
@@ -85,7 +92,26 @@ class MovieTierListFeatureTest extends TestCase
         $tierList = MovieTierList::query()->where('slug', 'movies')->firstOrFail();
 
         $this->assertSame('S', $tierList->payload['movies'][0]['tier']);
+        $this->assertSame('https://example.com/movie', $tierList->payload['movies'][0]['links'][0]);
+        $this->assertSame('S', $tierList->payload['tiers'][0]['id']);
         $this->assertSame(2, $tierList->revision);
+    }
+
+    public function test_movie_cannot_reference_a_missing_tier_or_have_more_than_two_links(): void
+    {
+        config(['movie-tier-list.editor_ips' => ['198.51.100.25']]);
+        $payload = $this->payload();
+        $payload['movies'][0]['tier'] = 'missing';
+        $payload['movies'][0]['links'] = [
+            'https://example.com/1',
+            'https://example.com/2',
+            'https://example.com/3',
+        ];
+
+        $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->putJson('/movies-tier-list', $payload)
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['movies.0.tier', 'movies.0.links']);
     }
 
     public function test_stale_revision_is_rejected(): void
@@ -106,12 +132,20 @@ class MovieTierListFeatureTest extends TestCase
     {
         return [
             'revision' => 1,
+            'tiers' => [[
+                'id' => 'S',
+                'label' => 'S',
+                'caption' => 'Великое кино',
+                'color' => '#ff7f7f',
+                'position' => 0,
+            ]],
             'movies' => [[
                 'id' => 'the-godfather',
                 'title' => 'Крёстный отец',
                 'year' => 1972,
                 'genre' => 'Драма',
                 'poster_url' => null,
+                'links' => ['https://example.com/movie'],
                 'tier' => 'S',
                 'position' => 0,
             ]],

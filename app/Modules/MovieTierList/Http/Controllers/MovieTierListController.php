@@ -24,9 +24,11 @@ class MovieTierListController extends Controller
         MovieTierListEditorAccess $access,
     ): View {
         $tierList = $service->get();
+        $pageContent = $content->get();
 
         return view('movie-tier-list', [
-            'content' => $content->get(),
+            'content' => $pageContent,
+            'tiers' => $tierList->payload['tiers'] ?? $pageContent['tiers'] ?? [],
             'movies' => $tierList->payload['movies'] ?? [],
             'revision' => $tierList->revision,
             'canEdit' => $access->canEdit($request),
@@ -35,11 +37,11 @@ class MovieTierListController extends Controller
 
     public function update(UpdateMovieTierListRequest $request, MovieTierListService $service): JsonResponse
     {
-        /** @var array{revision: int, movies: list<array<string, mixed>>} $data */
+        /** @var array{revision: int, tiers: list<array<string, mixed>>, movies: list<array<string, mixed>>} $data */
         $data = $request->validated();
 
         try {
-            $tierList = $service->replace($data['movies'], $data['revision']);
+            $tierList = $service->replace($data['tiers'], $data['movies'], $data['revision']);
         } catch (RuntimeException) {
             return response()->json([
                 'message' => 'Список уже изменён в другой вкладке. Обнови страницу.',
