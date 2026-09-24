@@ -12,6 +12,15 @@ class MovieTierListFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_configured_production_owner_address_has_editor_access(): void
+    {
+        $this->withServerVariables(['REMOTE_ADDR' => '188.163.114.197'])
+            ->get('/movies-tier-list')
+            ->assertOk()
+            ->assertSee('Режим редактора', false)
+            ->assertSee('+ Добавить фильм', false);
+    }
+
     public function test_everyone_can_view_the_movie_tier_list_in_read_only_mode(): void
     {
         config(['movie-tier-list.editor_ips' => ['203.0.113.8']]);
