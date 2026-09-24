@@ -32,6 +32,7 @@ class MovieTierListController extends Controller
             'movies' => $tierList->payload['movies'] ?? [],
             'revision' => $tierList->revision,
             'canEdit' => $access->canEdit($request),
+            'clientIp' => $access->candidateIps($request)[0] ?? 'не определён',
         ]);
     }
 

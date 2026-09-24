@@ -22,6 +22,7 @@ class MovieTierListFeatureTest extends TestCase
             ->assertSee('Кино — (гуз)личный tier list', false)
             ->assertSee('Только просмотр', false)
             ->assertSee('data-can-edit="false"', false)
+            ->assertSee('198.51.100.25', false)
             ->assertDontSee('+ Добавить фильм', false)
             ->assertDontSee('Крёстный отец', false);
     }
@@ -52,6 +53,33 @@ class MovieTierListFeatureTest extends TestCase
         ]);
 
         $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->get('/movies-tier-list')
+            ->assertOk()
+            ->assertSee('Режим редактора', false);
+    }
+
+    public function test_ipv4_mapped_ipv6_address_matches_the_owner_ipv4_hash(): void
+    {
+        config([
+            'movie-tier-list.editor_ips' => [],
+            'movie-tier-list.editor_ip_hashes' => [hash('sha256', '198.51.100.25')],
+        ]);
+
+        $this->withServerVariables(['REMOTE_ADDR' => '::ffff:198.51.100.25'])
+            ->get('/movies-tier-list')
+            ->assertOk()
+            ->assertSee('Режим редактора', false);
+    }
+
+    public function test_owner_ip_from_the_trusted_proxy_chain_is_recognized(): void
+    {
+        config([
+            'movie-tier-list.editor_ips' => [],
+            'movie-tier-list.editor_ip_hashes' => [hash('sha256', '198.51.100.25')],
+        ]);
+
+        $this->withServerVariables(['REMOTE_ADDR' => '127.0.0.1'])
+            ->withHeader('X-Forwarded-For', '198.51.100.25')
             ->get('/movies-tier-list')
             ->assertOk()
             ->assertSee('Режим редактора', false);
