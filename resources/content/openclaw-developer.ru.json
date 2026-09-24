@@ -1,0 +1,207 @@
+{
+  "meta": {
+    "title": "OpenClaw вместо очереди к программисту — безопасные изменения production-сайта",
+    "description": "OpenClaw принимает задачи через чат, Codex меняет код, CI/CD проверяет и разворачивает preview, а production обновляется только после подтверждения.",
+    "theme_color": "#090d12"
+  },
+  "brand": {
+    "name": "OPENCLAW / RELEASE CONTROL",
+    "status": "Внедрение для production-сайтов"
+  },
+  "navigation": [
+    {"label": "Что меняет", "href": "#scenarios"},
+    {"label": "Как выпускает", "href": "#pipeline"},
+    {"label": "Безопасность", "href": "#security"},
+    {"label": "Стоимость", "href": "#offer"}
+  ],
+  "common": {
+    "primary_cta": "Разобрать ваш release-процесс",
+    "secondary_cta": "Посмотреть схему",
+    "form_cta": "Обсудить внедрение"
+  },
+  "hero": {
+    "eyebrow": "OpenClaw + Codex + CI/CD",
+    "title": "Типовые изменения сайта — без постоянной очереди к программисту.",
+    "lead": "Сотрудник ставит задачу в Telegram или Slack. OpenClaw уточняет требования, Codex меняет код в отдельной ветке, pipeline запускает проверки и preview. В production попадает только подтверждённая версия.",
+    "note": "Агент не получает свободный доступ к серверу, секретам и базе. Его работа ограничена репозиторием, разрешёнными файлами, временем, бюджетом и обязательными проверками.",
+    "signals": [
+      {"value": "0", "label": "прямых входов агента в production"},
+      {"value": "1", "label": "изолированная ветка на каждую задачу"},
+      {"value": "24/7", "label": "healthcheck после каждого релиза"}
+    ],
+    "terminal": {
+      "request_label": "Запрос в Telegram",
+      "request": "Добавь новый тариф, обнови FAQ и подготовь публикацию на сегодня.",
+      "steps": [
+        "Создана ветка ai/release-184",
+        "Изменены 4 разрешённых файла",
+        "Lint, tests, build, security: passed",
+        "Preview готов. Production ждёт approval"
+      ],
+      "approval": "Подтвердить релиз"
+    }
+  },
+  "audience": {
+    "eyebrow": "Когда это имеет смысл",
+    "title": "Сайт уже приносит деньги и не может ждать каждую мелкую правку",
+    "items": [
+      "сотни или тысячи посетителей в день",
+      "регулярные акции, тарифы, страницы и формы",
+      "есть Git-репозиторий и повторяемый deploy",
+      "ошибка заметна клиентам и влияет на выручку"
+    ]
+  },
+  "scenarios": {
+    "eyebrow": "Работа вместо тикетов",
+    "title": "Что бизнес сможет выпускать через чат",
+    "items": [
+      {"number": "01", "title": "Тексты, тарифы и FAQ", "text": "Менеджер описывает изменение обычным сообщением, получает preview и публикует его без переписки с разработчиком."},
+      {"number": "02", "title": "Промостраницы и акции", "text": "OpenClaw собирает страницу из утверждённых компонентов, подключает форму и готовит релиз к нужной дате."},
+      {"number": "03", "title": "Формы и уведомления", "text": "Новые поля, получатели и тексты добавляются через проверяемый pull request с тестом отправки."},
+      {"number": "04", "title": "SEO и разметка", "text": "Title, description, schema.org, redirects и robots меняются только в разрешённых местах и проходят автоматическую проверку."},
+      {"number": "05", "title": "Аналитические события", "text": "Событие добавляется в код и проверяется в preview до того, как попадёт в рабочую аналитику."},
+      {"number": "06", "title": "Небольшие исправления", "text": "Codex локализует проблему, пишет regression test и предлагает исправление. Неуверенный случай автоматически уходит инженеру."}
+    ]
+  },
+  "pipeline": {
+    "eyebrow": "Release pipeline",
+    "title": "От сообщения до production без прыжка через проверки",
+    "steps": [
+      {"number": "01", "title": "Запрос", "text": "Telegram, Slack или внутренний портал проверяет личность и роль автора."},
+      {"number": "02", "title": "План", "text": "OpenClaw уточняет задачу, определяет риск и показывает, что собирается менять."},
+      {"number": "03", "title": "Изолированная работа", "text": "Codex получает временный sandbox и отдельную ветку без production-секретов."},
+      {"number": "04", "title": "Проверки", "text": "CI запускает форматирование, анализ кода, тесты, сборку и security gates."},
+      {"number": "05", "title": "Preview и approval", "text": "Заказчик видит живую страницу, diff и понятное описание изменения."},
+      {"number": "06", "title": "Релиз", "text": "Защищённый workflow выполняет deploy, smoke test и rollback при проблеме."}
+    ],
+    "providers_title": "Подключается к вашему стеку",
+    "providers": [
+      {"name": "GitHub Actions", "text": "Protected branches, environments, required checks, OIDC и deployment approvals."},
+      {"name": "GitLab CI/CD", "text": "Merge request pipelines, protected environments, review apps и approval rules."},
+      {"name": "Bitbucket Pipelines", "text": "Deployment environments, branch permissions и manual steps."},
+      {"name": "CircleCI / Jenkins", "text": "Существующий pipeline сохраняется; OpenClaw создаёт задачу и читает только итог проверок."}
+    ]
+  },
+  "gates": {
+    "eyebrow": "Обязательные ворота",
+    "title": "Агент предлагает изменение. Pipeline решает, можно ли его выпускать.",
+    "items": [
+      {"title": "Качество кода", "checks": ["formatter / lint", "static analysis", "unit и feature tests", "build"]},
+      {"title": "Поведение сайта", "checks": ["browser smoke tests", "visual diff", "broken links", "Lighthouse budget"]},
+      {"title": "Безопасность", "checks": ["secret scan", "dependency scan", "SAST", "изменения permissions"]},
+      {"title": "Релиз", "checks": ["preview environment", "ручное approval", "healthcheck", "автоматический rollback"]}
+    ]
+  },
+  "security": {
+    "eyebrow": "Ограничения агента",
+    "title": "OpenClaw не становится администратором вашей компании",
+    "marker": "LOCK",
+    "items": [
+      {"title": "Ограниченный репозиторий", "text": "Отдельный GitHub App или service account видит только нужный repo и не может менять branch protection."},
+      {"title": "Разрешённые зоны", "text": "Для автономных задач задаётся allowlist каталогов. Auth, платежи, secrets, CI и destructive migrations требуют инженера."},
+      {"title": "Временный sandbox", "text": "Каждая задача выполняется в чистом контейнере или worktree. После завершения окружение уничтожается."},
+      {"title": "Нет production-секретов", "text": "Ключи выдаются только CI job через secret manager или OIDC и никогда не попадают в prompt, diff или чат."},
+      {"title": "Контроль инструментов", "text": "Команды, сеть, время выполнения, число итераций и стоимость модели ограничены политикой задачи."},
+      {"title": "Подтверждение с TTL", "text": "Approval привязан к конкретному commit SHA, одноразовый и истекает. Подмена кода после подтверждения невозможна."},
+      {"title": "Полный журнал", "text": "Сохраняются автор запроса, план, tool calls, diff, результаты CI, approver, commit и итог deploy."},
+      {"title": "Kill switch", "text": "Одной командой отключаются новые задачи, merge и deploy без остановки самого сайта."}
+    ],
+    "risk_title": "Кто подтверждает изменение",
+    "risk_levels": [
+      {"level": "Низкий риск", "examples": "контент, SEO, готовые блоки, feature flags", "approval": "владелец продукта или контент-менеджер"},
+      {"level": "Средний риск", "examples": "формы, интеграции, frontend logic, аналитика", "approval": "технический ответственный"},
+      {"level": "Высокий риск", "examples": "auth, платежи, права, данные, инфраструктура", "approval": "инженер делает review; автономный deploy запрещён"}
+    ]
+  },
+  "production": {
+    "eyebrow": "Сайт с реальным трафиком",
+    "title": "Релиз не должен превращать посетителей в тестировщиков",
+    "items": [
+      {"title": "Без простоя", "text": "Blue-green, canary или rolling deploy выбирается под текущую инфраструктуру."},
+      {"title": "Без опасных миграций", "text": "Изменения схемы выпускаются по expand/contract; destructive шаги не выполняются агентом."},
+      {"title": "Проверка после deploy", "text": "Проверяются health endpoint, главные страницы, форма, очередь и ключевой пользовательский путь."},
+      {"title": "Возврат рабочей версии", "text": "При росте ошибок, неудачном smoke test или деградации latency включается rollback."},
+      {"title": "Наблюдаемость", "text": "Ошибки, логи, traces и release markers связываются с commit и конкретной задачей OpenClaw."},
+      {"title": "Ограниченный rollout", "text": "Рискованное изменение сначала видит малая доля трафика или только внутренняя команда."}
+    ]
+  },
+  "boundary": {
+    "eyebrow": "Честная граница",
+    "title": "Что система заменяет, а где инженер остаётся",
+    "agent_title": "Можно отдавать системе",
+    "agent_items": [
+      "частые типовые правки",
+      "сборку страниц из готовых компонентов",
+      "исправления с понятным воспроизведением",
+      "подготовку pull request и preview",
+      "релиз после всех проверок и approval"
+    ],
+    "human_title": "Требует инженера",
+    "human_items": [
+      "новая архитектура и сложная бизнес-логика",
+      "платежи, auth и права доступа",
+      "опасные изменения данных",
+      "инциденты без понятной причины",
+      "решение, которое не покрыто тестами и политиками"
+    ],
+    "note": "Цель — убрать постоянного программиста из потока мелких предсказуемых задач, а не притвориться, что инженерная ответственность исчезла."
+  },
+  "offer": {
+    "eyebrow": "Формат внедрения",
+    "title": "OpenClaw Release Operator",
+    "description": "Проектирую и разворачиваю управляемый контур изменений поверх вашего репозитория и текущего CI/CD.",
+    "setup": "от $8,000 за внедрение",
+    "monthly": "от $1,500 в месяц",
+    "timeline": "3–6 недель до production",
+    "features": [
+      "разбор репозитория, deploy и типов задач",
+      "OpenClaw, Codex и чат-интерфейс",
+      "sandbox, branch policy и approval matrix",
+      "CI/CD gates, preview и rollback",
+      "мониторинг, обновления и разбор неудачных задач"
+    ],
+    "note": "Точная стоимость зависит от тестового покрытия, числа окружений, стека, требований к доступам и критичности сайта.",
+    "cta": "Заказать технический разбор"
+  },
+  "form": {
+    "eyebrow": "Технический разбор",
+    "title": "Покажите, как сейчас изменения попадают на сайт",
+    "description": "Достаточно описать стек, репозиторий, частоту правок и текущий deploy. Секреты и доступы в форму отправлять не нужно.",
+    "fields": {
+      "name": {"label": "Ваше имя", "placeholder": "Как к вам обращаться"},
+      "company": {"label": "Компания", "placeholder": "Название компании"},
+      "email": {"label": "Рабочий email", "placeholder": "name@company.com"},
+      "contact": {"label": "Telegram / телефон", "placeholder": "Удобный способ связи"},
+      "company_size": {"label": "Посещаемость сайта", "placeholder": "Например: 500 посетителей в день"},
+      "current_stack": {"label": "Стек и текущий release-процесс", "placeholder": "Laravel/WordPress/Next.js, GitHub/GitLab, тесты, staging, способ deploy"},
+      "budget": {"label": "Бюджет внедрения", "placeholder": "Выберите диапазон"},
+      "interests": {"label": "Какие изменения хотите отдавать системе"},
+      "message": {"label": "Что тормозит выпуск изменений сейчас", "placeholder": "Какие задачи повторяются, кто их делает, сколько приходится ждать и что нельзя отдавать агенту"},
+      "consent": "Разрешаю использовать данные формы только для ответа на эту заявку",
+      "website": "Не заполняйте это поле"
+    },
+    "interests": [
+      {"id": "content-releases", "label": "Контент и тарифы"},
+      {"id": "campaign-pages", "label": "Лендинги и акции"},
+      {"id": "forms-integrations", "label": "Формы и интеграции"},
+      {"id": "seo-analytics", "label": "SEO и аналитика"},
+      {"id": "small-fixes", "label": "Небольшие исправления"}
+    ],
+    "budgets": [
+      {"value": "", "label": "Пока не определён"},
+      {"value": "$8k-$15k", "label": "$8,000–15,000"},
+      {"value": "$15k-$30k", "label": "$15,000–30,000"},
+      {"value": "$30k+", "label": "$30,000+"}
+    ],
+    "submit": "Запросить разбор",
+    "sending": "Отправляю…",
+    "success_title": "Заявка принята",
+    "success_text": "Изучу описание и вернусь с вопросами по release-процессу.",
+    "error_text": "Не удалось отправить заявку. Проверьте поля и попробуйте ещё раз.",
+    "contact_hint": "Нужен email или Telegram / телефон."
+  },
+  "footer": {
+    "statement": "Быстрые изменения без свободного доступа агента к production.",
+    "copyright": "Craft Chronicles / OpenClaw Release Control"
+  }
+}

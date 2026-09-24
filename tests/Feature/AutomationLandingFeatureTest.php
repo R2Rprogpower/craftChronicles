@@ -92,4 +92,37 @@ class AutomationLandingFeatureTest extends TestCase
         $this->assertSame('openclaw-short', $request->source);
         $this->assertSame(['faster-site-changes'], $request->metadata['interests']);
     }
+
+    public function test_openclaw_developer_landing_explains_guarded_production_delivery(): void
+    {
+        $this->get('/openclaw-developer')
+            ->assertOk()
+            ->assertSee('Типовые изменения сайта — без постоянной очереди к программисту.')
+            ->assertSee('GitHub Actions')
+            ->assertSee('OpenClaw не становится администратором вашей компании')
+            ->assertSee('автоматический rollback')
+            ->assertSee('Высокий риск')
+            ->assertSee(route('openclaw-developer.request'), false);
+    }
+
+    public function test_openclaw_developer_inquiry_is_persisted_with_release_context(): void
+    {
+        $this->postJson('/openclaw-developer/request', [
+            'name' => 'Анна',
+            'email' => 'anna@example.com',
+            'company' => 'Production Shop',
+            'company_size' => '800 посетителей в день',
+            'current_stack' => 'Laravel, GitHub Actions, blue-green deploy',
+            'budget' => '$15k-$30k',
+            'interests' => ['content-releases', 'forms-integrations'],
+            'message' => 'Хотим быстрее выпускать тарифы, формы и промостраницы через управляемый pipeline.',
+            'consent' => '1',
+            'website' => '',
+        ])->assertCreated()->assertJsonPath('data.status', 'new');
+
+        $request = ServiceRequest::query()->sole();
+        $this->assertSame('openclaw-developer', $request->source);
+        $this->assertSame(['content-releases', 'forms-integrations'], $request->metadata['interests']);
+        $this->assertSame('Laravel, GitHub Actions, blue-green deploy', $request->metadata['current_stack']);
+    }
 }

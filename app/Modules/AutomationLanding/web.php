@@ -13,3 +13,7 @@ Route::get('/openclaw', [AutomationLandingController::class, 'short'])->name('op
 Route::post('/openclaw/request', [AutomationLandingController::class, 'storeShort'])
     ->middleware('throttle:6,1')
     ->name('openclaw-short.request');
+Route::get('/openclaw-developer', [AutomationLandingController::class, 'developer'])->name('openclaw-developer');
+Route::post('/openclaw-developer/request', [AutomationLandingController::class, 'storeDeveloper'])
+    ->middleware('throttle:6,1')
+    ->name('openclaw-developer.request');

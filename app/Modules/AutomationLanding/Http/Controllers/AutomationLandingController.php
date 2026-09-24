@@ -7,6 +7,7 @@ namespace App\Modules\AutomationLanding\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Modules\AutomationLanding\Http\Requests\StoreAutomationInquiryRequest;
 use App\Modules\AutomationLanding\Services\AutomationLandingContent;
+use App\Modules\AutomationLanding\Services\OpenClawDeveloperContent;
 use App\Modules\AutomationLanding\Services\OpenClawShortContent;
 use App\Modules\ServiceRequests\DTO\CreateServiceRequestDTO;
 use App\Modules\ServiceRequests\Services\ServiceRequestService;
@@ -26,6 +27,11 @@ class AutomationLandingController extends Controller
         return view('openclaw-short', ['content' => $content->get()]);
     }
 
+    public function developer(OpenClawDeveloperContent $content): View
+    {
+        return view('openclaw-developer', ['content' => $content->get()]);
+    }
+
     public function store(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
     {
         return $this->persist($request->validated(), $service, 'automation-landing');
@@ -34,6 +40,11 @@ class AutomationLandingController extends Controller
     public function storeShort(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
     {
         return $this->persist($request->validated(), $service, 'openclaw-short');
+    }
+
+    public function storeDeveloper(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
+    {
+        return $this->persist($request->validated(), $service, 'openclaw-developer');
     }
 
     /** @param array<string, mixed> $data */
