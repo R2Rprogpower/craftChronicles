@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "title": "Кино — личный tier list",
+    "description": "Один общий рейтинг. Смотреть могут все, менять — только владелец."
+  },
+  "tiers": [
+    {"id": "S", "label": "S", "caption": "Великое кино"},
+    {"id": "A", "label": "A", "caption": "Пересмотрю"},
+    {"id": "B", "label": "B", "caption": "Хорошее"},
+    {"id": "C", "label": "C", "caption": "Нормально"},
+    {"id": "D", "label": "D", "caption": "Слабое"},
+    {"id": "F", "label": "F", "caption": "Провал"}
+  ],
+  "ui": {
+    "owner_mode": "Режим редактора",
+    "viewer_mode": "Только просмотр",
+    "search": "Найти фильм…",
+    "all_genres": "Все жанры",
+    "add": "+ Добавить фильм",
+    "save": "Сохранить",
+    "saving": "Сохраняю…",
+    "saved": "Сохранено",
+    "unranked": "Ещё не распределено",
+    "empty": "Здесь пока пусто"
+  },
+  "initial_movies": [
+    {"id":"the-godfather","title":"Крёстный отец","year":1972,"genre":"Драма","poster_url":null,"tier":"unranked","position":0},
+    {"id":"shawshank-redemption","title":"Побег из Шоушенка","year":1994,"genre":"Драма","poster_url":null,"tier":"unranked","position":1},
+    {"id":"pulp-fiction","title":"Криминальное чтиво","year":1994,"genre":"Криминал","poster_url":null,"tier":"unranked","position":2},
+    {"id":"fight-club","title":"Бойцовский клуб","year":1999,"genre":"Драма","poster_url":null,"tier":"unranked","position":3},
+    {"id":"matrix","title":"Матрица","year":1999,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":4},
+    {"id":"lord-of-the-rings","title":"Властелин колец: Братство Кольца","year":2001,"genre":"Фэнтези","poster_url":null,"tier":"unranked","position":5},
+    {"id":"spirited-away","title":"Унесённые призраками","year":2001,"genre":"Анимация","poster_url":null,"tier":"unranked","position":6},
+    {"id":"city-of-god","title":"Город Бога","year":2002,"genre":"Криминал","poster_url":null,"tier":"unranked","position":7},
+    {"id":"oldboy","title":"Олдбой","year":2003,"genre":"Триллер","poster_url":null,"tier":"unranked","position":8},
+    {"id":"eternal-sunshine","title":"Вечное сияние чистого разума","year":2004,"genre":"Мелодрама","poster_url":null,"tier":"unranked","position":9},
+    {"id":"no-country-for-old-men","title":"Старикам тут не место","year":2007,"genre":"Триллер","poster_url":null,"tier":"unranked","position":10},
+    {"id":"there-will-be-blood","title":"Нефть","year":2007,"genre":"Драма","poster_url":null,"tier":"unranked","position":11},
+    {"id":"dark-knight","title":"Тёмный рыцарь","year":2008,"genre":"Боевик","poster_url":null,"tier":"unranked","position":12},
+    {"id":"inglourious-basterds","title":"Бесславные ублюдки","year":2009,"genre":"Военный","poster_url":null,"tier":"unranked","position":13},
+    {"id":"inception","title":"Начало","year":2010,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":14},
+    {"id":"drive","title":"Драйв","year":2011,"genre":"Триллер","poster_url":null,"tier":"unranked","position":15},
+    {"id":"django-unchained","title":"Джанго освобождённый","year":2012,"genre":"Вестерн","poster_url":null,"tier":"unranked","position":16},
+    {"id":"whiplash","title":"Одержимость","year":2014,"genre":"Драма","poster_url":null,"tier":"unranked","position":17},
+    {"id":"interstellar","title":"Интерстеллар","year":2014,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":18},
+    {"id":"mad-max-fury-road","title":"Безумный Макс: Дорога ярости","year":2015,"genre":"Боевик","poster_url":null,"tier":"unranked","position":19},
+    {"id":"the-lobster","title":"Лобстер","year":2015,"genre":"Драма","poster_url":null,"tier":"unranked","position":20},
+    {"id":"arrival","title":"Прибытие","year":2016,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":21},
+    {"id":"parasite","title":"Паразиты","year":2019,"genre":"Триллер","poster_url":null,"tier":"unranked","position":22},
+    {"id":"once-upon-a-time-hollywood","title":"Однажды в… Голливуде","year":2019,"genre":"Драма","poster_url":null,"tier":"unranked","position":23},
+    {"id":"dune","title":"Дюна","year":2021,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":24},
+    {"id":"everything-everywhere","title":"Всё везде и сразу","year":2022,"genre":"Фантастика","poster_url":null,"tier":"unranked","position":25},
+    {"id":"oppenheimer","title":"Оппенгеймер","year":2023,"genre":"Биография","poster_url":null,"tier":"unranked","position":26},
+    {"id":"anora","title":"Анора","year":2024,"genre":"Драма","poster_url":null,"tier":"unranked","position":27}
+  ]
+}

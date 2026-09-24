@@ -1,7 +1,7 @@
 services:
   nginx:
     ports:
-      - "${GREEN_HTTP_PORT:-18082}:80"
+      - "127.0.0.1:${GREEN_HTTP_PORT:-18082}:80"
 
   pgadmin:
     ports:
