@@ -14,7 +14,7 @@ class AutomationLandingFeatureTest extends TestCase
 
     public function test_automation_landing_is_public_and_rendered_from_json_content(): void
     {
-        $this->get('/ai-automation')
+        $this->get('/ai-automation?lang=ru')
             ->assertOk()
             ->assertSee('Настраиваю OpenClaw так, чтобы он влиял на прибыль')
             ->assertSee('Менять сайт через Telegram без очереди к разработчику')
@@ -65,7 +65,7 @@ class AutomationLandingFeatureTest extends TestCase
 
     public function test_short_openclaw_landing_is_public_and_concrete(): void
     {
-        $this->get('/openclaw')
+        $this->get('/openclaw?lang=ru')
             ->assertOk()
             ->assertSee('Вы пишете задачу. Система доводит её до результата.')
             ->assertSee('Менять сайт через Telegram')
@@ -95,7 +95,7 @@ class AutomationLandingFeatureTest extends TestCase
 
     public function test_openclaw_developer_landing_explains_guarded_production_delivery(): void
     {
-        $this->get('/openclaw-developer')
+        $this->get('/openclaw-developer?lang=ru')
             ->assertOk()
             ->assertSee('Типовые изменения сайта — без постоянной очереди к программисту.')
             ->assertSee('GitHub Actions')

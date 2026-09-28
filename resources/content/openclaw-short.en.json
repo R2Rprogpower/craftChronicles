@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "title": "OpenClaw for business - from message to finished result",
+    "description": "I’ll set up OpenClaw, which accepts tasks in Telegram and brings them to fruition in your systems.",
+    "theme_color": "#16130f"
+  },
+  "brand": {
+    "name": "OPENCLAW / BUSINESS",
+    "status": "Two implementation slots available"
+  },
+  "navigation": {
+    "cases": "What it can do",
+    "contact": "Discuss the problem"
+  },
+  "hero": {
+    "eyebrow": "OpenClaw for your business",
+    "title": "You send a task. The system delivers the result.",
+    "lead": "I figure out where you are wasting time and money, connect OpenClaw to the necessary services and set up the safe execution of work through regular chat.",
+    "primary_cta": "Discuss my task",
+    "secondary_cta": "View examples",
+    "example_label": "Owner's message",
+    "example_request": "Change the tariff on the site, show the result and publish it after my confirmation.",
+    "example_result": "Done: the edits are done, the tests are passed, the preview is waiting for confirmation.",
+    "note": "I do not sell a set of agents. I am assembling one work circuit for a specific company task."
+  },
+  "cases": {
+    "eyebrow": "Five examples",
+    "title": "What you can delegate to OpenClaw",
+    "items": [
+      {
+        "number": "01",
+        "title": "Change website via Telegram",
+        "text": "You describe the edit in chat. OpenClaw transfers it to Codex, launches CI/CD, sends a preview and publishes it only after your confirmation.",
+        "result": "Simple changes are released on the same day."
+      },
+      {
+        "number": "02",
+        "title": "Don't lose incoming requests",
+        "text": "OpenClaw immediately responds to the client, asks the necessary questions and passes the manager an already understandable request with contacts and context.",
+        "result": "The manager talks to a ready lead, rather than collecting a questionnaire."
+      },
+      {
+        "number": "03",
+        "title": "Prepare a proposal from a voice message",
+        "text": "The manager sends the brief by voice. OpenClaw takes the company's prices and conditions, collects the document and asks for confirmation of the disputed points.",
+        "result": "The client receives an offer before competitors."
+      },
+      {
+        "number": "04",
+        "title": "Parse documents without manual entry",
+        "text": "The client sends a file. OpenClaw reads it, checks for required fields and creates a record or task on your system.",
+        "result": "The employee deals only with non-standard cases."
+      },
+      {
+        "number": "05",
+        "title": "Receive a ready-made picture of your business in the morning",
+        "text": "OpenClaw collects numbers from CRM, payments and advertising and writes in Telegram where deals are stuck and what needs solving today.",
+        "result": "Instead of several tables, there is a short list of actions."
+      }
+    ]
+  },
+  "delivery": {
+    "eyebrow": "How does it appear",
+    "title": "From conversation to working system",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Show your work",
+        "text": "We call each other and sort out one recurring expensive task."
+      },
+      {
+        "number": "2",
+        "title": "I assemble the workflow",
+        "text": "Setting up OpenClaw, chat, accesses, actions, checks and launch."
+      },
+      {
+        "number": "3",
+        "title": "Start using it",
+        "text": "The team works through a familiar interface, and I maintain the system."
+      }
+    ]
+  },
+  "offer": {
+    "eyebrow": "One product",
+    "title": "OpenClaw turnkey",
+    "text": "You do not receive a consultation or installation instructions, but a working script within your business.",
+    "setup": "from $3,000 per implementation",
+    "monthly": "from $499 per month for service",
+    "features": [
+      "analysis of the problem and ready-made script",
+      "OpenClaw and the necessary connections",
+      "checks and confirmation of dangerous actions",
+      "deployment, updates and support"
+    ],
+    "cta": "Discuss implementation"
+  },
+  "form": {
+    "eyebrow": "Short application",
+    "title": "What do you want to stop doing manually?",
+    "description": "Describe the job in your own words. There is no need to come up with a technical solution.",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "How to contact you"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "What do you do"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "name@company.com"
+      },
+      "contact": {
+        "label": "Telegram/phone",
+        "placeholder": "Where to reply"
+      },
+      "interests": {
+        "label": "Which is closer to your task"
+      },
+      "message": {
+        "label": "What should happen without your participation",
+        "placeholder": "Now we are doing this... I want the system..."
+      },
+      "consent": "I authorize the use of these forms only to respond to an application.",
+      "website": "Leave this field blank"
+    },
+    "interests": [
+      {
+        "id": "faster-site-changes",
+        "label": "Site changes"
+      },
+      {
+        "id": "more-qualified-leads",
+        "label": "Incoming applications"
+      },
+      {
+        "id": "faster-sales",
+        "label": "Sales and CP"
+      },
+      {
+        "id": "less-manual-work",
+        "label": "Documents and routine"
+      },
+      {
+        "id": "management-visibility",
+        "label": "Reports for the owner"
+      }
+    ],
+    "submit": "Submit a task",
+    "sending": "Sending...",
+    "success_title": "Task received",
+    "success_text": "I will study the description and suggest where to start.",
+    "error_text": "Failed to send. Check the fields and try again.",
+    "contact_hint": "Leave your email or Telegram/phone number."
+  },
+  "footer": {
+    "statement": "OpenClaw, which does the job.",
+    "copyright": "Craft Chronicles"
+  }
+}

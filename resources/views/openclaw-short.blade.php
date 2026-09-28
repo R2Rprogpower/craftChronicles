@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="{{ $locale }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('build/css/openclaw-network-header.css') }}">
 </head>
 <body>
-    <x-openclaw-network-header active="openclaw" />
+    <x-openclaw-network-header active="openclaw" :locale="$locale" />
     <header class="short-header">
         <a class="short-brand" href="#top">{{ $content['brand']['name'] }}</a>
         <nav>

@@ -8,7 +8,7 @@ class OpenClawPresentationFeatureTest extends TestCase
 {
     public function test_openclaw_presentation_is_publicly_available(): void
     {
-        $response = $this->get('/presentation/openclaw')
+        $response = $this->get('/presentation/openclaw?lang=uk')
             ->assertOk()
             ->assertSee('OpenClaw')
             ->assertSee('ШІ, який не лише відповідає — а діє')

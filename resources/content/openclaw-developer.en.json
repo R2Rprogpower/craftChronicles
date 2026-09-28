@@ -1,0 +1,427 @@
+{
+  "meta": {
+    "title": "OpenClaw instead of queuing to see a programmer - safe changes to a production site",
+    "description": "OpenClaw accepts tasks via chat, Codex changes the code, CI/CD checks and deploys the preview, and production is updated only after confirmation.",
+    "theme_color": "#090d12"
+  },
+  "brand": {
+    "name": "OPENCLAW / RELEASE CONTROL",
+    "status": "Implementation for production sites"
+  },
+  "navigation": [
+    {
+      "label": "What changes",
+      "href": "#scenarios"
+    },
+    {
+      "label": "How it releases",
+      "href": "#pipeline"
+    },
+    {
+      "label": "Safety",
+      "href": "#security"
+    },
+    {
+      "label": "Price",
+      "href": "#offer"
+    }
+  ],
+  "common": {
+    "primary_cta": "Break down your release process",
+    "secondary_cta": "View diagram",
+    "form_cta": "Discuss implementation"
+  },
+  "hero": {
+    "eyebrow": "OpenClaw + Codex + CI/CD",
+    "title": "Typical site changes - without a constant queue to the programmer.",
+    "lead": "An employee sets a task in Telegram or Slack. OpenClaw clarifies the requirements, Codex changes the code in a separate branch, the pipeline runs checks and previews. Only the confirmed version gets into production.",
+    "note": "The agent does not have free access to the server, secrets and database. Its work is limited by the repository, allowed files, time, budget and mandatory checks.",
+    "signals": [
+      {
+        "value": "0",
+        "label": "direct agent inputs to production"
+      },
+      {
+        "value": "1",
+        "label": "isolated branch for each task"
+      },
+      {
+        "value": "24/7",
+        "label": "healthcheck after every release"
+      }
+    ],
+    "terminal": {
+      "request_label": "Request in Telegram",
+      "request": "Add a new tariff, update the FAQ and prepare a publication for today.",
+      "steps": [
+        "Branch ai/release-184 created",
+        "Changed 4 allowed files",
+        "Lint, tests, build, security: passed",
+        "Preview is ready. Production is waiting for approval"
+      ],
+      "approval": "Confirm release"
+    }
+  },
+  "audience": {
+    "eyebrow": "When it makes sense",
+    "title": "The site is already making money and cannot wait for every small edit",
+    "items": [
+      "hundreds or thousands of visitors per day",
+      "regular promotions, tariffs, pages and forms",
+      "there is a Git repository and repeatable deploy",
+      "the error is noticeable to customers and affects revenue"
+    ]
+  },
+  "scenarios": {
+    "eyebrow": "Work instead of tickets",
+    "title": "What businesses can release via chat",
+    "items": [
+      {
+        "number": "01",
+        "title": "Texts, tariffs and FAQ",
+        "text": "The manager describes the change with a regular message, receives a preview and publishes it without correspondence with the developer."
+      },
+      {
+        "number": "02",
+        "title": "Promo pages and promotions",
+        "text": "OpenClaw assembles the page from the approved components, connects the form and prepares the release for the required date."
+      },
+      {
+        "number": "03",
+        "title": "Forms and Notices",
+        "text": "New fields, recipients and texts are added via a verifiable pull request with a submit test."
+      },
+      {
+        "number": "04",
+        "title": "SEO and markup",
+        "text": "Title, description, schema.org, redirects and robots are changed only in permitted places and are automatically checked."
+      },
+      {
+        "number": "05",
+        "title": "Analytical events",
+        "text": "The event is added to the code and checked in preview before it gets into production analytics."
+      },
+      {
+        "number": "06",
+        "title": "Minor fixes",
+        "text": "Codex localizes the problem, writes a regression test and suggests a fix. An unsure case automatically goes to the engineer."
+      }
+    ]
+  },
+  "pipeline": {
+    "eyebrow": "Release pipeline",
+    "title": "From message to production without jumping through checks",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Request",
+        "text": "Telegram, Slack or internal portal verifies the identity and role of the author."
+      },
+      {
+        "number": "02",
+        "title": "Plan",
+        "text": "OpenClaw clarifies the problem, identifies the risk, and shows what it intends to change."
+      },
+      {
+        "number": "03",
+        "title": "Isolated work",
+        "text": "Codex gets a temporary sandbox and a separate branch without production secrets."
+      },
+      {
+        "number": "04",
+        "title": "Checks",
+        "text": "CI runs formatting, code analysis, tests, assembly and security gates."
+      },
+      {
+        "number": "05",
+        "title": "Preview and approval",
+        "text": "The customer sees a live page, diff and a clear description of the change."
+      },
+      {
+        "number": "06",
+        "title": "Release",
+        "text": "A secure workflow performs a deploy, smoke test, and rollback if there is a problem."
+      }
+    ],
+    "providers_title": "Connects to your stack",
+    "providers": [
+      {
+        "name": "GitHub Actions",
+        "text": "Protected branches, environments, required checks, OIDC and deployment approvals."
+      },
+      {
+        "name": "GitLab CI/CD",
+        "text": "Merge request pipelines, protected environments, review apps and approval rules."
+      },
+      {
+        "name": "Bitbucket Pipelines",
+        "text": "Deployment environments, branch permissions and manual steps."
+      },
+      {
+        "name": "CircleCI / Jenkins",
+        "text": "The existing pipeline is preserved; OpenClaw creates a task and reads only the result of the checks."
+      }
+    ]
+  },
+  "gates": {
+    "eyebrow": "Mandatory Gate",
+    "title": "The agent proposes a change. Pipeline decides whether it can be released.",
+    "items": [
+      {
+        "title": "Code quality",
+        "checks": [
+          "formatter / lint",
+          "static analysis",
+          "unit and feature tests",
+          "build"
+        ]
+      },
+      {
+        "title": "Site behavior",
+        "checks": [
+          "browser smoke tests",
+          "visual diff",
+          "broken links",
+          "Lighthouse budget"
+        ]
+      },
+      {
+        "title": "Safety",
+        "checks": [
+          "secret scan",
+          "dependency scan",
+          "SAST",
+          "permissions changes"
+        ]
+      },
+      {
+        "title": "Release",
+        "checks": [
+          "preview environment",
+          "manual approval",
+          "healthcheck",
+          "automatic rollback"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "eyebrow": "Agent restrictions",
+    "title": "OpenClaw does not become your company administrator",
+    "marker": "LOCK",
+    "items": [
+      {
+        "title": "Limited repository",
+        "text": "A separate GitHub App or service account sees only the required repo and cannot change branch protection."
+      },
+      {
+        "title": "Permitted zones",
+        "text": "For autonomous tasks, an allowlist of directories is specified. Auth, payments, secrets, CI and destructive migrations require an engineer."
+      },
+      {
+        "title": "Temporary sandbox",
+        "text": "Each task runs in a clean container or worktree. Once completed, the environment is destroyed."
+      },
+      {
+        "title": "No production secrets",
+        "text": "Keys are issued only to CI jobs through secret manager or OIDC and never end up in prompt, diff or chat."
+      },
+      {
+        "title": "Tool control",
+        "text": "The commands, network, execution time, number of iterations, and cost of the model are limited by the task policy."
+      },
+      {
+        "title": "Confirmation with TTL",
+        "text": "Approval is tied to a specific commit SHA, is one-time only, and expires. It is not possible to change the code after confirmation."
+      },
+      {
+        "title": "Full magazine",
+        "text": "The request author, plan, tool calls, diff, CI results, approver, commit and deployment result are saved."
+      },
+      {
+        "title": "Kill switch",
+        "text": "With one command, new tasks, merge and deploy are disabled without stopping the site itself."
+      }
+    ],
+    "risk_title": "Who confirms the change",
+    "risk_levels": [
+      {
+        "level": "Low risk",
+        "examples": "content, SEO, ready-made blocks, feature flags",
+        "approval": "product owner or content manager"
+      },
+      {
+        "level": "Medium risk",
+        "examples": "forms, integrations, frontend logic, analytics",
+        "approval": "technical responsible"
+      },
+      {
+        "level": "High risk",
+        "examples": "auth, payments, rights, data, infrastructure",
+        "approval": "engineer does review; standalone deploy is prohibited"
+      }
+    ]
+  },
+  "production": {
+    "eyebrow": "Website with real traffic",
+    "title": "The release should not turn visitors into testers",
+    "items": [
+      {
+        "title": "No downtime",
+        "text": "Blue-green, canary or rolling deployment is selected for the current infrastructure."
+      },
+      {
+        "title": "No dangerous migrations",
+        "text": "Schema changes are released via expand/contract; destructive steps are not performed by the agent."
+      },
+      {
+        "title": "Post-deploy check",
+        "text": "Health endpoint, main pages, form, queue and key user path are checked."
+      },
+      {
+        "title": "Returning a working version",
+        "text": "If errors increase, smoke test fails, or latency degrades, rollback is enabled."
+      },
+      {
+        "title": "Observability",
+        "text": "Errors, logs, traces and release markers are associated with a commit and a specific OpenClaw task."
+      },
+      {
+        "title": "Limited rollout",
+        "text": "A risky change is first seen by a small percentage of traffic or only by the internal team."
+      }
+    ]
+  },
+  "boundary": {
+    "eyebrow": "Fair border",
+    "title": "What does the system replace, and where does the engineer remain?",
+    "agent_title": "Can be given to the system",
+    "agent_items": [
+      "frequent standard edits",
+      "assembling pages from ready-made components",
+      "fixes with clear playback",
+      "preparing pull request and preview",
+      "release after all checks and approval"
+    ],
+    "human_title": "Requires an engineer",
+    "human_items": [
+      "new architecture and complex business logic",
+      "payments, auth and access rights",
+      "dangerous data changes",
+      "incidents without a clear reason",
+      "a solution that is not covered by tests and policies"
+    ],
+    "note": "The goal is to remove the full-time programmer from the flow of small, predictable tasks, not to pretend that engineering responsibility has disappeared."
+  },
+  "offer": {
+    "eyebrow": "Implementation format",
+    "title": "OpenClaw Release Operator",
+    "description": "I design and deploy a managed change path on top of your repository and current CI/CD.",
+    "setup": "from $8,000 per implementation",
+    "monthly": "from $1,500 per month",
+    "timeline": "3–6 weeks before production",
+    "features": [
+      "analysis of the repository, deploy and task types",
+      "OpenClaw, Codex and chat interface",
+      "sandbox, branch policy and approval matrix",
+      "CI/CD gates, preview and rollback",
+      "monitoring, updates and analysis of failed tasks"
+    ],
+    "note": "The exact cost depends on test coverage, number of environments, stack, access requirements and site criticality.",
+    "cta": "Order technical analysis"
+  },
+  "form": {
+    "eyebrow": "Technical analysis",
+    "title": "Show how changes are now being made to the site",
+    "description": "It is enough to describe the stack, repository, frequency of edits and current deployment. There is no need to submit secrets and access to the form.",
+    "fields": {
+      "name": {
+        "label": "your name",
+        "placeholder": "How to contact you"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "Company name"
+      },
+      "email": {
+        "label": "Work email",
+        "placeholder": "name@company.com"
+      },
+      "contact": {
+        "label": "Telegram/phone",
+        "placeholder": "Convenient way of communication"
+      },
+      "company_size": {
+        "label": "Site traffic",
+        "placeholder": "For example: 500 visitors per day"
+      },
+      "current_stack": {
+        "label": "Stack and current release process",
+        "placeholder": "Laravel/WordPress/Next.js, GitHub/GitLab, tests, staging, deploy method"
+      },
+      "budget": {
+        "label": "Implementation budget",
+        "placeholder": "Select range"
+      },
+      "interests": {
+        "label": "What changes do you want to make to the system?"
+      },
+      "message": {
+        "label": "What is slowing down the release of changes now?",
+        "placeholder": "What tasks are repeated, who does them, how long do you have to wait and what cannot be given to the agent"
+      },
+      "consent": "I authorize the use of these forms only to respond to this request.",
+      "website": "Leave this field blank"
+    },
+    "interests": [
+      {
+        "id": "content-releases",
+        "label": "Content and tariffs"
+      },
+      {
+        "id": "campaign-pages",
+        "label": "Landing pages and promotions"
+      },
+      {
+        "id": "forms-integrations",
+        "label": "Forms and Integrations"
+      },
+      {
+        "id": "seo-analytics",
+        "label": "SEO and analytics"
+      },
+      {
+        "id": "small-fixes",
+        "label": "Minor fixes"
+      }
+    ],
+    "budgets": [
+      {
+        "value": "",
+        "label": "Not yet defined"
+      },
+      {
+        "value": "$8k-$15k",
+        "label": "$8,000–15,000"
+      },
+      {
+        "value": "$15k-$30k",
+        "label": "$15,000–30,000"
+      },
+      {
+        "value": "$30k+",
+        "label": "$30,000+"
+      }
+    ],
+    "submit": "Request review",
+    "sending": "Sending...",
+    "success_title": "Application accepted",
+    "success_text": "I'll study the description and come back with questions about the release process.",
+    "error_text": "Failed to submit application. Check the fields and try again.",
+    "contact_hint": "You need email or Telegram/phone."
+  },
+  "footer": {
+    "statement": "Quick changes without free agent access to production.",
+    "copyright": "Craft Chronicles / OpenClaw Release Control"
+  }
+}

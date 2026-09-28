@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="{{ $locale }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('build/css/openclaw-network-header.css') }}">
 </head>
 <body>
-    <x-openclaw-network-header active="research" />
+    <x-openclaw-network-header active="research" :locale="$locale" />
 
     <main>
         <section class="research-hero page-shell">
@@ -130,7 +130,7 @@
                     <p><span>02</span> Индексация репрезентативной выборки</p>
                     <p><span>03</span> Набор контрольных вопросов и оценка цитат</p>
                     <p><span>04</span> План масштабирования и эксплуатации</p>
-                    <a class="button button-primary" href="{{ route('openclaw-short') }}#request">Обсудить коллекцию <span>↗</span></a>
+                    <a class="button button-primary" href="{{ route('openclaw-short', ['lang' => $locale]) }}#request">Обсудить коллекцию <span>↗</span></a>
                 </div>
             </div>
         </section>

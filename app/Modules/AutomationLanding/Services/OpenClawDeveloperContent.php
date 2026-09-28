@@ -10,9 +10,9 @@ use RuntimeException;
 class OpenClawDeveloperContent
 {
     /** @return array<string, mixed> */
-    public function get(): array
+    public function get(string $locale = 'en'): array
     {
-        $path = resource_path('content/openclaw-developer.ru.json');
+        $path = resource_path("content/openclaw-developer.{$locale}.json");
         $contents = file_get_contents($path);
 
         if ($contents === false) {

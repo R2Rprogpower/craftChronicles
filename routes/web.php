@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebAuthController;
+use App\Modules\AutomationLanding\Support\OpenClawLocale;
 use App\Modules\Messenger\Http\Controllers\BotSetupController;
 use App\Modules\Religions\Http\Controllers\ReligionsAdminController;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ Route::view('/OstapBrehin', 'ostap-brehin')->name('ostap-brehin');
 Route::view('/askar_kz', 'askar-kz')->name('askar-kz');
 Route::view('/askar_kz_1', 'askar-kz-donate')->name('askar-kz-donate');
 Route::view('/baban', 'baban')->name('baban');
-Route::view('/presentation/openclaw', 'presentations.openclaw')->name('presentations.openclaw');
+Route::get('/presentation/openclaw', function (Request $request) {
+    $locale = OpenClawLocale::resolve($request->query('lang'));
+    $view = $locale === 'uk' ? 'presentations.openclaw' : "presentations.openclaw-{$locale}";
+
+    return view($view, ['locale' => $locale]);
+})->name('presentations.openclaw');
 
 require base_path('app/Modules/PersonalBrand/web.php');
 require base_path('app/Modules/ServiceRequests/web.php');

@@ -1,0 +1,520 @@
+{
+  "meta": {
+    "title": "Implementing OpenClaw for Business Growth - Craft Chronicles",
+    "description": "I study the company's processes and configure OpenClaw for a measurable result: more processed applications, less manual work, faster changes and controlled AI costs.",
+    "theme_color": "#07130f"
+  },
+  "brand": {
+    "name": "CRAFT / OPENCLAW",
+    "short": "C/OC",
+    "status": "Accepting 2 new implementations"
+  },
+  "navigation": [
+    {
+      "label": "What's included",
+      "href": "#services"
+    },
+    {
+      "label": "Stories",
+      "href": "#use-cases"
+    },
+    {
+      "label": "How I work",
+      "href": "#process"
+    },
+    {
+      "label": "Price",
+      "href": "#plans"
+    }
+  ],
+  "common": {
+    "primary_cta": "Disassemble my business",
+    "secondary_cta": "View stories",
+    "form_cta": "Leave a request",
+    "menu_label": "Open menu"
+  },
+  "hero": {
+    "eyebrow": "One service OpenClaw for turnkey business",
+    "title": "Setting up OpenClaw to impact profits rather than just showcasing AI.",
+    "lead": "I research where the company is losing applications, time and margins, choose the most profitable scenario and implement OpenClaw along with the necessary integrations, data, infrastructure and quality control.",
+    "note": "The goal is formulated in money and operational metrics: respond to the client faster, handle more requests with the same team, reduce the cost of the operation, or give the owner the opportunity to manage changes without constantly queuing with a developer.",
+    "signals": [
+      {
+        "value": "7–14 days",
+        "label": "to the pilot being checked"
+      },
+      {
+        "value": "1 KPI",
+        "label": "main implementation metric"
+      },
+      {
+        "value": "Turnkey",
+        "label": "from research to support"
+      }
+    ],
+    "diagram": {
+      "input": "Business purpose · processes · data",
+      "engine": "OpenClaw + rules + integrations",
+      "output": "Sales · savings · speed",
+      "control": "Metrics and Human Validation"
+    }
+  },
+  "trust": {
+    "title": "OpenClaw is the core of the solution, not a box without configuration",
+    "items": [
+      "Process research and potential calculation before development",
+      "Integrations with CRM, code, mail, instant messengers and documents",
+      "Production infrastructure, CI/CD, monitoring and backup",
+      "Accounting for quality, conversion and cost of each action"
+    ]
+  },
+  "services": {
+    "eyebrow": "Unified implementation",
+    "title": "Everything you need to make OpenClaw bring business results",
+    "description": "These are not eight separate services. I take one expensive business problem and run the entire cycle of researching, configuring, and operating OpenClaw. The scope of work is determined by the expected return.",
+    "items": [
+      {
+        "id": "business-research",
+        "number": "01",
+        "title": "Business Research",
+        "description": "I analyze the path of an application or operation, volumes, cost of time, errors, restrictions and points of loss of money. Scenarios are ranked by impact, risk and complexity.",
+        "outcome": "It’s clear what to automate first and why",
+        "tags": [
+          "Process map",
+          "Baseline",
+          "ROI",
+          "Priorities"
+        ]
+      },
+      {
+        "id": "openclaw-design",
+        "number": "02",
+        "title": "OpenClaw Design",
+        "description": "I define the roles of agents, instructions, memory, tools, channels, rights, conditions for transferring to a person and actions that are more reliable to leave to regular code.",
+        "outcome": "OpenClaw solves the problem within given boundaries",
+        "tags": [
+          "Agents",
+          "Memory",
+          "Tools",
+          "Approvals"
+        ]
+      },
+      {
+        "id": "integrations",
+        "number": "03",
+        "title": "Connecting working systems",
+        "description": "I connect OpenClaw with Telegram, WhatsApp, email, CRM, Google Drive, website, GitHub, store, databases and internal APIs.",
+        "outcome": "The agent not only responds, but also terminates the process",
+        "tags": [
+          "CRM",
+          "Telegram",
+          "GitHub",
+          "API"
+        ]
+      },
+      {
+        "id": "knowledge-data",
+        "number": "04",
+        "title": "Preparing knowledge and data",
+        "description": "I collect and clean CRM documents, tables and records, eliminate duplicates, configure downloads, search with sources and update the knowledge base.",
+        "outcome": "The agent relies on current company data",
+        "tags": [
+          "RAG",
+          "ETL",
+          "Data quality",
+          "Sources"
+        ]
+      },
+      {
+        "id": "production-infrastructure",
+        "number": "05",
+        "title": "Production and CI/CD",
+        "description": "I deploy OpenClaw and related services: Docker, SSL, PostgreSQL, Redis, secrets, preview environments, tests, secure deploy, rollback, backup and monitoring.",
+        "outcome": "Changes are released quickly but in a controlled manner",
+        "tags": [
+          "Docker",
+          "CI/CD",
+          "Preview",
+          "Rollback"
+        ]
+      },
+      {
+        "id": "quality-safety",
+        "number": "06",
+        "title": "Quality and safety",
+        "description": "I create control cases, access restrictions, input data checks, audit trails, human approval and safe handoffs in case of uncertainty or high risk.",
+        "outcome": "The error stops before it damages the business",
+        "tags": [
+          "Evals",
+          "Guardrails",
+          "Audit",
+          "Handoff"
+        ]
+      },
+      {
+        "id": "cost-optimization",
+        "number": "07",
+        "title": "Optimization of models and tokens",
+        "description": "I select a model for each operation, reduce the context, add caching, limits and routing. Where AI is not needed, I use rules or code.",
+        "outcome": "Costs grow slower than payload",
+        "tags": [
+          "Routing",
+          "Caching",
+          "Budgets",
+          "Cost per task"
+        ]
+      },
+      {
+        "id": "continuous-improvement",
+        "number": "08",
+        "title": "Analytics and development",
+        "description": "I measure conversion, speed, escalation rate, errors and cost of the result. Using data, I improve instructions, knowledge, integrations and scenarios.",
+        "outcome": "Implementation becomes more profitable after launch",
+        "tags": [
+          "KPI",
+          "Funnels",
+          "Reports",
+          "Iteration"
+        ]
+      }
+    ]
+  },
+  "use_cases": {
+    "eyebrow": "Five implementation stories",
+    "title": "What can a business owner do after setup?",
+    "items": [
+      {
+        "segment": "Website and product",
+        "title": "Change a website via Telegram without queuing with a developer",
+        "description": "The owner writes to the bot: “add a new tariff, replace the offer and show the result.” OpenClaw refines the requirements and submits the task to Codex in an isolated branch. CI/CD collects a preview, runs tests and sends the owner a link and diff. Only after confirmation the change goes into production, and in case of failure a rollback is performed. The developer is involved only in non-standard tasks, so simple changes are completed in hours, not weeks.",
+        "metric": "Change release time · cost of editing · number of tasks without a developer"
+      },
+      {
+        "segment": "Sales",
+        "title": "Not a single warm application waits until the morning",
+        "description": "OpenClaw receives messages from the website and instant messengers around the clock. He responds based on approved materials, asks qualifying questions and creates a completed lead in the CRM. The hot application is immediately transferred to the duty manager along with a short resume. The manager sees where leads are lost and what issues hinder the purchase. The team engages in conversations faster and handles more requests without expanding staff.",
+        "metric": "First response time · appointment conversion · lost leads"
+      },
+      {
+        "segment": "B2B and services",
+        "title": "A commercial proposal is prepared during a conversation",
+        "description": "The manager sends a voice message or a short brief in Telegram. OpenClaw extracts requirements, checks them against CRM, price list and company rules and generates a draft proposal. The system flags controversial terms and does not allow you to change the price yourself or make legal promises. The manager confirms the document and sends it to the client in one action. The speed of response increases, and best sales practices no longer depend on the memory of a specific employee.",
+        "metric": "Minutes per CP · number of CPs per manager · transaction speed"
+      },
+      {
+        "segment": "Operations",
+        "title": "Documents go through the process without manual copying",
+        "description": "An employee or client sends an invoice, act or request to a familiar channel. OpenClaw determines the document type, extracts fields, checks for completeness and matches the data with the accounting system. The correct document creates the required record and sends the result to the person responsible, and the exception is sent to the person with an explanation of the problem. All actions are saved in the audit log and can be canceled according to process rules. The company reduces processing time and input errors.",
+        "metric": "Document cost · processing time · error rate"
+      },
+      {
+        "segment": "Control",
+        "title": "The owner receives not tables, but a list of solutions",
+        "description": "OpenClaw collects data from CRM, advertising, payments and operational tables on a schedule. He checks the quality of the data, compares the indicators with the plan and explains deviations with references to sources. Telegram receives a short report: where the conversion fell, which deals are stuck, and what needs attention today. The owner can ask a clarifying question and immediately assign the permitted action to the person responsible. At the monthly review, new automations are selected based on the identified monetary effect.",
+        "metric": "Hours to report · reaction speed · overdue actions"
+      }
+    ]
+  },
+  "economics": {
+    "eyebrow": "Selection criterion",
+    "title": "We configure not the maximum functions, but the maximum useful effect",
+    "formula_label": "Expected monthly effect",
+    "formula": "additional gross profit + hours saved − operating costs",
+    "principles": [
+      {
+        "title": "Baseline before setup",
+        "text": "We record the current conversion, labor costs, delays and cost of errors."
+      },
+      {
+        "title": "Return priority",
+        "text": "The scenario with the best combination of monetary effect, speed and risk is launched first."
+      },
+      {
+        "title": "Pilot on real data",
+        "text": "OpenClaw is tested on a test sample before accessing critical actions."
+      },
+      {
+        "title": "Development by numbers",
+        "text": "New features are added when metrics show the next point of growth."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How does a single service work?",
+    "title": "Research → OpenClaw setup → result growth",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Business analysis",
+        "text": "Interview, process map, volumes, bottlenecks, cost of manual work and losses."
+      },
+      {
+        "number": "02",
+        "title": "Recoil hypothesis",
+        "text": "We select one scenario, KPI, baseline, budget, restrictions and stopping criteria."
+      },
+      {
+        "number": "03",
+        "title": "Setting up OpenClaw",
+        "text": "I create agents, tools, knowledge, integrations, tests and infrastructure."
+      },
+      {
+        "number": "04",
+        "title": "Pilot and launch",
+        "text": "We check it on real cases and gradually open production access."
+      },
+      {
+        "number": "05",
+        "title": "Optimization",
+        "text": "I monitor KPIs, quality and cost; I only improve what increases returns."
+      }
+    ]
+  },
+  "architecture": {
+    "eyebrow": "What's under the hood",
+    "title": "OpenClaw receives exactly the infrastructure that a business task needs",
+    "description": "I'm not only responsible for prompt. A single implementation includes channels, code, data, actions, models, security, and operations. The architecture expands along with proven benefits and does not tie the client to one LLM provider.",
+    "layers": [
+      {
+        "title": "Owner and customer channels",
+        "items": [
+          "Telegram",
+          "WhatsApp",
+          "Email",
+          "Web",
+          "CRM"
+        ]
+      },
+      {
+        "title": "OpenClaw",
+        "items": [
+          "Agents",
+          "Memory",
+          "Tools",
+          "Schedules",
+          "Approvals"
+        ]
+      },
+      {
+        "title": "Code and data",
+        "items": [
+          "Codex",
+          "GitHub",
+          "Laravel",
+          "PostgreSQL",
+          "Drive"
+        ]
+      },
+      {
+        "title": "Models and costs",
+        "items": [
+          "OpenAI",
+          "Anthropic",
+          "Gemini",
+          "Local LLM",
+          "Routing"
+        ]
+      },
+      {
+        "title": "Delivery and control",
+        "items": [
+          "CI/CD",
+          "Tests",
+          "Preview",
+          "Backups",
+          "Audit"
+        ]
+      }
+    ]
+  },
+  "plans": {
+    "eyebrow": "One service",
+    "title": "OpenClaw for business: research, implementation and support",
+    "note": "The final estimate appears after analyzing the process. I don’t promise profit growth without data: before the start, we fix the hypothesis, the method of measurement and the conditions under which the project does not scale.",
+    "items": [
+      {
+        "name": "OpenClaw Business System",
+        "setup": "from $3,000",
+        "monthly": "from $499/month",
+        "description": "Full cycle: find the most profitable use of OpenClaw, integrate it into the company’s work and constantly improve it based on data.",
+        "features": [
+          "Process research and ROI calculation",
+          "Setting up agents, memory, tools and approvals",
+          "Integrations, knowledge and production infrastructure",
+          "Quality control, security and tokens",
+          "Monthly KPI review and improvements"
+        ],
+        "cta": "Order a business analysis",
+        "featured": true,
+        "badge": "Single product"
+      }
+    ]
+  },
+  "safety": {
+    "eyebrow": "Managed risk",
+    "title": "OpenClaw receives autonomy only after proven quality",
+    "items": [
+      {
+        "title": "Man states critical",
+        "text": "Deploy, Price, Payment, Legal Promise, Deletion and Bulk Submit require confirmation."
+      },
+      {
+        "title": "Minimum rights",
+        "text": "Each agent and integration receives only the necessary tools, scopes, limits and individual credentials."
+      },
+      {
+        "title": "Facts with links",
+        "text": "Knowledge base answers contain the source; if there is insufficient data, OpenClaw passes the question to a human."
+      },
+      {
+        "title": "Changes through tests",
+        "text": "A code, a new model, an instruction or a tool goes through test cases and a gradual rollout."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "What are you really buying?",
+    "items": [
+      {
+        "question": "Is this OpenClaw installation or consulting?",
+        "answer": "Both within one service. I research the process and economics, then design, install, integrate and maintain OpenClaw. Research without a working implementation is not the final product."
+      },
+      {
+        "question": "Do you guarantee profit growth?",
+        "answer": "No: it is impossible to honestly guarantee profit without control over the market and sales. I fix the hypothesis to be tested and KPIs, build a pilot and scale only what shows the effect."
+      },
+      {
+        "question": "What if we don't know where to use OpenClaw?",
+        "answer": "This is a normal starting situation. The first part of the job is to find processes with sufficient volume, cost and data, compare options and choose the best scenario."
+      },
+      {
+        "question": "Is it possible to safely change a website via Telegram?",
+        "answer": "Yes, if the bot does not have the right to directly rewrite production. The task is executed in a separate branch, CI runs tests and preview, the owner sees the diff and confirms deploy. For risky changes, a developer is involved."
+      },
+      {
+        "question": "How are errors and costs controlled?",
+        "answer": "Through control tests, sources, approvals, limits, model routing, caching, monitoring and reporting on the cost of the result. Critical actions are not given to the model without verification."
+      },
+      {
+        "question": "Why is monthly work required after launch?",
+        "answer": "Data, processes, APIs and models change. Maintenance maintains functionality and increases the effect according to real statistics, rather than leaving the implementation in the state of the first release."
+      }
+    ]
+  },
+  "form": {
+    "eyebrow": "Application for business analysis",
+    "title": "Tell us where the business is losing money, time or applications.",
+    "description": "There is no need to come up with an agent in advance. Describe the process and desired outcome - I will explore the options and suggest how to configure OpenClaw with the greatest expected return.",
+    "fields": {
+      "name": {
+        "label": "your name",
+        "placeholder": "How to contact you"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "Title or project"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "name@company.com"
+      },
+      "contact": {
+        "label": "Telegram/phone",
+        "placeholder": "Convenient way of communication"
+      },
+      "business_type": {
+        "label": "What does the business do?",
+        "placeholder": "For example: service station, agency, online store"
+      },
+      "company_size": {
+        "label": "Team size",
+        "placeholder": "For example: 12 people"
+      },
+      "current_stack": {
+        "label": "What systems are already in use?",
+        "placeholder": "Website, CRM, GitHub, Google Drive, mail, messengers, databases"
+      },
+      "budget": {
+        "label": "Budget guide",
+        "placeholder": "Select range"
+      },
+      "message": {
+        "label": "What is happening now and what result is needed",
+        "placeholder": "Describe the volume, manual steps, delays, waste, desired result and limitations"
+      },
+      "interests": {
+        "label": "Which business outcome is most important?"
+      },
+      "consent": "I agree to the processing of data from the form only to respond to this request",
+      "website": "Leave this field blank"
+    },
+    "budgets": [
+      {
+        "value": "",
+        "label": "Not yet defined"
+      },
+      {
+        "value": "$1k-$3k",
+        "label": "$1,000–3,000"
+      },
+      {
+        "value": "$3k-$7k",
+        "label": "$3,000–7,000"
+      },
+      {
+        "value": "$7k-$15k",
+        "label": "$7,000–15,000"
+      },
+      {
+        "value": "$15k+",
+        "label": "$15,000+"
+      }
+    ],
+    "interests": [
+      {
+        "id": "faster-site-changes",
+        "label": "Change website and product faster"
+      },
+      {
+        "id": "more-qualified-leads",
+        "label": "Receive more qualified applications"
+      },
+      {
+        "id": "faster-sales",
+        "label": "Bring to sale faster"
+      },
+      {
+        "id": "lower-operating-costs",
+        "label": "Reduce operating costs"
+      },
+      {
+        "id": "support-capacity",
+        "label": "Process more requests"
+      },
+      {
+        "id": "less-manual-work",
+        "label": "Reduce manual work"
+      },
+      {
+        "id": "management-visibility",
+        "label": "Receive management analytics"
+      },
+      {
+        "id": "ai-cost-control",
+        "label": "Control AI costs"
+      }
+    ],
+    "submit": "Request a business analysis",
+    "sending": "Sending...",
+    "success_title": "Application accepted",
+    "success_text": "Thank you. I'll look into the process and come back with follow-up questions or an option for the first measurable pilot.",
+    "error_text": "Failed to submit application. Check the fields and try again.",
+    "contact_hint": "You need at least one communication method: email or Telegram / phone."
+  },
+  "footer": {
+    "statement": "OpenClaw, focused on business results.",
+    "location": "Remotely · projects for local and international business",
+    "copyright": "Craft Chronicles / OpenClaw Business Systems"
+  }
+}

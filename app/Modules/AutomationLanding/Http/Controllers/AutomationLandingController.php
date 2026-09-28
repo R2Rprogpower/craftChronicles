@@ -9,32 +9,43 @@ use App\Modules\AutomationLanding\Http\Requests\StoreAutomationInquiryRequest;
 use App\Modules\AutomationLanding\Services\AutomationLandingContent;
 use App\Modules\AutomationLanding\Services\OpenClawDeveloperContent;
 use App\Modules\AutomationLanding\Services\OpenClawShortContent;
+use App\Modules\AutomationLanding\Support\OpenClawLocale;
 use App\Modules\ServiceRequests\DTO\CreateServiceRequestDTO;
 use App\Modules\ServiceRequests\Services\ServiceRequestService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AutomationLandingController extends Controller
 {
-    public function index(AutomationLandingContent $content): View
+    public function index(Request $request, AutomationLandingContent $content): View
     {
-        return view('automation-services', ['content' => $content->get()]);
+        $locale = OpenClawLocale::resolve($request->query('lang'));
+
+        return view('automation-services', ['content' => $content->get($locale), 'locale' => $locale]);
     }
 
-    public function short(OpenClawShortContent $content): View
+    public function short(Request $request, OpenClawShortContent $content): View
     {
-        return view('openclaw-short', ['content' => $content->get()]);
+        $locale = OpenClawLocale::resolve($request->query('lang'));
+
+        return view('openclaw-short', ['content' => $content->get($locale), 'locale' => $locale]);
     }
 
-    public function developer(OpenClawDeveloperContent $content): View
+    public function developer(Request $request, OpenClawDeveloperContent $content): View
     {
-        return view('openclaw-developer', ['content' => $content->get()]);
+        $locale = OpenClawLocale::resolve($request->query('lang'));
+
+        return view('openclaw-developer', ['content' => $content->get($locale), 'locale' => $locale]);
     }
 
-    public function research(): View
+    public function research(Request $request): View
     {
-        return view('openclaw-research');
+        $locale = OpenClawLocale::resolve($request->query('lang'));
+        $view = $locale === 'ru' ? 'openclaw-research' : "openclaw-research-{$locale}";
+
+        return view($view, ['locale' => $locale]);
     }
 
     public function store(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse

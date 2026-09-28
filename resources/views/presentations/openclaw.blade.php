@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="uk">
+<html lang="{{ $locale }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="{{ asset('build/css/openclaw-network-header.css') }}">
 </head>
 <body>
-  <x-openclaw-network-header active="presentation" />
+  <x-openclaw-network-header active="presentation" :locale="$locale" />
   <div class="presentation-shell" data-presentation>
     <header class="presentation-bar">
       <a class="brand" href="{{ route('root') }}" aria-label="Craft Chronicles — головна">
