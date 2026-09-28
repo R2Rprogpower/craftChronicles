@@ -9,8 +9,10 @@
   <meta property="og:description" content="10 слайдів про те, як перетворити рутину на керовані ШІ-процеси.">
   <title>OpenClaw — від запиту до дії</title>
   <link rel="stylesheet" href="{{ asset('css/openclaw-presentation.css') }}">
+  <link rel="stylesheet" href="{{ asset('build/css/openclaw-network-header.css') }}">
 </head>
 <body>
+  <x-openclaw-network-header active="presentation" />
   <div class="presentation-shell" data-presentation>
     <header class="presentation-bar">
       <a class="brand" href="{{ route('root') }}" aria-label="Craft Chronicles — головна">

@@ -17,3 +17,4 @@ Route::get('/openclaw-developer', [AutomationLandingController::class, 'develope
 Route::post('/openclaw-developer/request', [AutomationLandingController::class, 'storeDeveloper'])
     ->middleware('throttle:6,1')
     ->name('openclaw-developer.request');
+Route::get('/openclaw-research', [AutomationLandingController::class, 'research'])->name('openclaw-research');

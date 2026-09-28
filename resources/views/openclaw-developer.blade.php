@@ -11,8 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('build/css/openclaw-developer.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/openclaw-network-header.css') }}">
 </head>
 <body>
+    <x-openclaw-network-header active="developer" />
     <header class="dev-header" data-header>
         <a class="dev-brand" href="#top">{{ $content['brand']['name'] }}</a>
         <nav data-nav>

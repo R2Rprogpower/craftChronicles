@@ -32,6 +32,11 @@ class AutomationLandingController extends Controller
         return view('openclaw-developer', ['content' => $content->get()]);
     }
 
+    public function research(): View
+    {
+        return view('openclaw-research');
+    }
+
     public function store(StoreAutomationInquiryRequest $request, ServiceRequestService $service): JsonResponse
     {
         return $this->persist($request->validated(), $service, 'automation-landing');
