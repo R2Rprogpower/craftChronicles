@@ -41,6 +41,18 @@ class GratitudeVariantController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    public function update(
+        StoreGratitudeVariantRequest $request,
+        GratitudeVariant $gratitudeVariant,
+    ): JsonResponse {
+        $gratitudeVariant->update($request->validated());
+
+        return response()->json([
+            'message' => 'Вариант обновлён',
+            'variant' => $gratitudeVariant->only(['id', 'title', 'language', 'body', 'tags']),
+        ]);
+    }
+
     public function destroy(GratitudeVariant $gratitudeVariant): JsonResponse
     {
         $gratitudeVariant->delete();

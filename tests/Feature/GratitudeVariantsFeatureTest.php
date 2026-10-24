@@ -24,7 +24,8 @@ class GratitudeVariantsFeatureTest extends TestCase
             ->assertSee('Все языки', false)
             ->assertSee('id="variantList"', false)
             ->assertSee('data-can-edit="false"', false)
-            ->assertDontSee('Добавить вариант', false);
+            ->assertDontSee('id="addForm"', false)
+            ->assertDontSee('id="edit"', false);
 
         $this->assertDatabaseCount('gratitude_variants', 8);
         $this->assertDatabaseHas('gratitude_variants', ['title' => 'Вариант 1 — Русский']);
@@ -51,7 +52,31 @@ class GratitudeVariantsFeatureTest extends TestCase
         $this->assertSame(['утро', 'творчество'], $variant->tags);
     }
 
-    public function test_non_editor_cannot_add_or_delete_variants(): void
+    public function test_editor_can_update_a_variant_with_normalized_tags(): void
+    {
+        config(['movie-tier-list.editor_ips' => ['198.51.100.25']]);
+        $variant = GratitudeVariant::query()->firstOrFail();
+
+        $response = $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->putJson("/gratitude-variants/{$variant->id}", [
+                'title' => 'Обновлённый вариант',
+                'language' => 'uk',
+                'body' => 'Дякую за можливість змінювати, вдосконалювати й творити.',
+                'tags' => ['#Зміни', 'Творчість', 'зміни'],
+            ]);
+
+        $response->assertOk()
+            ->assertJsonPath('message', 'Вариант обновлён')
+            ->assertJsonPath('variant.title', 'Обновлённый вариант')
+            ->assertJsonPath('variant.tags', ['зміни', 'творчість']);
+
+        $variant->refresh();
+        $this->assertSame('Обновлённый вариант', $variant->title);
+        $this->assertSame('uk', $variant->language);
+        $this->assertSame(['зміни', 'творчість'], $variant->tags);
+    }
+
+    public function test_non_editor_cannot_add_update_or_delete_variants(): void
     {
         config(['movie-tier-list.editor_ips' => ['203.0.113.8']]);
         $variant = GratitudeVariant::query()->firstOrFail();
@@ -61,6 +86,15 @@ class GratitudeVariantsFeatureTest extends TestCase
                 'title' => 'Запрещённый вариант',
                 'language' => 'ru',
                 'body' => 'Этот вариант не должен сохраниться в базе данных.',
+                'tags' => [],
+            ])
+            ->assertForbidden();
+
+        $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->putJson("/gratitude-variants/{$variant->id}", [
+                'title' => 'Запрещённое изменение',
+                'language' => 'ru',
+                'body' => 'Этот текст не должен заменить существующий вариант.',
                 'tags' => [],
             ])
             ->assertForbidden();

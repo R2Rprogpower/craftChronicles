@@ -13,6 +13,10 @@ Route::post('/gratitude-variants', [GratitudeVariantController::class, 'store'])
     ->middleware([EnsureGratitudeVariantEditorIp::class, 'throttle:30,1'])
     ->name('gratitude-variants.store');
 
+Route::put('/gratitude-variants/{gratitudeVariant}', [GratitudeVariantController::class, 'update'])
+    ->middleware([EnsureGratitudeVariantEditorIp::class, 'throttle:30,1'])
+    ->name('gratitude-variants.update');
+
 Route::delete('/gratitude-variants/{gratitudeVariant}', [GratitudeVariantController::class, 'destroy'])
     ->middleware([EnsureGratitudeVariantEditorIp::class, 'throttle:30,1'])
     ->name('gratitude-variants.destroy');
