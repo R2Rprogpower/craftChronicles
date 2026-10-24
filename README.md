@@ -27,6 +27,8 @@ Built-in Telegram commands now include `/aboutme` for appended Markdown doc outp
 
 `/aboutme` attachments also include `ABOUTME_IMPORT_PATTERN.md` with a full ready-to-use bundle import template.
 
+The public gratitude collection is available at `/gratitude-variants`: it supports random selection, language/tag filtering, copying, and owner-only variant management.
+
 ## Bot onboarding UI
 
 After local setup and migrations, open:
