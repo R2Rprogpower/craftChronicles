@@ -3,6 +3,7 @@
 use App\Modules\Messenger\Models\MessengerBot;
 use App\Modules\Messenger\Models\MessengerUpdate;
 use App\Modules\Messenger\Services\MessengerClientRegistry;
+use App\Modules\NewsFeed\Services\NewsFeedImporter;
 use App\Modules\Religions\Services\MorningRitualBroadcastService;
 use App\Modules\Religions\Services\ReminderDispatchService;
 use App\Modules\Telegram\Services\TelegramWebhookService;
@@ -36,6 +37,26 @@ Artisan::command('religions:dispatch-due-reminders {--reminder-id= : Dispatch on
 })->purpose('Dispatch active cron/interval religion reminders that are due.');
 
 Schedule::command('religions:dispatch-due-reminders')->everyMinute()->withoutOverlapping(55);
+
+Artisan::command('news-feed:import {--source-id= : Import only this news_sources.id}', function (NewsFeedImporter $importer): void {
+    // @phpstan-ignore-next-line Closure commands are rebound to Illuminate\Console\Command at runtime.
+    $sourceId = is_numeric((string) $this->option('source-id')) ? (int) $this->option('source-id') : null;
+    $result = $importer->import($sourceId);
+
+    // @phpstan-ignore-next-line Closure commands are rebound to Illuminate\Console\Command at runtime.
+    $this->info(sprintf(
+        'News feed import complete. sources=%d successful=%d added=%d errors=%d',
+        $result['sources'],
+        $result['successful'],
+        $result['added'],
+        $result['errors'],
+    ));
+})->purpose('Import links from active RSS/Atom news sources.');
+
+Schedule::command('news-feed:import')
+    ->twiceDaily(9, 21)
+    ->timezone('Europe/Kyiv')
+    ->withoutOverlapping(180);
 
 Artisan::command(
     'telegram:poll {--bot-id= : Poll only this messenger_bots.id} {--sleep=1 : Seconds between pulls} {--limit=100 : Telegram getUpdates limit} {--max-loops=0 : Stop after N loops (0 = forever)}',

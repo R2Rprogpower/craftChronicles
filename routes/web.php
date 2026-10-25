@@ -28,6 +28,7 @@ require base_path('app/Modules/ServiceRequests/web.php');
 require base_path('app/Modules/AutomationLanding/web.php');
 require base_path('app/Modules/MovieTierList/web.php');
 require base_path('app/Modules/GratitudeVariants/web.php');
+require base_path('app/Modules/NewsFeed/web.php');
 
 Route::get('/login', function () {
     return view('auth-login');

@@ -1,0 +1,120 @@
+{
+  "topics": [
+    {"slug":"ai","name":"Искусственный интеллект","position":10},
+    {"slug":"development","name":"Разработка ПО","position":20},
+    {"slug":"laravel-php","name":"Laravel и PHP","position":30},
+    {"slug":"data-science","name":"Data Science и ML","position":40},
+    {"slug":"music-industry","name":"Музыкальная индустрия","position":50},
+    {"slug":"trends","name":"Технологические и общественные тренды","position":60},
+    {"slug":"ukraine-politics","name":"Политика Украины","position":70},
+    {"slug":"europe-politics","name":"Политика Европы","position":80},
+    {"slug":"world-politics","name":"Политика США и мира","position":90},
+    {"slug":"history","name":"История","position":100},
+    {"slug":"archaeology-anthropology","name":"Археология, палеонтология и этнография","position":110},
+    {"slug":"psychology","name":"Психология и развитие","position":120},
+    {"slug":"calisthenics","name":"Калистеника","position":130},
+    {"slug":"literature-poetry","name":"Поэзия и классическая литература","position":140},
+    {"slug":"philosophy","name":"Философия и античность","position":150},
+    {"slug":"world-of-warcraft","name":"World of Warcraft","position":160},
+    {"slug":"dota2-esports","name":"Dota 2 и киберспорт","position":170}
+  ],
+  "sources": [
+    {"topic":"ai","name":"OpenAI News","site_url":"https://openai.com/news/","feed_url":"https://openai.com/news/rss.xml","language":"en"},
+    {"topic":"ai","name":"Google DeepMind","site_url":"https://deepmind.google/discover/blog/","feed_url":"https://deepmind.google/blog/rss.xml","language":"en"},
+    {"topic":"ai","name":"DOU: AI","site_url":"https://dou.ua/lenta/tags/AI/","feed_url":null,"language":"uk"},
+    {"topic":"ai","name":"Habr: ИИ","site_url":"https://habr.com/ru/hubs/artificial_intelligence/articles/","feed_url":"https://habr.com/ru/rss/hub/artificial_intelligence/all/?fl=ru","language":"ru"},
+    {"topic":"ai","name":"heise: KI","site_url":"https://www.heise.de/thema/KI","feed_url":null,"language":"de"},
+
+    {"topic":"development","name":"GitHub Engineering","site_url":"https://github.blog/engineering/","feed_url":"https://github.blog/engineering/feed/","language":"en"},
+    {"topic":"development","name":"Cloudflare Blog","site_url":"https://blog.cloudflare.com/","feed_url":"https://blog.cloudflare.com/rss/","language":"en"},
+    {"topic":"development","name":"DOU","site_url":"https://dou.ua/lenta/","feed_url":"https://dou.ua/feed/","language":"uk"},
+    {"topic":"development","name":"Habr: Разработка","site_url":"https://habr.com/ru/flows/develop/articles/","feed_url":"https://habr.com/ru/rss/flows/develop/all/?fl=ru","language":"ru"},
+    {"topic":"development","name":"heise Developer","site_url":"https://www.heise.de/developer/","feed_url":null,"language":"de"},
+
+    {"topic":"laravel-php","name":"Laravel Blog","site_url":"https://laravel.com/blog","feed_url":"https://laravel.com/feed","language":"en"},
+    {"topic":"laravel-php","name":"Laravel News","site_url":"https://laravel-news.com/","feed_url":"https://feed.laravel-news.com/","language":"en"},
+    {"topic":"laravel-php","name":"PHP.Watch","site_url":"https://php.watch/","feed_url":"https://php.watch/feed","language":"en"},
+    {"topic":"laravel-php","name":"Habr: PHP","site_url":"https://habr.com/ru/hubs/php/articles/","feed_url":"https://habr.com/ru/rss/hub/php/all/?fl=ru","language":"ru"},
+    {"topic":"laravel-php","name":"PHP Magazin","site_url":"https://entwickler.de/php","feed_url":null,"language":"de"},
+
+    {"topic":"data-science","name":"PyTorch Blog","site_url":"https://pytorch.org/blog/","feed_url":"https://pytorch.org/feed.xml","language":"en"},
+    {"topic":"data-science","name":"KDnuggets","site_url":"https://www.kdnuggets.com/","feed_url":"https://www.kdnuggets.com/feed","language":"en"},
+    {"topic":"data-science","name":"arXiv: Machine Learning","site_url":"https://arxiv.org/list/cs.LG/recent","feed_url":"https://rss.arxiv.org/rss/cs.LG","language":"en"},
+    {"topic":"data-science","name":"Habr: Data Mining","site_url":"https://habr.com/ru/hubs/data_mining/articles/","feed_url":"https://habr.com/ru/rss/hub/data_mining/all/?fl=ru","language":"ru"},
+    {"topic":"data-science","name":"KUNSHT","site_url":"https://kunsht.com.ua/","feed_url":null,"language":"uk"},
+
+    {"topic":"music-industry","name":"Music Business Worldwide","site_url":"https://www.musicbusinessworldwide.com/","feed_url":"https://www.musicbusinessworldwide.com/feed/","language":"en"},
+    {"topic":"music-industry","name":"Complete Music Update","site_url":"https://completemusicupdate.com/","feed_url":"https://completemusicupdate.com/rss/","language":"en"},
+    {"topic":"music-industry","name":"LiRoom","site_url":"https://liroom.com.ua/","feed_url":"https://liroom.com.ua/feed/","language":"uk"},
+    {"topic":"music-industry","name":"СЛУХ","site_url":"https://slukh.media/","feed_url":"https://slukh.media/feed/","language":"uk"},
+    {"topic":"music-industry","name":"MusikWoche","site_url":"https://www.musikwoche.de/","feed_url":null,"language":"de"},
+
+    {"topic":"trends","name":"MIT Technology Review","site_url":"https://www.technologyreview.com/","feed_url":"https://www.technologyreview.com/feed/","language":"en"},
+    {"topic":"trends","name":"Ars Technica","site_url":"https://arstechnica.com/","feed_url":"https://feeds.arstechnica.com/arstechnica/index","language":"en"},
+    {"topic":"trends","name":"netzpolitik.org","site_url":"https://netzpolitik.org/","feed_url":"https://netzpolitik.org/feed/","language":"de"},
+    {"topic":"trends","name":"Vector","site_url":"https://vctr.media/","feed_url":"https://vctr.media/feed/","language":"uk"},
+
+    {"topic":"ukraine-politics","name":"Суспільне Новини","site_url":"https://suspilne.media/","feed_url":"https://suspilne.media/rss/","language":"uk"},
+    {"topic":"ukraine-politics","name":"Українська правда","site_url":"https://www.pravda.com.ua/","feed_url":"https://www.pravda.com.ua/rss/","language":"uk"},
+    {"topic":"ukraine-politics","name":"Європейська правда","site_url":"https://www.eurointegration.com.ua/","feed_url":"https://www.eurointegration.com.ua/rss/","language":"uk"},
+    {"topic":"ukraine-politics","name":"Олег Пономарь: Пояснения","site_url":"https://www.ponomaroleg.com/category/pojasnenija/","feed_url":"https://www.ponomaroleg.com/category/pojasnenija/feed/","language":"ru"},
+    {"topic":"ukraine-politics","name":"The Kyiv Independent","site_url":"https://kyivindependent.com/","feed_url":"https://kyivindependent.com/rss/","language":"en"},
+
+    {"topic":"europe-politics","name":"Politico Europe","site_url":"https://www.politico.eu/","feed_url":"https://www.politico.eu/feed/","language":"en"},
+    {"topic":"europe-politics","name":"Euractiv","site_url":"https://www.euractiv.com/","feed_url":"https://www.euractiv.com/feed/","language":"en"},
+    {"topic":"europe-politics","name":"Tagesschau","site_url":"https://www.tagesschau.de/","feed_url":"https://www.tagesschau.de/xml/rss2/","language":"de"},
+    {"topic":"europe-politics","name":"DW на русском","site_url":"https://www.dw.com/ru/","feed_url":null,"language":"ru"},
+
+    {"topic":"world-politics","name":"Associated Press","site_url":"https://apnews.com/","feed_url":null,"language":"en"},
+    {"topic":"world-politics","name":"BBC World","site_url":"https://www.bbc.com/news/world","feed_url":"https://feeds.bbci.co.uk/news/world/rss.xml","language":"en"},
+    {"topic":"world-politics","name":"BBC Русская служба","site_url":"https://www.bbc.com/russian","feed_url":"https://feeds.bbci.co.uk/russian/rss.xml","language":"ru"},
+    {"topic":"world-politics","name":"Deutschlandfunk: Politik","site_url":"https://www.deutschlandfunk.de/politik-100.html","feed_url":null,"language":"de"},
+    {"topic":"world-politics","name":"Суспільне: Світ","site_url":"https://suspilne.media/world/","feed_url":"https://suspilne.media/rss/","language":"uk"},
+
+    {"topic":"history","name":"Локальна історія","site_url":"https://localhistory.org.ua/","feed_url":"https://localhistory.org.ua/rss/","language":"uk"},
+    {"topic":"history","name":"Історична правда","site_url":"https://www.istpravda.com.ua/","feed_url":"https://www.istpravda.com.ua/rss/","language":"uk"},
+    {"topic":"history","name":"Arzamas","site_url":"https://arzamas.academy/","feed_url":null,"language":"ru"},
+    {"topic":"history","name":"History Today","site_url":"https://www.historytoday.com/","feed_url":"https://www.historytoday.com/feed","language":"en"},
+    {"topic":"history","name":"L.I.S.A.","site_url":"https://lisa.gerda-henkel-stiftung.de/","feed_url":null,"language":"de"},
+
+    {"topic":"archaeology-anthropology","name":"Archaeology Magazine","site_url":"https://www.archaeology.org/","feed_url":"https://www.archaeology.org/feed","language":"en"},
+    {"topic":"archaeology-anthropology","name":"SAPIENS","site_url":"https://www.sapiens.org/","feed_url":"https://www.sapiens.org/feed/","language":"en"},
+    {"topic":"archaeology-anthropology","name":"Archäologie Online","site_url":"https://www.archaeologie-online.de/","feed_url":"https://www.archaeologie-online.de/feed/","language":"de"},
+    {"topic":"archaeology-anthropology","name":"N+1: Археология","site_url":"https://nplus1.ru/rubric/archaeology","feed_url":"https://nplus1.ru/rss","language":"ru"},
+    {"topic":"archaeology-anthropology","name":"KUNSHT","site_url":"https://kunsht.com.ua/","feed_url":null,"language":"uk"},
+
+    {"topic":"psychology","name":"BPS Research Digest","site_url":"https://www.bps.org.uk/research-digest","feed_url":null,"language":"en"},
+    {"topic":"psychology","name":"Nature Human Behaviour","site_url":"https://www.nature.com/nathumbehav/","feed_url":"https://www.nature.com/nathumbehav.rss","language":"en"},
+    {"topic":"psychology","name":"PubMed: Developmental Psychology","site_url":"https://pubmed.ncbi.nlm.nih.gov/?term=developmental+psychology&sort=date","feed_url":"https://pubmed.ncbi.nlm.nih.gov/rss/search/1H5nIuF9QJw9b7B2g8bH0pKfP0go4QxRLFP0RBQ2Lx7qHqZn0t/?limit=50&utm_campaign=pubmed-2&fc=20261025110000","language":"en"},
+    {"topic":"psychology","name":"Spektrum: Psychologie","site_url":"https://www.spektrum.de/psychologie/","feed_url":null,"language":"de"},
+    {"topic":"psychology","name":"Психологическая наука и образование","site_url":"https://psyjournals.ru/journals/pse","feed_url":null,"language":"ru"},
+
+    {"topic":"calisthenics","name":"FitnessFAQs","site_url":"https://fitnessfaqs.com/blog/","feed_url":null,"language":"en"},
+    {"topic":"calisthenics","name":"Calisthenic Movement","site_url":"https://www.calisthenic-movement.com/blog","feed_url":null,"language":"de"},
+    {"topic":"calisthenics","name":"Stronger by Science","site_url":"https://www.strongerbyscience.com/articles/","feed_url":"https://www.strongerbyscience.com/feed/","language":"en"},
+    {"topic":"calisthenics","name":"Workout","site_url":"https://workout.su/","feed_url":null,"language":"ru"},
+
+    {"topic":"literature-poetry","name":"Читомо","site_url":"https://chytomo.com/","feed_url":"https://chytomo.com/feed/","language":"uk"},
+    {"topic":"literature-poetry","name":"Горький","site_url":"https://gorky.media/","feed_url":"https://gorky.media/feed/","language":"ru"},
+    {"topic":"literature-poetry","name":"Perlentaucher","site_url":"https://www.perlentaucher.de/","feed_url":"https://www.perlentaucher.de/rss.xml","language":"de"},
+    {"topic":"literature-poetry","name":"Poetry Foundation","site_url":"https://www.poetryfoundation.org/","feed_url":"https://www.poetryfoundation.org/feeds/articles","language":"en"},
+    {"topic":"literature-poetry","name":"The Public Domain Review","site_url":"https://publicdomainreview.org/","feed_url":"https://publicdomainreview.org/rss.xml","language":"en"},
+
+    {"topic":"philosophy","name":"Aeon: Philosophy","site_url":"https://aeon.co/philosophy","feed_url":"https://aeon.co/feed.rss","language":"en"},
+    {"topic":"philosophy","name":"Daily Nous","site_url":"https://dailynous.com/","feed_url":"https://dailynous.com/feed/","language":"en"},
+    {"topic":"philosophy","name":"Antigone","site_url":"https://antigonejournal.com/","feed_url":"https://antigonejournal.com/feed/","language":"en"},
+    {"topic":"philosophy","name":"Philosophie Magazin","site_url":"https://www.philomag.de/","feed_url":null,"language":"de"},
+    {"topic":"philosophy","name":"ПостНаука: Философия","site_url":"https://postnauka.org/themes/philosophy","feed_url":null,"language":"ru"},
+
+    {"topic":"world-of-warcraft","name":"World of Warcraft News","site_url":"https://worldofwarcraft.blizzard.com/en-us/news","feed_url":null,"language":"en"},
+    {"topic":"world-of-warcraft","name":"Wowhead","site_url":"https://www.wowhead.com/news","feed_url":"https://www.wowhead.com/news/rss/all","language":"en"},
+    {"topic":"world-of-warcraft","name":"Buffed: WoW","site_url":"https://www.buffed.de/World-of-Warcraft-Spiel-42971/","feed_url":null,"language":"de"},
+    {"topic":"world-of-warcraft","name":"Noob Club: WoW","site_url":"https://www.noob-club.ru/index.php?board=1.0","feed_url":null,"language":"ru"},
+
+    {"topic":"dota2-esports","name":"Dota 2 News","site_url":"https://www.dota2.com/news","feed_url":null,"language":"en"},
+    {"topic":"dota2-esports","name":"GosuGamers: Dota 2","site_url":"https://www.gosugamers.net/dota2","feed_url":null,"language":"en"},
+    {"topic":"dota2-esports","name":"GameInside.ua","site_url":"https://gameinside.ua/","feed_url":"https://gameinside.ua/feed/","language":"uk"},
+    {"topic":"dota2-esports","name":"Cybersport.ru: Dota 2","site_url":"https://www.cybersport.ru/tags/dota-2","feed_url":null,"language":"ru"},
+    {"topic":"dota2-esports","name":"MeinMMO: Dota 2","site_url":"https://mein-mmo.de/tag/dota-2/","feed_url":null,"language":"de"}
+  ]
+}
