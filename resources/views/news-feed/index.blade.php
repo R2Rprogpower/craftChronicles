@@ -58,8 +58,8 @@
         <aside class="source-panel">
             <h3>Источники · {{ $sources->count() }}</h3>
             @if($canEdit)
-                <form method="post" action="{{ route('news-feed.refresh') }}" onsubmit="this.querySelector('button').disabled=true;this.querySelector('button').textContent='Обновляю…'">@csrf<button class="button" type="submit">Обновить все источники</button></form>
-                <p class="hint">Автоматически: в 09:00 и 21:00 по Киеву.</p>
+                <form method="post" action="{{ route('news-feed.refresh') }}" onsubmit="this.querySelector('button').disabled=true;this.querySelector('button').textContent='Ставлю в очередь…'">@csrf<button class="button" type="submit">Обновить все источники</button></form>
+                <p class="hint">Обновление выполняется фоновыми задачами по одному источнику. Автоматически: в 09:00 и 21:00 по Киеву.</p>
             @endif
             @foreach($sources as $source)
                 <div class="source">

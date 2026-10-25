@@ -16,6 +16,25 @@ services:
     env_file:
       - .env
 
+  queue:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      APP_ENV: production
+      PHP_MEMORY_LIMIT: 512M
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+    env_file:
+      - .env
+    command: php artisan queue:work --queue=news-feed,default --sleep=2 --tries=2 --timeout=130 --max-time=3600
+    stop_grace_period: 2m
+
   nginx:
     image: nginx:1.27-alpine
     volumes:

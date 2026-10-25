@@ -10,7 +10,7 @@ use App\Modules\NewsFeed\Http\Requests\StoreNewsSourceRequest;
 use App\Modules\NewsFeed\Models\NewsArticle;
 use App\Modules\NewsFeed\Models\NewsSource;
 use App\Modules\NewsFeed\Models\NewsTopic;
-use App\Modules\NewsFeed\Services\NewsFeedImporter;
+use App\Modules\NewsFeed\Services\NewsFeedImportDispatcher;
 use App\Modules\NewsFeed\Services\PublicFeedUrl;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -92,22 +92,22 @@ class NewsFeedController extends Controller
         return back()->with('status', 'Источник добавлен. Нажми «Обновить», чтобы импортировать публикации.');
     }
 
-    public function refresh(Request $request, NewsFeedImporter $importer): RedirectResponse
+    public function refresh(Request $request, NewsFeedImportDispatcher $dispatcher): RedirectResponse
     {
         $validated = $request->validate([
             'source_id' => ['nullable', 'integer', 'exists:news_sources,id'],
         ]);
-        $result = $importer->import(isset($validated['source_id']) ? (int) $validated['source_id'] : null);
+        $result = $dispatcher->dispatch(isset($validated['source_id']) ? (int) $validated['source_id'] : null);
 
         return back()->with(
             'status',
-            sprintf(
-                'Обновление завершено: источников %d, успешно %d, новых ссылок %d, ошибок %d.',
-                $result['sources'],
-                $result['successful'],
-                $result['added'],
-                $result['errors'],
-            ),
+            $result['sources'] === 0
+                ? 'Нет активных источников для обновления.'
+                : sprintf(
+                    'Фоновое обновление запущено: %d источник(ов), batch %s. Страницу можно закрыть.',
+                    $result['sources'],
+                    $result['batch']->id,
+                ),
         );
     }
 }

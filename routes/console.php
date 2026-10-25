@@ -3,7 +3,7 @@
 use App\Modules\Messenger\Models\MessengerBot;
 use App\Modules\Messenger\Models\MessengerUpdate;
 use App\Modules\Messenger\Services\MessengerClientRegistry;
-use App\Modules\NewsFeed\Services\NewsFeedImporter;
+use App\Modules\NewsFeed\Services\NewsFeedImportDispatcher;
 use App\Modules\Religions\Services\MorningRitualBroadcastService;
 use App\Modules\Religions\Services\ReminderDispatchService;
 use App\Modules\Telegram\Services\TelegramWebhookService;
@@ -38,20 +38,18 @@ Artisan::command('religions:dispatch-due-reminders {--reminder-id= : Dispatch on
 
 Schedule::command('religions:dispatch-due-reminders')->everyMinute()->withoutOverlapping(55);
 
-Artisan::command('news-feed:import {--source-id= : Import only this news_sources.id}', function (NewsFeedImporter $importer): void {
+Artisan::command('news-feed:import {--source-id= : Queue only this news_sources.id}', function (NewsFeedImportDispatcher $dispatcher): void {
     // @phpstan-ignore-next-line Closure commands are rebound to Illuminate\Console\Command at runtime.
     $sourceId = is_numeric((string) $this->option('source-id')) ? (int) $this->option('source-id') : null;
-    $result = $importer->import($sourceId);
+    $result = $dispatcher->dispatch($sourceId);
 
     // @phpstan-ignore-next-line Closure commands are rebound to Illuminate\Console\Command at runtime.
     $this->info(sprintf(
-        'News feed import complete. sources=%d successful=%d added=%d errors=%d',
+        'News feed import queued. sources=%d batch=%s',
         $result['sources'],
-        $result['successful'],
-        $result['added'],
-        $result['errors'],
+        $result['batch'] instanceof \Illuminate\Bus\Batch ? $result['batch']->id : 'none',
     ));
-})->purpose('Import links from active RSS/Atom news sources.');
+})->purpose('Queue background imports for active RSS/Atom news sources.');
 
 Schedule::command('news-feed:import')
     ->twiceDaily(9, 21)

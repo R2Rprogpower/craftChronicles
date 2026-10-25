@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use App\Modules\NewsFeed\Jobs\ImportNewsSource;
 use App\Modules\NewsFeed\Models\NewsArticle;
 use App\Modules\NewsFeed\Models\NewsSource;
 use App\Modules\NewsFeed\Models\NewsTopic;
 use App\Modules\NewsFeed\Services\NewsFeedImporter;
+use Illuminate\Bus\PendingBatch;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -74,6 +77,43 @@ class NewsFeedFeatureTest extends TestCase
             ->assertForbidden();
 
         $this->assertDatabaseMissing('news_sources', ['name' => 'Запрещённый источник']);
+    }
+
+    public function test_editor_refresh_queues_one_job_per_active_source_and_returns_immediately(): void
+    {
+        Bus::fake();
+        config(['movie-tier-list.editor_ips' => ['198.51.100.25']]);
+
+        $response = $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->post('/news-feed/refresh');
+
+        $response->assertRedirect()->assertSessionHas('status');
+
+        Bus::assertBatched(function (PendingBatch $batch): bool {
+            return $batch->name === 'News feed: all sources'
+                && $batch->jobs->count() === NewsSource::query()->where('is_active', true)->count()
+                && $batch->jobs->every(fn ($job) => $job instanceof ImportNewsSource);
+        });
+    }
+
+    public function test_editor_can_queue_a_single_source_refresh(): void
+    {
+        Bus::fake();
+        config(['movie-tier-list.editor_ips' => ['198.51.100.25']]);
+        $source = NewsSource::query()->firstOrFail();
+
+        $this->withServerVariables(['REMOTE_ADDR' => '198.51.100.25'])
+            ->post('/news-feed/refresh', ['source_id' => $source->id])
+            ->assertRedirect()
+            ->assertSessionHas('status');
+
+        Bus::assertBatched(function (PendingBatch $batch) use ($source): bool {
+            $job = $batch->jobs->first();
+
+            return $batch->jobs->count() === 1
+                && $job instanceof ImportNewsSource
+                && $job->sourceId === $source->id;
+        });
     }
 
     public function test_private_source_url_is_rejected(): void
