@@ -16,6 +16,8 @@ This repository documentation is split into focused files in `docs/` for easier 
 10. [Production TODO](PRODUCTION_TODO.md)
 11. [Personal brand platform](docs/09-personal-brand-platform.md)
 12. [Personal brand evaluation and tuning guide](docs/10-brand-evaluation-and-tuning.md)
+13. [Family Chronicles](docs/11-family-chronicles.md)
+14. [Family Chronicles deployment and handover](docs/12-family-chronicles-deploy.md)
 
 ## Operational quick links
 
@@ -28,6 +30,8 @@ Built-in Telegram commands now include `/aboutme` for appended Markdown doc outp
 `/aboutme` attachments also include `ABOUTME_IMPORT_PATTERN.md` with a full ready-to-use bundle import template.
 
 The public gratitude collection is available at `/gratitude-variants`: it supports random selection, language/tag filtering, copying, and owner-only variant management.
+
+The authenticated Family Chronicles MVP is available at `/family-chronicles`: it provides separate family profiles, 183 biographical questions, daily/story/random modes, private answers, autosaved drafts, progress tracking, and private multimedia attachments.
 
 ## Bot onboarding UI
 
