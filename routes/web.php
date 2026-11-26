@@ -31,11 +31,14 @@ require base_path('app/Modules/GratitudeVariants/web.php');
 require base_path('app/Modules/NewsFeed/web.php');
 require base_path('app/Modules/FamilyChronicles/web.php');
 
-Route::get('/login', function () {
-    return view('auth-login');
-})->name('login');
-
-Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
+Route::middleware('guest')->group(function (): void {
+    Route::view('/login', 'auth-login')->name('login');
+    Route::post('/login', [WebAuthController::class, 'login'])->name('login.submit');
+    Route::view('/register', 'auth-register')->name('register');
+    Route::post('/register', [WebAuthController::class, 'register'])
+        ->middleware('throttle:10,1')
+        ->name('register.submit');
+});
 
 Route::view('/surgeon', 'surgeon')->name('surgeon');
 

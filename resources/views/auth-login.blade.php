@@ -56,7 +56,7 @@
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="Enter email" required>
+                                                value="{{ old('email') }}" placeholder="Enter email" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -117,7 +117,7 @@
                         <div class="mt-5 text-center">
 
                             <div>
-                                <p>Don't have an account ? <a href="auth-register" class="fw-medium text-primary">
+                                <p>Don't have an account ? <a href="{{ route('register', [], false) }}" class="fw-medium text-primary">
                                         Signup now </a> </p>
                                 <p>© <script>
                                         document.write(new Date().getFullYear())
