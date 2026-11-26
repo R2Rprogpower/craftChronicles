@@ -167,6 +167,26 @@ class FamilyChroniclesFeatureTest extends TestCase
         $this->assertSame($familyQuestions->count(), $familyQuestions->pluck('text')->unique()->count());
     }
 
+    public function test_expanded_life_themes_have_large_unique_question_sets(): void
+    {
+        $questions = collect((new QuestionBank)->all());
+
+        foreach ([
+            'daily-life' => 100,
+            'relationships' => 80,
+            'turning-points' => 90,
+        ] as $category => $minimum) {
+            $categoryQuestions = $questions->where('category', $category);
+
+            $this->assertGreaterThanOrEqual($minimum, $categoryQuestions->count(), $category);
+            $this->assertSame($categoryQuestions->count(), $categoryQuestions->pluck('key')->unique()->count(), $category);
+            $this->assertSame($categoryQuestions->count(), $categoryQuestions->pluck('text')->unique()->count(), $category);
+        }
+
+        $this->assertSame($questions->count(), $questions->pluck('key')->unique()->count());
+        $this->assertSame($questions->count(), $questions->pluck('text')->unique()->count());
+    }
+
     public function test_profile_relatives_personalize_and_filter_questions_only_when_complete(): void
     {
         $user = User::factory()->create();

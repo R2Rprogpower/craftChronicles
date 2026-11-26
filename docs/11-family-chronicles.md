@@ -14,10 +14,16 @@ Unauthenticated users are redirected to the existing `/login` page.
 - Multiple people within each user's private family workspace.
 - Extended profile per person: exact birth date, gender, birth place,
   residence, occupation, freeform notes, and named relatives.
-- 284 stable, curated questions across 15 thematic categories.
+- 584 stable, curated questions across 15 thematic categories.
 - 92 questions in «Родственники и семейные традиции», mixing broad prompts
   with concrete prompts about celebrations, food, hospitality, everyday
   rituals, heirlooms, migration, family roles, and intergenerational change.
+- 144 questions about home, household routines, neighbourhood life, workdays,
+  leisure, scarcity, comfort, and the ways ordinary life changed over time.
+- 108 questions about friendship, love, partnership, conflict, care, distance,
+  reconciliation, boundaries, and relationships across different life stages.
+- 100 questions about decisive choices, unexpected events, losses, recoveries,
+  relocations, changes of identity, and the consequences of turning points.
 - Timeless questions and 11 chronological life stages.
 - Relationship-aware placeholders such as `{{mother}}` and `{{sibling}}`,
   rendered as phrases such as «мама по имени Тамара» without name inflection.
@@ -47,7 +53,7 @@ Unauthenticated users are redirected to the existing `/login` page.
 | `biography_attachments` | Private files linked to an answer. |
 | `biography_daily_questions` | Stable question-of-the-day selection. |
 
-The question bank lives in `QuestionBank.php` rather than database rows. Stable keys allow the wording and collection to evolve without copying 284 rows for every user.
+The question bank lives in `QuestionBank.php` and dedicated question-set classes rather than database rows. Stable keys allow the wording and collection to evolve without copying 584 rows for every user.
 
 The family-traditions prompts were designed using oral-history interviewing
 principles from the [Smithsonian Folklife and Oral History Interviewing

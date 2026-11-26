@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\FamilyChronicles\Services;
 
+use App\Modules\FamilyChronicles\Services\QuestionSets\DailyLifeQuestions;
+use App\Modules\FamilyChronicles\Services\QuestionSets\RelationshipQuestions;
+use App\Modules\FamilyChronicles\Services\QuestionSets\TurningPointQuestions;
+
 final class QuestionBank
 {
     /** @var array<string, string> */
@@ -301,7 +305,14 @@ final class QuestionBank
             'timeless',
             $question[2],
             $question[3] ?? [],
-        ), [...self::BASE_QUESTIONS, ...self::FAMILY_TRADITION_QUESTIONS, ...self::RELATIVE_QUESTIONS]);
+        ), [
+            ...self::BASE_QUESTIONS,
+            ...self::FAMILY_TRADITION_QUESTIONS,
+            ...self::RELATIVE_QUESTIONS,
+            ...DailyLifeQuestions::QUESTIONS,
+            ...RelationshipQuestions::QUESTIONS,
+            ...TurningPointQuestions::QUESTIONS,
+        ]);
 
         foreach (self::LONGITUDINAL_TRACKS as [$track, $category, $template]) {
             foreach (self::STAGES as $stage => $definition) {
