@@ -53,6 +53,21 @@ input:focus, select:focus, textarea:focus { outline: 3px solid rgba(49, 92, 73, 
 .fc-progress-track { height: 13px; overflow: hidden; border-radius: 999px; background: #e8e1d5; }
 .fc-progress-track span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--fc-green), #6a947f); transition: width .25s ease; }
 
+.fc-profile { margin-bottom: 16px; padding: 20px; }
+.fc-profile > summary { color: var(--fc-green); font: 700 18px/1.35 system-ui, sans-serif; }
+.fc-profile-intro { margin: 12px 0 18px; color: var(--fc-muted); font: 15px/1.5 system-ui, sans-serif; }
+.fc-profile-form { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.fc-profile-notes { grid-column: 1 / -1; }
+.fc-profile textarea { min-height: 90px; font: 16px/1.45 system-ui, sans-serif; }
+.fc-check { display: flex; grid-template-columns: auto 1fr; flex-direction: row; gap: 10px; align-items: flex-start; font-weight: 500; }
+.fc-check input { width: 22px; flex: 0 0 22px; margin-top: 2px; }
+.fc-relatives { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--fc-border); }
+.fc-relatives h3 { margin: 0 0 12px; }
+.fc-relative-list { display: grid; gap: 8px; margin-bottom: 14px; }
+.fc-relative { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 10px; background: var(--fc-green-soft); font: 15px/1.4 system-ui, sans-serif; }
+.fc-relative button { border: 0; background: transparent; color: var(--fc-danger); }
+.fc-relative-form { display: grid; grid-template-columns: 1fr 1fr 160px auto; gap: 12px; align-items: end; }
+
 .fc-modes { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 12px; padding: 2px; }
 .fc-mode { white-space: nowrap; border: 1px solid var(--fc-border); border-radius: 12px; background: rgba(255,255,255,.72); padding: 11px 16px; color: var(--fc-ink); }
 .fc-mode.is-active { background: var(--fc-green); border-color: var(--fc-green); color: white; font-weight: 700; }
@@ -93,7 +108,7 @@ textarea { min-height: 250px; resize: vertical; font: 19px/1.55 Georgia, serif; 
     .fc-shell { width: min(100% - 20px, 1120px); padding-top: 20px; }
     .fc-header { display: block; }
     .fc-header-meta { margin-top: 16px; text-align: left; }
-    .fc-person-panel, .fc-progress, .fc-filters { grid-template-columns: 1fr; }
+    .fc-person-panel, .fc-progress, .fc-filters, .fc-profile-form, .fc-relative-form { grid-template-columns: 1fr; }
     .fc-add-person[open] { min-width: 0; }
     .fc-progress-copy { min-width: 0; }
     .fc-attachments { grid-template-columns: 1fr; }

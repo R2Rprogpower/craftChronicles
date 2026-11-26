@@ -12,12 +12,17 @@ Unauthenticated users are redirected to the existing `/login` page.
 
 - Multiple independent application users through the existing authentication system.
 - Multiple people within each user's private family workspace.
-- Optional birth year and relationship for each person.
-- 262 stable, curated questions across 15 thematic categories.
-- 84 questions in «Родственники и семейные традиции», mixing broad prompts
+- Extended profile per person: exact birth date, gender, birth place,
+  residence, occupation, freeform notes, and named relatives.
+- 284 stable, curated questions across 15 thematic categories.
+- 92 questions in «Родственники и семейные традиции», mixing broad prompts
   with concrete prompts about celebrations, food, hospitality, everyday
   rituals, heirlooms, migration, family roles, and intergenerational change.
 - Timeless questions and 11 chronological life stages.
+- Relationship-aware placeholders such as `{{mother}}` and `{{sibling}}`,
+  rendered as phrases such as «мама по имени Тамара» without name inflection.
+- Relative-specific filtering activates only after the user explicitly marks
+  the relative list complete. Sparse profiles keep every question available.
 - Automatic exclusion of stages the person has not yet lived through when a birth year is known.
 - Stable question of the day per user, person, and calendar date.
 - Story mode with chronological ordering.
@@ -37,17 +42,23 @@ Unauthenticated users are redirected to the existing `/login` page.
 | Table | Purpose |
 | --- | --- |
 | `family_people` | People whose biographies are being collected; owned by one application user. |
+| `family_relatives` | Named relatives used for question personalization and explicit filtering. |
 | `biography_answers` | One current answer/state for a person and stable question key. |
 | `biography_attachments` | Private files linked to an answer. |
 | `biography_daily_questions` | Stable question-of-the-day selection. |
 
-The question bank lives in `QuestionBank.php` rather than database rows. Stable keys allow the wording and collection to evolve without copying 262 rows for every user.
+The question bank lives in `QuestionBank.php` rather than database rows. Stable keys allow the wording and collection to evolve without copying 284 rows for every user.
 
 The family-traditions prompts were designed using oral-history interviewing
-principles from the Smithsonian Folklife and Oral History Interviewing Guide,
-Library of Congress family-customs interview materials, StoryCorps, and the
-NMAAHC family oral-history guide. Application wording is original and adapted
-for Russian-speaking families rather than copied from those sources.
+principles from the [Smithsonian Folklife and Oral History Interviewing
+Guide](https://folklife.si.edu/the-smithsonian-folklife-and-oral-history-interviewing-guide/smithsonian),
+the [Library of Congress family-customs interview
+materials](https://www.loc.gov/static/classroom-materials/family-customs-past-and-present-exploring-cultural-rituals/documents/interview.pdf),
+[StoryCorps](https://cdndotorg.storycorps.org/uploads/TGTL2019-Great-Questions.pdf),
+and the [NMAAHC family oral-history
+guide](https://nmaahc.si.edu/explore/stories/capturing-your-familys-oral-history).
+Application wording is original and adapted for Russian-speaking families
+rather than copied from those sources.
 
 ## Privacy model
 

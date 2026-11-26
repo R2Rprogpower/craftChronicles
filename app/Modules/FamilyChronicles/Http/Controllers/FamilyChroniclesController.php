@@ -9,6 +9,7 @@ use App\Modules\FamilyChronicles\Models\BiographyAnswer;
 use App\Modules\FamilyChronicles\Models\BiographyAttachment;
 use App\Modules\FamilyChronicles\Models\BiographyDailyQuestion;
 use App\Modules\FamilyChronicles\Models\FamilyPerson;
+use App\Modules\FamilyChronicles\Models\FamilyRelative;
 use App\Modules\FamilyChronicles\Services\QuestionBank;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,6 +24,20 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FamilyChroniclesController extends Controller
 {
+    /** @var array<string, string> */
+    private const RELATIONSHIP_TYPES = [
+        'mother' => 'Мама',
+        'father' => 'Папа',
+        'brother' => 'Брат',
+        'sister' => 'Сестра',
+        'spouse' => 'Супруг или супруга',
+        'son' => 'Сын',
+        'daughter' => 'Дочь',
+        'grandmother' => 'Бабушка',
+        'grandfather' => 'Дедушка',
+        'other' => 'Другой родственник',
+    ];
+
     public function index(QuestionBank $questions): View
     {
         return view('family-chronicles.index', [
@@ -38,6 +53,7 @@ class FamilyChroniclesController extends Controller
 
         /** @var Collection<int, FamilyPerson> $people */
         $people = FamilyPerson::query()
+            ->with('relatives')
             ->where('user_id', $request->user()->id)
             ->orderBy('name')
             ->get();
@@ -60,11 +76,24 @@ class FamilyChroniclesController extends Controller
                 'daily_question_key' => null,
                 'categories' => $bank->categories(),
                 'stages' => $this->stageLabels($bank),
+                'relationship_types' => self::RELATIONSHIP_TYPES,
                 'progress' => ['answered' => 0, 'total' => 0, 'percent' => 0],
             ]);
         }
 
-        $questions = $bank->availableFor($person->birth_year);
+        $rawBirthDate = $person->getRawOriginal('birth_date');
+        $birthYear = is_string($rawBirthDate) && $rawBirthDate !== ''
+            ? (int) substr($rawBirthDate, 0, 4)
+            : $person->birth_year;
+        $questions = $bank->availableForProfile(
+            $birthYear,
+            $person->relatives->map(static fn (FamilyRelative $relative): array => [
+                'relationship' => $relative->relationship,
+                'name' => $relative->name,
+            ])->values()->all(),
+            $person->relatives_complete,
+            $person->name,
+        );
         $questionKeys = array_column($questions, 'key');
         /** @var Collection<int, BiographyAnswer> $answers */
         $answers = BiographyAnswer::query()
@@ -89,6 +118,7 @@ class FamilyChroniclesController extends Controller
             'daily_question_key' => $daily?->question_key,
             'categories' => $bank->categories(),
             'stages' => $this->stageLabels($bank),
+            'relationship_types' => self::RELATIONSHIP_TYPES,
             'progress' => [
                 'answered' => $answered,
                 'total' => $total,
@@ -102,17 +132,84 @@ class FamilyChroniclesController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
             'birth_year' => ['nullable', 'integer', 'min:1900', 'max:'.now()->year],
+            'birth_date' => ['nullable', 'date', 'before_or_equal:today'],
             'relationship' => ['nullable', 'string', 'max:80'],
+            'gender' => ['nullable', Rule::in(['female', 'male', 'other', 'unspecified'])],
+            'birth_place' => ['nullable', 'string', 'max:160'],
+            'residence' => ['nullable', 'string', 'max:160'],
+            'occupation' => ['nullable', 'string', 'max:160'],
+            'profile_notes' => ['nullable', 'string', 'max:5000'],
+            'relatives_complete' => ['nullable', 'boolean'],
             'locale' => ['nullable', Rule::in(['ru', 'uk', 'en'])],
         ]);
+
+        if (! empty($validated['birth_date'])) {
+            $validated['birth_year'] = (int) substr($validated['birth_date'], 0, 4);
+        }
 
         $person = FamilyPerson::query()->create([
             ...$validated,
             'user_id' => $request->user()->id,
             'locale' => $validated['locale'] ?? 'ru',
+            'relatives_complete' => $validated['relatives_complete'] ?? false,
         ]);
 
+        $person->load('relatives');
+
         return response()->json(['person' => $person], 201);
+    }
+
+    public function updatePerson(Request $request, FamilyPerson $person): JsonResponse
+    {
+        abort_unless($person->user_id === $request->user()->id, 404);
+
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:120'],
+            'birth_date' => ['nullable', 'date', 'before_or_equal:today'],
+            'relationship' => ['nullable', 'string', 'max:80'],
+            'gender' => ['nullable', Rule::in(['female', 'male', 'other', 'unspecified'])],
+            'birth_place' => ['nullable', 'string', 'max:160'],
+            'residence' => ['nullable', 'string', 'max:160'],
+            'occupation' => ['nullable', 'string', 'max:160'],
+            'profile_notes' => ['nullable', 'string', 'max:5000'],
+            'relatives_complete' => ['required', 'boolean'],
+        ]);
+
+        $validated['birth_year'] = ! empty($validated['birth_date'])
+            ? (int) substr($validated['birth_date'], 0, 4)
+            : $person->birth_year;
+
+        $person->update($validated);
+        $person->load('relatives');
+
+        return response()->json(['person' => $person]);
+    }
+
+    public function storeRelative(Request $request, FamilyPerson $person): JsonResponse
+    {
+        abort_unless($person->user_id === $request->user()->id, 404);
+
+        $validated = $request->validate([
+            'relationship' => ['required', Rule::in(array_keys(self::RELATIONSHIP_TYPES))],
+            'name' => ['nullable', 'string', 'max:120'],
+            'birth_year' => ['nullable', 'integer', 'min:1850', 'max:'.now()->year],
+        ]);
+
+        $relative = FamilyRelative::query()->create([
+            ...$validated,
+            'user_id' => $request->user()->id,
+            'family_person_id' => $person->id,
+        ]);
+
+        return response()->json(['relative' => $relative], 201);
+    }
+
+    public function destroyRelative(Request $request, FamilyRelative $relative): JsonResponse
+    {
+        abort_unless($relative->user_id === $request->user()->id, 404);
+        $relative->delete();
+
+        return response()->json(['message' => 'Родственник удалён']);
     }
 
     public function storeAnswer(Request $request, QuestionBank $bank): JsonResponse
@@ -220,7 +317,7 @@ class FamilyChroniclesController extends Controller
         abort_unless($answer->user_id === $request->user()->id, 404);
     }
 
-    /** @param list<array<string, string>> $questions
+    /** @param list<array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}> $questions
      * @param  list<string>  $answeredKeys
      */
     private function dailyQuestion(Request $request, FamilyPerson $person, array $questions, array $answeredKeys): ?BiographyDailyQuestion
@@ -237,9 +334,11 @@ class FamilyChroniclesController extends Controller
             ->whereDate('question_date', $date)
             ->first();
 
-        if ($existing !== null) {
+        if ($existing !== null && in_array($existing->question_key, array_column($questions, 'key'), true)) {
             return $existing;
         }
+
+        $existing?->delete();
 
         $candidates = array_values(array_filter(
             $questions,

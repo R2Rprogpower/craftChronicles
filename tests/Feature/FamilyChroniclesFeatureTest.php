@@ -166,4 +166,59 @@ class FamilyChroniclesFeatureTest extends TestCase
         $this->assertSame($familyQuestions->count(), $familyQuestions->pluck('key')->unique()->count());
         $this->assertSame($familyQuestions->count(), $familyQuestions->pluck('text')->unique()->count());
     }
+
+    public function test_profile_relatives_personalize_and_filter_questions_only_when_complete(): void
+    {
+        $user = User::factory()->create();
+        $person = FamilyPerson::query()->create([
+            'user_id' => $user->id,
+            'name' => 'Людмила',
+            'birth_date' => '1960-05-12',
+            'birth_year' => 1960,
+            'locale' => 'ru',
+            'relatives_complete' => false,
+        ]);
+
+        $this->actingAs($user)->postJson("/family-chronicles/people/{$person->id}/relatives", [
+            'relationship' => 'mother',
+            'name' => 'Тамара',
+        ])->assertCreated();
+
+        $incompleteQuestions = collect($this->actingAs($user)
+            ->getJson("/family-chronicles/state?person_id={$person->id}")
+            ->assertOk()
+            ->json('questions'));
+
+        $this->assertTrue($incompleteQuestions->contains('key', 'relative-brother-game'));
+        $this->assertStringContainsString(
+            'мама по имени Тамара',
+            (string) $incompleteQuestions->firstWhere('key', 'relative-mother-recipe')['text'],
+        );
+
+        $this->actingAs($user)->patchJson("/family-chronicles/people/{$person->id}", [
+            'name' => 'Людмила',
+            'birth_date' => '1960-05-12',
+            'relationship' => 'мама',
+            'gender' => 'female',
+            'birth_place' => 'Харьков',
+            'residence' => 'Киев',
+            'occupation' => 'Инженер',
+            'profile_notes' => 'Любит семейные фотографии.',
+            'relatives_complete' => true,
+        ])->assertOk()->assertJsonPath('person.relatives_complete', true);
+
+        $completeResponse = $this->actingAs($user)
+            ->getJson("/family-chronicles/state?person_id={$person->id}")
+            ->assertOk()
+            ->assertJsonPath('people.0.birth_place', 'Харьков')
+            ->assertJsonPath('people.0.relatives.0.name', 'Тамара');
+        $completeQuestions = collect($completeResponse->json('questions'));
+
+        $this->assertFalse($completeQuestions->contains('key', 'relative-brother-game'));
+        $this->assertTrue($completeQuestions->contains('key', 'relative-mother-recipe'));
+        $this->assertStringContainsString(
+            'Людмила',
+            (string) $completeQuestions->firstWhere('key', 'relative-person-tradition')['text'],
+        );
+    }
 }

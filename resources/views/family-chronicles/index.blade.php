@@ -11,6 +11,9 @@
 <main class="fc-shell" id="familyChronicles"
       data-state-url="{{ route('family-chronicles.state', [], false) }}"
       data-people-url="{{ route('family-chronicles.people.store', [], false) }}"
+      data-person-update-template="{{ route('family-chronicles.people.update', ['person' => '__ID__'], false) }}"
+      data-relative-store-template="{{ route('family-chronicles.relatives.store', ['person' => '__ID__'], false) }}"
+      data-relative-delete-template="{{ route('family-chronicles.relatives.destroy', ['relative' => '__ID__'], false) }}"
       data-answers-url="{{ route('family-chronicles.answers.store', [], false) }}"
       data-attachment-store-template="{{ route('family-chronicles.attachments.store', ['answer' => '__ID__'], false) }}"
       data-attachment-delete-template="{{ route('family-chronicles.attachments.destroy', ['attachment' => '__ID__'], false) }}">
@@ -37,8 +40,8 @@
                 <label>Имя
                     <input name="name" required maxlength="120" autocomplete="name">
                 </label>
-                <label>Год рождения
-                    <input name="birth_year" type="number" min="1900" max="{{ now()->year }}" inputmode="numeric">
+                <label>Дата рождения
+                    <input name="birth_date" type="date" max="{{ now()->toDateString() }}">
                 </label>
                 <label>Кем приходится
                     <input name="relationship" maxlength="80" placeholder="Например: мама">
@@ -59,6 +62,68 @@
     </section>
 
     <section class="fc-workspace" id="workspace" hidden>
+        <details class="fc-card fc-profile" id="profileDetails">
+            <summary>Профиль человека и родственники</summary>
+            <p class="fc-profile-intro">Эти данные помогают скрывать неподходящие вопросы и подставлять имена родственников. Поля можно оставить пустыми.</p>
+
+            <form id="profileForm" class="fc-profile-form">
+                <label>Имя
+                    <input name="name" required maxlength="120">
+                </label>
+                <label>Дата рождения
+                    <input name="birth_date" type="date" max="{{ now()->toDateString() }}">
+                </label>
+                <label>Кем приходится вам
+                    <input name="relationship" maxlength="80" placeholder="Например: мама">
+                </label>
+                <label>Пол
+                    <select name="gender">
+                        <option value="">Не указано</option>
+                        <option value="female">Женский</option>
+                        <option value="male">Мужской</option>
+                        <option value="other">Другой</option>
+                        <option value="unspecified">Не хочу указывать</option>
+                    </select>
+                </label>
+                <label>Место рождения
+                    <input name="birth_place" maxlength="160">
+                </label>
+                <label>Где живёт или жил
+                    <input name="residence" maxlength="160">
+                </label>
+                <label>Профессия или занятие
+                    <input name="occupation" maxlength="160">
+                </label>
+                <label class="fc-profile-notes">Дополнительные сведения
+                    <textarea name="profile_notes" rows="3" maxlength="5000" placeholder="Например: переезды, языки, вера, важные особенности биографии"></textarea>
+                </label>
+                <label class="fc-check fc-profile-notes">
+                    <input name="relatives_complete" type="checkbox" value="1">
+                    <span>Список близких родственников заполнен полностью. Тогда вопросы о несуществующих родственниках можно скрыть.</span>
+                </label>
+                <div class="fc-profile-notes">
+                    <button class="fc-button fc-button-primary" type="submit">Сохранить профиль</button>
+                </div>
+            </form>
+
+            <div class="fc-relatives">
+                <h3>Родственники</h3>
+                <div id="relativeList" class="fc-relative-list"></div>
+                <form id="relativeForm" class="fc-relative-form">
+                    <label>Кем приходится
+                        <select name="relationship" id="relativeRelationship" required></select>
+                    </label>
+                    <label>Имя
+                        <input name="name" maxlength="120" placeholder="Можно оставить пустым">
+                    </label>
+                    <label>Год рождения
+                        <input name="birth_year" type="number" min="1850" max="{{ now()->year }}" inputmode="numeric">
+                    </label>
+                    <button class="fc-button fc-button-secondary" type="submit">Добавить родственника</button>
+                </form>
+            </div>
+        </details>
+
         <nav class="fc-modes" aria-label="Режим вопросов">
             <button type="button" class="fc-mode is-active" data-mode="daily">Вопрос дня</button>
             <button type="button" class="fc-mode" data-mode="story">История по порядку</button>

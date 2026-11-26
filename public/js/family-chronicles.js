@@ -6,6 +6,9 @@
     const urls = {
         state: root.dataset.stateUrl,
         people: root.dataset.peopleUrl,
+        personUpdate: root.dataset.personUpdateTemplate,
+        relativeStore: root.dataset.relativeStoreTemplate,
+        relativeDelete: root.dataset.relativeDeleteTemplate,
         answers: root.dataset.answersUrl,
         attachmentStore: root.dataset.attachmentStoreTemplate,
         attachmentDelete: root.dataset.attachmentDeleteTemplate,
@@ -16,6 +19,7 @@
         'questionStage', 'answerStatus', 'questionText', 'answerText', 'saveState',
         'characterCount', 'attachmentInput', 'attachmentList', 'markAnswered', 'deferQuestion',
         'skipQuestion', 'nextQuestion', 'toast',
+        'profileDetails', 'profileForm', 'relativeList', 'relativeForm', 'relativeRelationship',
     ].map(id => [id, document.getElementById(id)]));
 
     const state = {
@@ -53,6 +57,7 @@
         renderPeople();
         renderFilters();
         renderProgress();
+        renderProfile();
         els.workspace.hidden = !state.personId;
         els.emptyState.hidden = Boolean(state.personId);
         if (state.personId) chooseForMode();
@@ -67,6 +72,53 @@
             button.textContent = person.relationship ? `${person.name} · ${person.relationship}` : person.name;
             button.addEventListener('click', () => load(person.id).catch(showError));
             els.personList.append(button);
+        });
+    }
+
+    function activePerson() {
+        return state.data.people.find(person => person.id === state.personId) || null;
+    }
+
+    function renderProfile() {
+        const person = activePerson();
+        if (!person) return;
+
+        const fields = ['name', 'birth_date', 'relationship', 'gender', 'birth_place', 'residence', 'occupation', 'profile_notes'];
+        fields.forEach(name => {
+            const input = els.profileForm.elements.namedItem(name);
+            let value = person[name] ?? '';
+            if (name === 'birth_date' && value) value = String(value).slice(0, 10);
+            input.value = value;
+        });
+        els.profileForm.elements.namedItem('relatives_complete').checked = Boolean(person.relatives_complete);
+
+        fillSelect(els.relativeRelationship, state.data.relationship_types || {}, 'Выберите родство');
+        renderRelatives(person.relatives || []);
+    }
+
+    function renderRelatives(relatives) {
+        els.relativeList.innerHTML = '';
+        if (!relatives.length) {
+            const empty = document.createElement('p');
+            empty.className = 'fc-relative-empty';
+            empty.textContent = 'Пока никого не добавили. До отметки «список заполнен» вопросы не будут скрываться.';
+            els.relativeList.append(empty);
+            return;
+        }
+
+        relatives.forEach(relative => {
+            const row = document.createElement('div');
+            row.className = 'fc-relative';
+            const copy = document.createElement('span');
+            const label = state.data.relationship_types?.[relative.relationship] || relative.relationship;
+            const details = [relative.name, relative.birth_year].filter(Boolean).join(', ');
+            copy.textContent = details ? `${label}: ${details}` : label;
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.textContent = 'Удалить';
+            remove.addEventListener('click', () => removeRelative(relative.id).catch(showError));
+            row.append(copy, remove);
+            els.relativeList.append(row);
         });
     }
 
@@ -256,6 +308,12 @@
         toast('Файл удалён');
     }
 
+    async function removeRelative(id) {
+        await request(urls.relativeDelete.replace('__ID__', id), {method: 'DELETE'});
+        await load(state.personId);
+        toast('Родственник удалён');
+    }
+
     function formatBytes(bytes) {
         if (!bytes) return '0 Б';
         const units = ['Б', 'КБ', 'МБ', 'ГБ'];
@@ -290,6 +348,41 @@
             els.addPersonDetails.open = false;
             await load(result.person.id);
             toast('Человек добавлен');
+        } catch (error) { showError(error); }
+    });
+
+    els.profileForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        const form = new FormData(els.profileForm);
+        const payload = Object.fromEntries(form.entries());
+        payload.relatives_complete = els.profileForm.elements.namedItem('relatives_complete').checked;
+
+        try {
+            await request(urls.personUpdate.replace('__ID__', state.personId), {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload),
+            });
+            await load(state.personId);
+            toast('Профиль сохранён, список вопросов обновлён');
+        } catch (error) { showError(error); }
+    });
+
+    els.relativeForm.addEventListener('submit', async event => {
+        event.preventDefault();
+        const form = new FormData(els.relativeForm);
+        const payload = Object.fromEntries([...form.entries()].filter(([, value]) => value !== ''));
+
+        try {
+            await request(urls.relativeStore.replace('__ID__', state.personId), {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload),
+            });
+            els.relativeForm.reset();
+            await load(state.personId);
+            els.profileDetails.open = true;
+            toast('Родственник добавлен');
         } catch (error) { showError(error); }
     });
 

@@ -201,6 +201,32 @@ final class QuestionBank
         ['family-tradition-invent', 'family', 'Какую новую традицию вы предложили бы семье начать уже в этом году?'],
     ];
 
+    /** @var list<array{0:string,1:string,2:string,3:list<string>}> */
+    private const RELATIVE_QUESTIONS = [
+        ['relative-mother-holiday-role', 'family', 'Какие праздничные обязанности обычно брала на себя {{mother}}?', ['mother']],
+        ['relative-mother-recipe', 'food', 'Какое блюдо лучше всего готовила {{mother}} и кто учился у неё этому рецепту?', ['mother']],
+        ['relative-mother-childhood', 'childhood', 'Как {{mother}} рассказывала о собственном детстве?', ['mother']],
+        ['relative-father-holiday-role', 'family', 'Какую роль на семейных встречах обычно брал на себя {{father}}?', ['father']],
+        ['relative-father-skill', 'work', 'Какому практическому умению {{father}} научил семью?', ['father']],
+        ['relative-father-story', 'family', 'Какую историю {{father}} рассказывал чаще других?', ['father']],
+        ['relative-brother-game', 'family', 'В какие игры {{brother}} любил играть вместе с вами?', ['brother']],
+        ['relative-brother-difference', 'relationships', 'Как {{brother}} вспоминает ваше общее детство и в чём ваши воспоминания расходятся?', ['brother']],
+        ['relative-sister-tradition', 'family', 'Какую семейную традицию {{sister}} старалась поддерживать особенно тщательно?', ['sister']],
+        ['relative-sister-memory', 'relationships', 'Какое совместное воспоминание {{sister}} наверняка описала бы иначе, чем вы?', ['sister']],
+        ['relative-sibling-alliance', 'relationships', 'Когда {{sibling}} впервые поддержал или поддержала вас в трудной ситуации?', ['sibling']],
+        ['relative-sibling-secret', 'childhood', 'Какая общая тайна или шалость связывала вас и человека: {{sibling}}?', ['sibling']],
+        ['relative-spouse-new-tradition', 'family', 'Какую новую традицию принёс в семью человек: {{spouse}}?', ['spouse']],
+        ['relative-spouse-first-celebration', 'relationships', 'Как прошёл первый общий семейный праздник с человеком: {{spouse}}?', ['spouse']],
+        ['relative-child-ritual', 'family', 'Какой семейный ритуал особенно любит человек: {{child}}?', ['child']],
+        ['relative-child-inheritance', 'legacy', 'Какую традицию вы больше всего хотите передать человеку: {{child}}?', ['child']],
+        ['relative-grandmother-home', 'childhood', 'Каким был дом, где жила {{grandmother}}, и что там всегда происходило одинаково?', ['grandmother']],
+        ['relative-grandmother-wisdom', 'values', 'Какое правило или совет чаще всего повторяла {{grandmother}}?', ['grandmother']],
+        ['relative-grandfather-craft', 'work', 'Какое ремесло, занятие или привычку передал семье {{grandfather}}?', ['grandfather']],
+        ['relative-grandfather-story', 'roots', 'Какую историю о прошлом семьи лучше всех рассказывал {{grandfather}}?', ['grandfather']],
+        ['relative-person-tradition', 'family', 'Какую традицию {{person_name}} считает самой важной для будущих поколений?', []],
+        ['relative-person-home', 'places', 'Какое место {{person_name}} считает настоящим семейным домом и почему?', []],
+    ];
+
     /** @var list<array{0:string,1:string,2:string}> */
     private const LONGITUDINAL_TRACKS = [
         ['home', 'daily-life', 'Каким был дом и ваше личное пространство %s?'],
@@ -230,12 +256,52 @@ final class QuestionBank
     /** @return list<array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string}> */
     public function all(): array
     {
+        return $this->availableForProfile(null, [], false, null);
+    }
+
+    /**
+     * @param  list<array{relationship:string,name?:string|null}>  $relatives
+     * @return list<array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}>
+     */
+    public function availableForProfile(
+        ?int $birthYear,
+        array $relatives,
+        bool $relativesComplete,
+        ?string $personName,
+    ): array {
+        $questions = $this->templates();
+        if ($birthYear !== null) {
+            $age = max(0, (int) now()->format('Y') - $birthYear);
+            $questions = array_values(array_filter($questions, static function (array $question) use ($age): bool {
+                $stage = self::STAGES[$question['stage']];
+
+                return $stage['min_age'] === null || $stage['min_age'] <= $age;
+            }));
+        }
+
+        if ($relativesComplete) {
+            $questions = array_values(array_filter(
+                $questions,
+                fn (array $question): bool => $this->requirementsSatisfied($question['requires'], $relatives),
+            ));
+        }
+
+        return array_map(
+            fn (array $question): array => $this->renderQuestion($question, $relatives, $personName),
+            $questions,
+        );
+    }
+
+    /** @return list<array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}> */
+    private function templates(): array
+    {
         $questions = array_map(fn (array $question): array => $this->question(
             $question[0],
             $question[1],
             'timeless',
             $question[2],
-        ), [...self::BASE_QUESTIONS, ...self::FAMILY_TRADITION_QUESTIONS]);
+            $question[3] ?? [],
+        ), [...self::BASE_QUESTIONS, ...self::FAMILY_TRADITION_QUESTIONS, ...self::RELATIVE_QUESTIONS]);
 
         foreach (self::LONGITUDINAL_TRACKS as [$track, $category, $template]) {
             foreach (self::STAGES as $stage => $definition) {
@@ -258,33 +324,26 @@ final class QuestionBank
     /** @return list<array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string}> */
     public function availableFor(?int $birthYear): array
     {
-        if ($birthYear === null) {
-            return $this->all();
-        }
-
-        $age = max(0, (int) now()->format('Y') - $birthYear);
-
-        return array_values(array_filter($this->all(), static function (array $question) use ($age): bool {
-            $stage = self::STAGES[$question['stage']];
-
-            return $stage['min_age'] === null || $stage['min_age'] <= $age;
-        }));
+        return $this->availableForProfile($birthYear, [], false, null);
     }
 
     /** @return array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string}|null */
     public function find(string $key): ?array
     {
-        foreach ($this->all() as $question) {
+        foreach ($this->templates() as $question) {
             if (hash_equals($question['key'], $key)) {
-                return $question;
+                return $this->renderQuestion($question, [], null);
             }
         }
 
         return null;
     }
 
-    /** @return array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string} */
-    private function question(string $key, string $category, string $stage, string $text): array
+    /**
+     * @param  list<string>  $requires
+     * @return array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}
+     */
+    private function question(string $key, string $category, string $stage, string $text, array $requires = []): array
     {
         return [
             'key' => $key,
@@ -293,6 +352,84 @@ final class QuestionBank
             'stage' => $stage,
             'stage_label' => self::STAGES[$stage]['label'],
             'text' => $text,
+            'requires' => $requires,
         ];
+    }
+
+    /**
+     * @param  list<string>  $requirements
+     * @param  list<array{relationship:string,name?:string|null}>  $relatives
+     */
+    private function requirementsSatisfied(array $requirements, array $relatives): bool
+    {
+        $types = array_column($relatives, 'relationship');
+
+        foreach ($requirements as $requirement) {
+            $matches = match ($requirement) {
+                'sibling' => array_intersect($types, ['brother', 'sister']) !== [],
+                'child' => array_intersect($types, ['son', 'daughter']) !== [],
+                default => in_array($requirement, $types, true),
+            };
+
+            if (! $matches) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @param  array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}  $question
+     * @param  list<array{relationship:string,name?:string|null}>  $relatives
+     * @return array{key:string, category:string, category_label:string, stage:string, stage_label:string, text:string, requires:list<string>}
+     */
+    private function renderQuestion(array $question, array $relatives, ?string $personName): array
+    {
+        $question['text'] = strtr($question['text'], [
+            '{{person_name}}' => $personName ?: 'этот человек',
+            '{{mother}}' => $this->relativeDescription($relatives, ['mother'], 'мама'),
+            '{{father}}' => $this->relativeDescription($relatives, ['father'], 'папа'),
+            '{{brother}}' => $this->relativeDescription($relatives, ['brother'], 'брат'),
+            '{{sister}}' => $this->relativeDescription($relatives, ['sister'], 'сестра'),
+            '{{sibling}}' => $this->relativeDescription($relatives, ['brother', 'sister'], 'брат или сестра'),
+            '{{spouse}}' => $this->relativeDescription($relatives, ['spouse'], 'супруг или супруга'),
+            '{{child}}' => $this->relativeDescription($relatives, ['son', 'daughter'], 'сын или дочь'),
+            '{{grandmother}}' => $this->relativeDescription($relatives, ['grandmother'], 'бабушка'),
+            '{{grandfather}}' => $this->relativeDescription($relatives, ['grandfather'], 'дедушка'),
+        ]);
+
+        return $question;
+    }
+
+    /**
+     * @param  list<array{relationship:string,name?:string|null}>  $relatives
+     * @param  list<string>  $types
+     */
+    private function relativeDescription(array $relatives, array $types, string $fallback): string
+    {
+        foreach ($relatives as $relative) {
+            if (! in_array($relative['relationship'], $types, true)) {
+                continue;
+            }
+
+            $label = match ($relative['relationship']) {
+                'mother' => 'мама',
+                'father' => 'папа',
+                'brother' => 'брат',
+                'sister' => 'сестра',
+                'spouse' => 'супруг или супруга',
+                'son' => 'сын',
+                'daughter' => 'дочь',
+                'grandmother' => 'бабушка',
+                'grandfather' => 'дедушка',
+                default => $fallback,
+            };
+            $name = trim((string) ($relative['name'] ?? ''));
+
+            return $name === '' ? $label : "{$label} по имени {$name}";
+        }
+
+        return $fallback;
     }
 }
