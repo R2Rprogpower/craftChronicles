@@ -13,7 +13,10 @@ Unauthenticated users are redirected to the existing `/login` page.
 - Multiple independent application users through the existing authentication system.
 - Multiple people within each user's private family workspace.
 - Optional birth year and relationship for each person.
-- 183 stable, curated questions across 15 thematic categories.
+- 262 stable, curated questions across 15 thematic categories.
+- 84 questions in «Родственники и семейные традиции», mixing broad prompts
+  with concrete prompts about celebrations, food, hospitality, everyday
+  rituals, heirlooms, migration, family roles, and intergenerational change.
 - Timeless questions and 11 chronological life stages.
 - Automatic exclusion of stages the person has not yet lived through when a birth year is known.
 - Stable question of the day per user, person, and calendar date.
@@ -38,7 +41,13 @@ Unauthenticated users are redirected to the existing `/login` page.
 | `biography_attachments` | Private files linked to an answer. |
 | `biography_daily_questions` | Stable question-of-the-day selection. |
 
-The question bank lives in `QuestionBank.php` rather than database rows. Stable keys allow the wording and collection to evolve without copying 183 rows for every user.
+The question bank lives in `QuestionBank.php` rather than database rows. Stable keys allow the wording and collection to evolve without copying 262 rows for every user.
+
+The family-traditions prompts were designed using oral-history interviewing
+principles from the Smithsonian Folklife and Oral History Interviewing Guide,
+Library of Congress family-customs interview materials, StoryCorps, and the
+NMAAHC family oral-history guide. Application wording is original and adapted
+for Russian-speaking families rather than copied from those sources.
 
 ## Privacy model
 
@@ -83,7 +92,7 @@ The focused suite verifies authentication, user isolation, stable daily question
 ## Known MVP limitations
 
 - Russian UI and question text only; the person locale is stored for future localization.
-- Existing accounts must be created through the current Craft Chronicles user/admin flow.
+- New users can create a private account through the web registration page.
 - Files can be uploaded, but direct in-browser microphone/camera recording is deferred.
 - No family tree, relationship graph, GEDCOM, narrative book generation, transcription, notifications, or AI processing yet.
 - No account-to-account family sharing or granular per-answer permissions yet.

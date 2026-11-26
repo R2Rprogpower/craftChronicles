@@ -156,4 +156,14 @@ class FamilyChroniclesFeatureTest extends TestCase
         $this->assertFalse(collect($questionsForTeenager)->contains('stage', 'age-19-25'));
         $this->assertTrue(collect($questionsForTeenager)->contains('stage', 'age-11-14'));
     }
+
+    public function test_family_traditions_have_at_least_fifty_unique_questions(): void
+    {
+        $familyQuestions = collect((new QuestionBank)->all())
+            ->where('category', 'family');
+
+        $this->assertGreaterThanOrEqual(50, $familyQuestions->count());
+        $this->assertSame($familyQuestions->count(), $familyQuestions->pluck('key')->unique()->count());
+        $this->assertSame($familyQuestions->count(), $familyQuestions->pluck('text')->unique()->count());
+    }
 }
